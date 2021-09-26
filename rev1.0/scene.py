@@ -16,9 +16,8 @@ Written by Evan
 '''
 
 import pygame
+from pygame.locals import *
 import os
-
-from nodes import Text
 
 class Scene:
 
@@ -26,11 +25,14 @@ class Scene:
     id = 0
     dir = None
 
-    def __init__(self, **kwargs):
+    def __init__(self, name, **kwargs):
         # kwargs are keyword arguments, pass in this format: var_name=data_value
 
+        # given scene name
+        self.name = name
+
         # will hold all the different types of node groups specfic to this scene and will draw them
-        self.node_groups = []
+        self.node_groups = {}
         
         # holds the file name of img for background
         self.file = None
@@ -61,11 +63,24 @@ class Scene:
             self.background = kwargs['background']
         # if no img file and no background default to black
         elif self.file == None:
-            self.background = pygame.Color('black')
+            self.background = Color('black')
 
-    def add_node(self, node):
-        # can pass a single node or node group
-        self.node_groups.append(node)
+    # adds a node group to scene
+    # pass node group and get name
+    # create len=1 dict and add to node groups
+    def add_node_group(self, node_group):
+        # passed node group is added to node_groups dict under its given name
+        node_group_name = node_group.get_name()
+        node_group_dict = {node_group_name: node_group}
+        self.node_groups.update(node_group_dict)
+
+    # returns all node groups 
+    def get_node_groups(self):
+        return self.node_groups
+
+    # returns scene name
+    def get_name(self):
+        return self.name
 
     def draw(self, screen):
 
@@ -78,5 +93,6 @@ class Scene:
             # put on screen
             screen.blit(self.img, self.img.get_rect())
 
-        for node in self.node_groups:
-            node.draw(screen)
+        # draw all node groups
+        for node_group_name, node_group in self.node_groups.items():
+            node_group.draw(screen)
