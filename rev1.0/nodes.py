@@ -16,10 +16,12 @@ Written by Evan
 # dir = (bool, bool) = (x dir, y dir) direction of the sequential nodes
 # pos = (x, y) start coords of the a node, always the TOPLEFT
 
+import os
 import pygame
 import textwrap
 from pygame.locals import *
 from coords import ScreenCoords
+from screen_grid import BattleSelectionBox, ColoredStatusBar, EnemyPokemonBox, MainBox, PlayerPokemonBox, BattleSelectionItemBox, ScreenGrid
 
 class Node:
 
@@ -71,11 +73,17 @@ class Node:
 
 # Nodes can be added to a group
 # All Nodes must be given at init of group object
+# Can pass either a single Node or a list of Nodes
 # Group needs a name. You can access it in the scene dict using its name
 class Group:
     def __init__(self, name, nodes):
+
+        if isinstance(nodes, list):
+            self.nodes = nodes
+        else:
+            self.nodes = [nodes]
+
         self.name = name
-        self.nodes = nodes
         Node.reset()
 
     def get_nodes(self):
@@ -98,12 +106,19 @@ class Text(Node):
         super().__init__(**kwargs)
 
         self.text = text
-
-        self.font_name = None
-        self.font_size = 48
+        
+        self.font_name = os.path.join('fonts', 'AtariClassicChunky-PxXP.ttf')
+        self.font_size = 24
 
         if 'font_color' in kwargs:
             Text.font_color = kwargs['font_color']
+
+        if 'font_size' in kwargs:
+            self.font_size = kwargs['font_size']
+
+        if 'font_name' in kwargs:
+            self.font_name = kwargs['font_name']
+
 
         self.set_font()
         self.render()
@@ -112,13 +127,16 @@ class Text(Node):
 
     def set_font(self):
         self.font = pygame.font.Font(self.font_name, self.font_size)
-        self.font_size = self.font.size(self.text)
-        Node.size = self.font_size
+        self.node_size = self.font.size(self.text)
+        Node.size = self.node_size
     
     def render(self):
         self.image = self.font.render(self.text, True, Text.font_color)
         self.rect = self.image.get_rect()
         self.rect.topleft = Node.pos
+
+    def get_rect(self):
+        return self.rect
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
@@ -126,7 +144,6 @@ class Text(Node):
 # text main is the main text box in the game, positioned in the bottom center of the screen
 # pass a list of sentences e.g ['hello m8', 'whats up today', etc]
 class TextMain(Node):
-
 
     def __init__(self, sentences, **kwargs):
         super().__init__(**kwargs)
@@ -136,11 +153,19 @@ class TextMain(Node):
 
         self.text_nodes = []
 
-        self.font_name = None
-        self.font_size = 48
+        self.font_name = os.path.join('fonts', 'AtariClassicChunky-PxXP.ttf')
+        self.font_size = 24
         self.font_color = Color('black')
 
-        self.rect = pygame.Rect(ScreenCoords.two_eighths_w, ScreenCoords.six_eighths_h, ScreenCoords.four_eighths_w, ScreenCoords.two_eighths_h)
+        self.delay_time = 0
+
+        self.rect = MainBox()
+
+        self.loading_blink_pts = []
+        #self.loading_blink_pts.append((self.rect.w14, self.rect.h7))
+        #self.loading_blink_pts.append((self.rect.w15, self.rect.h9))
+        #self.loading_blink_pts.append((self.rect.w, self.rect.h9))
+
 
         self.set_font()
         self.word_wrap(self.sentence)
@@ -149,7 +174,6 @@ class TextMain(Node):
     # keybind function for incrementing to next sentence
     def increment_text(self):
 
-        print('Running increment_text()')
         self.text_nodes = []
         self.word_wrap(self.sentence)
         self.render()
@@ -165,7 +189,7 @@ class TextMain(Node):
     def set_font(self):
         self.font = pygame.font.Font(self.font_name, self.font_size)
         self.font_size_per_char = self.font.size('a')
-        self.chars_per_line = self.rect.w//self.font_size_per_char[0] #+ 17
+        self.chars_per_line = (self.rect.w-(self.rect.w-self.rect.w1))//self.font_size_per_char[0] #+ 17
         Node.size = (self.rect.w, self.rect.h)
 
     # pass a sentence and push it to a newline if its longer then text box width
@@ -175,7 +199,7 @@ class TextMain(Node):
     # render a sentence into image/s of text
     def render(self):
 
-        text_node = Text(self.lines[0], pos=self.rect.topleft, gap=(0, 10), dir=(False, True), font_color=Color('black'))
+        text_node = Text(self.lines[0], pos=(self.rect.w1, self.rect.h1), gap=(0, 10), dir=(False, True), font_color=Color('black'), font_size=self.font_size, font_name=self.font_name)
         self.text_nodes.append(text_node)
 
         for line in self.lines[1:len(self.lines)]:
@@ -189,147 +213,197 @@ class TextMain(Node):
 
         pygame.draw.rect(screen, Color('black'), self.rect.inflate(10, 10), border_radius=3)
         pygame.draw.rect(screen, Color('white'), self.rect, border_radius=1)
+        pygame.draw.rect(screen, Color('blue'), BattleSelectionBox())
+
+        x =  BattleSelectionItemBox('topleft')
+        pygame.draw.rect(screen, Color('purple'), x)
+
+        x =  BattleSelectionItemBox('topright')
+        pygame.draw.rect(screen, Color('purple'), x)
+
+        x =  BattleSelectionItemBox('bottomleft')
+        pygame.draw.rect(screen, Color('purple'), x)
+
+        x =  BattleSelectionItemBox('bottomright')
+        pygame.draw.rect(screen, Color('purple'), x)
 
         for text_node in self.text_nodes:
             text_node.draw(screen)
 
-# TextPokemon is the battle stats of pokemon during a battle
-# pokemon_traits consists of [name, level, health, xp]
-# user can ONLY be 'enemy' or 'player'
-class TextPokemon(Node):
+        self.delay_time += 1
+        if self.delay_time <= 50:
+            x = 1
+            #pygame.draw.polygon(screen, Color('black'), self.loading_blink_pts)
+        elif self.delay_time == 100:
+            self.delay_time = 0
+            
 
-    def __init__(self, pokemon_traits, user, **kwargs):
-        super().__init__(**kwargs)
-        self.pokemon_traits = pokemon_traits
-        self.user = user
+class TextStartMenu(Node):
 
-        if self.user == 'player':
-            self.rect = pygame.Rect(ScreenCoords.one_eighth_w, ScreenCoords.two_eighths_h, ScreenCoords.two_eighths_w, ScreenCoords.three_eighths_h)
-        elif self.user == 'enemy':
-            self.rect = pygame.Rect(ScreenCoords.five_eighths_w, ScreenCoords.one_eighth_h, ScreenCoords.two_eighths_w, ScreenCoords.three_eighths_h)
-
-    def draw(self, screen):
-        
-        pygame.draw.rect(screen, Color('white'), self.rect)
-        text = Text(self.user, pos=self.rect.topleft)
-        text.draw(screen)
-        '''
-        if self.user == 'enemy':
-            #pygame.draw.line(screen, Color('black'), (ScreenCoords.two_eighths_w, 0), (ScreenCoords.two_eighths_w, ScreenCoords.h))
-        else:
-            #pygame.draw.line(screen, Color('black'), (ScreenCoords.six_eighths_w, 0), (ScreenCoords.six_eighths_w, ScreenCoords.h))
-        '''
-
-
-
-'''
-# Indicator displays text with values that need to be updated periodically
-# To init, pass text with formating e.g '{} x {} - {}'
-# pass values as an list even if one element e.g [1], [1, 2, 3]
-# pass max amt the value can be e.g 0-999 pass 999
-class Indicator(Node):
-
-    def __init__(self, text, values, max_amt **kwargs):
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        self.text = text
-        self.values = values
-        self.max_amt = max_amt
+        self.font_name = os.path.join('fonts', 'PokemonSolidNormal-xyWR.ttf')
+        self.font_size = 96
+        self.font_color = Color('blue')
+        self.delay = 0
 
-        self.font_name = None
-        self.font_size = 48
-        self.font_color = pygame.Color('white')
+        self.nodes = []
+
+        self.menu_title_text = 'POKEMON INDIGO'
+        self.menu_flashing_text = 'Press SPACE to Start'
+
+        self.set_font()
+        self.render()
 
     def set_font(self):
         self.font = pygame.font.Font(self.font_name, self.font_size)
-        self.font_size = self.font.size()
-        Node.size = self.font_size
+        Node.size = (ScreenGrid.w, ScreenGrid.h)
 
-    def update_value(self, values):
+    def render(self):
+        self.menu_title_text_node = Text(self.menu_title_text, font_name=self.font_name, font_size=self.font_size, font_color=self.font_color)    
+        self.menu_title_text_node.get_rect().center = (ScreenGrid.center[0], ScreenGrid.h4)
+        self.menu_flashing_text = Text(self.menu_flashing_text, font_color=Color('black'))
+        self.menu_flashing_text.get_rect().center = (ScreenGrid.center[0], ScreenGrid.h8)
 
-        if len(values) > 1:
-            self.display_text = self.text.format(values[0], values[1])
-        else:
-            self.display_text = self.text.format(values[0])
+    def draw(self, screen):
+
+        self.menu_title_text_node.draw(screen)
+
+        self.delay += 1
+        if self.delay <= 25:
+            self.menu_flashing_text.draw(screen)
+        elif self.delay == 50:
+            self.delay = 0
+            
+
+
+# TextPokemon is the battle stats of pokemon during a battle
+# pokemon_sprites consists of front and back sprites of pokemon e.g 0 = back 1 = front
+# pokemon_traits consists of [health, xp]
+# pokemon_consts consists of [name, level, max_xp, max_health]
+# user can ONLY be 'enemy' or 'player'
+class TextPokemon(Node):
+
+
+
+    def __init__(self, pokemon_sprites, pokemon_traits, pokemon_consts, user, **kwargs):
+        super().__init__(**kwargs)
+
+        self.pokemon_sprites = pokemon_sprites
+        self.pokemon_traits = pokemon_traits
+        self.pokemon_consts = pokemon_consts
+
+        self.user = user
+
+        self.name = self.pokemon_consts[0]
+        self.level = self.pokemon_consts[1]
+        self.max_health = self.pokemon_consts[2]
+        self.max_xp = self.pokemon_consts[3]
+
+        self.image = None
+
+        self.nodes = []
+
+        self.font_name = os.path.join('fonts', 'AtariClassicChunky-PxXP.ttf')
+        self.font_size = 48
+        self.font_color = Color('black')
+
+        if self.user == 'player':
+            self.rect = PlayerPokemonBox()
+            self.sprite_image = self.pokemon_sprites[0]
+
+        elif self.user == 'enemy':
+            self.rect = EnemyPokemonBox()
+            self.sprite_image = self.pokemon_sprites[1]
+
+        self.sprite_rect = self.sprite_image.get_rect()
+        self.sprite_rect.center = self.rect.midbottom
 
         self.render()
 
     def render(self):
-        self.image = self.font.render(self.display_text)
+        name_text_node = Text(self.name, dir=(False, True), gap=(10, 10), pos=(self.rect.w1, self.rect.h1), font_name=self.font_name, font_size=self.font_size, font_color=self.font_color)
+        self.nodes.append(name_text_node)
+      
+        level_text_node = Text('Lv: ' + str(self.level), dir=(False, True))
+        self.nodes.append(level_text_node)
+
+        current_health_text_node = Text(str(self.pokemon_traits[0]) + ' / ', dir=(True, False))
+        self.nodes.append(current_health_text_node)
+        
+        max_health_text_node = Text(str(self.max_health), dir=(False, True))
+        self.nodes.append(max_health_text_node)
+
+        health_bar_text_node = Text('HP:', dir=(True, False), pos=(self.rect.w1, Node.pos[1]))
+        self.nodes.append(health_bar_text_node)
+
+        health_bar = StatusBar(self.pokemon_traits[0], self.max_health, color=Color('green'), dir=(False, True))
+        self.nodes.append(health_bar)
+
+        xp_bar_text_node = Text('XP:', dir=(True, False), pos=(self.rect.w1, Node.pos[1]))
+        self.nodes.append(xp_bar_text_node)
+        xp_bar = StatusBar(self.pokemon_traits[1], self.max_xp, color=Color('purple'), dir=(False, True))
+        self.nodes.append(xp_bar)
 
 
-'''
+    
+    def update_vals(self, pokemon_traits):
+        self.pokemon_traits = pokemon_traits
+        self.nodes = []
+        self.render()
 
+    def draw(self, screen):
 
-class TextButton(Node):
+        #pygame.draw.rect(screen, Color('white'), self.rect)
 
-    types = {'text-main': (500, 1), 'selection-main': 2, 'selection-side': 3}
+        for node in self.nodes:
+            node.draw(screen)
 
-    def __init__(self, text, type, **kwargs):
+        screen.blit(self.sprite_image, self.sprite_rect)
+
+class StatusBar(Node):
+
+    def __init__(self, curr, max, **kwargs):
         super().__init__(**kwargs)
+        self.curr = curr
+        self.max = max
 
-        self.node_size = (0, 0)
-        for ntype in TextButton.types.keys():
-            if ntype == type:
-                self.type = type
-                self.node_size = TextButton.types[type]
+        self.ratio = self.curr/self.max
 
-        self.images = []
-        self.rects = []
+        self.file = None
+        self.background = None
 
-        self.text = text
+        self.rect = ColoredStatusBar()
 
-        self.font_name = None
-        self.font_size = 48
-        self.font_color = pygame.Color('black')
+        self.scaled_w = int(self.rect.w*self.ratio)
+        #self.scaled_rect = self.rect
+        self.scaled_rect = pygame.Rect(0, 0, self.scaled_w, self.rect.h)
+        
 
-        self.set_font()
-        self.word_wrap()
+        #if 'file' in kwargs:
+        #   self.file = kwargs['file']
+
+        if 'background' in kwargs:
+            self.background = kwargs['background']
+
+        if 'color' in kwargs:
+            self.color = kwargs['color']
+
+        self.set_size()
         self.render()
 
         self.child_update()
 
-    def word_wrap(self):
-
-        char_per_line = self.node_size[0]//self.font_size_per_char[0]
-        lines = []
-        line = []
-        print(char_per_line)
-        print(len(self.text))
-        for i in range(0, len(self.text)):
-            if (i+1)%char_per_line == 0 or i == len(self.text)-1:
-                line.append(self.text[i])
-                lines.append(line)
-                line = []
-            else:
-                line.append(self.text[i])
-
-        self.lines = lines
+    def set_size(self):
+        Node.size = (self.scaled_rect.w, self.scaled_rect.h)
         
-    def set_font(self):
-        self.font = pygame.font.Font(self.font_name, self.font_size)
-        self.font_size_per_char = self.font.size('A')
-        Node.size = self.node_size
-
     def render(self):
-        pos = Node.pos
-        y_offset = self.font_size_per_char[1]
-        for line in self.lines:
-            text_line = ''.join([str(char) for char in line])
-            #print(text_line)
-            image = self.font.render(text_line, True, self.font_color)
-            self.images.append(image)
-            rect = image.get_rect()
-            self.rects.append(rect)
-            rect.topleft = pos
-
-            pos = (pos[0], pos[1]+y_offset)
+        self.scaled_rect.topleft = Node.pos
 
     def draw(self, screen):
-        for i in range(0, len(self.images)):
-            pygame.draw.rect(screen, pygame.Color('white'), self.rects[i])
-            screen.blit(self.images[i], self.rects[i])
+        pygame.draw.rect(screen, self.color, self.scaled_rect)
 
-        
+
         
 

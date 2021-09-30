@@ -8,9 +8,11 @@ Written by Evan
 # holds 1/8 divisions of the screen for placing Nodes
 class ScreenCoords:
 
-    def __init__(self, screen_info):
+    def __init__(self, screen_info, clock):
         
         ScreenCoords.screen_info = screen_info
+
+        ScreenCoords.clock = clock
 
         ScreenCoords.h = ScreenCoords.screen_info.current_h
         ScreenCoords.w = ScreenCoords.screen_info.current_w
