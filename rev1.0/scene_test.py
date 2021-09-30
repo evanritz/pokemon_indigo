@@ -10,6 +10,8 @@ Written by Evan
 
 # SCENE TEST
 
+import pygame
+
 from app import App
 
 from scene import *

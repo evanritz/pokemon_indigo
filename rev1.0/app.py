@@ -24,20 +24,23 @@ from pygame.locals import *
 
 # importing Scene from local dir
 from scene import Scene
-from nodes import Text, Group, TextButton, TextMain, TextPokemon
+from nodes import Text, Group, TextMain, TextPokemon
 from coords import ScreenCoords
+from screen_grid import ScreenGrid, EnemyPokemonBox
 
 class App:
 
     # version control to change every revison 
     game_name = 'Pokemon Indigo'
     game_revison = '1.0'
-
     
     def __init__(self):
         # create empty scenes dict and empty current scene
         self.scenes = {}
         self.scene = None
+
+        self.clock = pygame.time.Clock()
+        self.fps = 60
 
         # part of change_scene func, will be removed later
         self.key_idx = 0
@@ -49,7 +52,9 @@ class App:
         # Get current screen info, res, spec, etc
         self.screen_info = pygame.display.Info()
         # Give to ScreenCoords to calc points of use
-        ScreenCoords(self.screen_info)
+        ScreenCoords(self.screen_info, self.clock)
+        ScreenGrid(self.screen_info)
+        
 
         # Screen res set to static for ease of access
         App.default_screen_resolution = (ScreenCoords.w, ScreenCoords.h)
@@ -102,6 +107,22 @@ class App:
                 elif event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         self.running = False
+
+                    if event.key == K_SPACE:
+                        scene = self.get_scene('scene4')
+                        if scene == self.scene:
+                            self.change_scene(1)
+                    if event.key == K_e:
+                        node_group = self.get_node_group('scene2', 'player')
+                        main = node_group.get_nodes()[0]
+                        x = [random.randint(1, 1000),random.randint(1, 999), random.randint(1, 1000), random.randint(1, 1000)]
+                        main.update_vals(x)  
+                        #print(main.__dict__)
+                    if event.key == K_r:
+                        node_group = self.get_node_group('scene2', 'enemy')
+                        main = node_group.get_nodes()[0]
+                        x = [random.randint(1, 100),random.randint(1, 100), random.randint(1, 1000), random.randint(1, 1000)]
+                        main.update_vals(x)  
                     if event.key == K_a:
                         node_group = self.get_node_group('scene2', 'main')
                         main = node_group.get_nodes()[0]
@@ -118,6 +139,8 @@ class App:
 
             # update display every iter
             pygame.display.flip()
+
+            self.clock.tick(self.fps)
 
         pygame.quit()
 
@@ -154,6 +177,10 @@ class App:
                     self.key_idx -= 1    
                 self.scene = self.get_scene(keys[self.key_idx])
 
+    def decrement_scene(self):
+        curr_scene = self.scene.get_name()
+        
+
     # adds a new scene to scenes dict with its name as the dict key
     def add_scene(self, scene):
         # gets scene name
@@ -162,6 +189,9 @@ class App:
         scene_dict = {scene_name: scene}
         self.scene = scene
         self.scenes.update(scene_dict)
+
+    # selection text main function
+
 
         
 # main function, init App and run method
