@@ -33,6 +33,8 @@ class Scene:
 
         # will hold all the different types of node groups specfic to this scene and will draw them
         self.node_groups = {}
+
+        self.tilemap = None
         
         # holds the file name of img for background
         self.file = None
@@ -74,6 +76,9 @@ class Scene:
         node_group_dict = {node_group_name: node_group}
         self.node_groups.update(node_group_dict)
 
+    def add_tile_map(self, tilemap):
+        self.tilemap = tilemap
+
     # returns all node groups 
     def get_node_groups(self):
         return self.node_groups
@@ -96,3 +101,6 @@ class Scene:
         # draw all node groups
         for node_group_name, node_group in self.node_groups.items():
             node_group.draw(screen)
+
+        if self.tilemap != None:
+            self.tilemap.draw(screen)

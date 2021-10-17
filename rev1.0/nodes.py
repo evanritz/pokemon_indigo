@@ -20,7 +20,6 @@ import os
 import pygame
 import textwrap
 from pygame.locals import *
-from coords import ScreenCoords
 from screen_grid import BattleSelectionBox, ColoredStatusBar, EnemyPokemonBox, MainBox, PlayerPokemonBox, BattleSelectionItemBox, ScreenGrid
 
 class Node:
@@ -208,15 +207,19 @@ class TextMain(Node):
     
     def draw(self, screen):
 
-        pygame.draw.line(screen, Color('red'), (0, ScreenCoords.four_eighths_h), (ScreenCoords.w, ScreenCoords.four_eighths_h))
-        pygame.draw.line(screen, Color('red'), (ScreenCoords.four_eighths_w, 0), (ScreenCoords.four_eighths_w, ScreenCoords.h))
+        #pygame.draw.line(screen, Color('red'), (0, ScreenCoords.four_eighths_h), (ScreenCoords.w, ScreenCoords.four_eighths_h))
+        #pygame.draw.line(screen, Color('red'), (ScreenCoords.four_eighths_w, 0), (ScreenCoords.four_eighths_w, ScreenCoords.h))
 
-        pygame.draw.rect(screen, Color('black'), self.rect.inflate(10, 10), border_radius=3)
-        pygame.draw.rect(screen, Color('white'), self.rect, border_radius=1)
-        pygame.draw.rect(screen, Color('blue'), BattleSelectionBox())
+        pygame.draw.rect(screen, Color('white'), self.rect.inflate(12, 12), border_radius=8)
+        pygame.draw.rect(screen, Color('black'), self.rect.inflate(8, 8), border_radius=8)
+        
+        #pygame.draw.rect(screen, Color('white'), self.rect, border_radius=1)
+        #pygame.draw.rect(screen, Color('blue'), BattleSelectionBox())
+
+        BattleSelectionBox()
 
         x =  BattleSelectionItemBox('topleft')
-        pygame.draw.rect(screen, Color('purple'), x)
+        #pygame.draw.rect(screen, Color('purple'), x)
 
         x =  BattleSelectionItemBox('topright')
         pygame.draw.rect(screen, Color('purple'), x)

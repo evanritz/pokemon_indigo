@@ -17,6 +17,7 @@ Written by Evan
 
 '''
 
+import os
 import pygame
 import random
 # imports constants from pygame so no need for pygame.constant reference
@@ -25,7 +26,6 @@ from pygame.locals import *
 # importing Scene from local dir
 from scene import Scene
 from nodes import Text, Group, TextMain, TextPokemon
-from coords import ScreenCoords
 from screen_grid import ScreenGrid, EnemyPokemonBox
 
 class App:
@@ -33,6 +33,7 @@ class App:
     # version control to change every revison 
     game_name = 'Pokemon Indigo'
     game_revison = '1.0'
+    game_dir = None
     
     def __init__(self):
         # create empty scenes dict and empty current scene
@@ -52,15 +53,15 @@ class App:
         # Get current screen info, res, spec, etc
         self.screen_info = pygame.display.Info()
         # Give to ScreenCoords to calc points of use
-        ScreenCoords(self.screen_info, self.clock)
         ScreenGrid(self.screen_info)
         
+        App.game_dir = os.path.abspath('.')
 
         # Screen res set to static for ease of access
-        App.default_screen_resolution = (ScreenCoords.w, ScreenCoords.h)
+        App.default_screen_resolution = (1000, 900) # 10:9 aspect ratio
 
         # Set screen to spawn at current display res in Fullscreen mode, ESC to exit
-        self.screen = pygame.display.set_mode(App.default_screen_resolution, FULLSCREEN)
+        self.screen = pygame.display.set_mode(App.default_screen_resolution)#FULLSCREEN)
 
         self.running = True # This is just for inital rev, will have more logic based on task (start menu, ingame menu, game, etd)
 
@@ -136,6 +137,7 @@ class App:
 
             # draw scene to screen
             self.scene.draw(self.screen)
+            
 
             # update display every iter
             pygame.display.flip()
