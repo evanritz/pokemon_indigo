@@ -1,9 +1,12 @@
+from numpy import spacing
 from app import App
 
 from scene import Scene
 from nodes import *
 
-from ScreenGrid import *
+#from tiles import *
+from tilemap import Tilemap
+
 
 class Test(App):
 
@@ -16,6 +19,8 @@ class Test(App):
         #s1.add_node_group(g1)
         #tb1 = Text('dsad', pos=(0, 500), gap=(10,10), dir=(True, False))
         #tb2 = Text('LOL My Name is Evan, Whats up buddy')
+
+        '''
         print('---THIS IS THE RECTS---')
         EnemyPokemonBox()
         PlayerPokemonBox()
@@ -26,6 +31,7 @@ class Test(App):
         BattleSelectionItemBox('bottomleft')
         BattleSelectionItemBox('bottomright')
         print('--------------')
+        '''
 
         #ts = TextSelection(['Hydro Blast', 'Memes', 'Splash', 'LOL'])
 
@@ -42,7 +48,7 @@ class Test(App):
         #g2 = Group('Test TxtButt Group', [tb1, tb2])
         #s1.add_node_group(g2)
         #self.add_scene(s1)
-        s2 = Scene('scene2', dir='/home/evan/Desktop/Pokemon_Indigo/src/rev1.0/imgs/', file='grass_battle.png')
+        s2 = Scene('scene2', dir=os.path.join(App.game_dir, 'imgs'), file='grass_battle.png')
         tm = TextMain(['My name is Evan','Whats up', 'sdasjdlajsdljalsdjlajdlajldsjaldjaldjlsakjdlkajdlklkfjaslkdjalkjdslksajdlkjsajdlsajdljsadlkjsalkjdlsajdlkjsad', 'Gr8 m8 I would r8 8/8'])
         
         s2.add_node_group(Group('enemy', pt))
@@ -50,6 +56,7 @@ class Test(App):
         s2.add_node_group(Group('main', [tm]))
         #s2.add_node(TextButton('TEAM B IS THE BEST LOL MEMES OMG THIS RANDOM XD', 'text-main', pos=(0,0)))
         self.add_scene(s2)
+
         # pygame.Color('black') == (0, 0, 0)
         #self.add_scene(Scene('scene3', background=Color('purple')))
         # notice how only the file kwarg is need to load picture, dir was saved for all objects of scene class
@@ -58,6 +65,14 @@ class Test(App):
         s4.add_node_group(Group('menustart', tsm))
         self.add_scene(s4)
         
+        s5 = Scene('scene5', file='start_menu_bg.png')
+        s5.add_tile_map(Tilemap('map_test.json', App.game_dir))
+
+       #tileset = Tileset(1, (96, 96), dir=os.path.join(App.game_dir, 'Map', 'gfx'), margin=1, spacing=0)
+        #tilemap = Tilemap(tileset, (150, 400))
+        #s2.add_tile_map(tilemap)
+        self.add_scene(s5)
+
 
 
 if __name__ == '__main__':
