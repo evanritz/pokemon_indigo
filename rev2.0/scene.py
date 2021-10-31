@@ -11,24 +11,25 @@ from dirs import *
 
 class Scene:
 
-    def __init__(self, state, next_states):
+    def __init__(self, state):
 
         # the state of the scene
         # states of scenes that this scene can transtion to
         self.state = state
-        self.next_states = next_states
 
         self.rez = SCREEN_REZ
 
-        # TODO: update keybinds.py and pull from there
-
         if self.state == AppStates.game:
+            self.next_states = {'battle': AppStates.battle, 'text': AppStates.text}
             self.keybinds = GAME_KEYBINDS
         elif self.state == AppStates.battle:
+            self.next_states = {'game': AppStates.game, 'text': AppStates.text}
             self.keybinds = BATTLE_KEYBINDS
         elif self.state == AppStates.text:
+            self.next_states = {'game': AppStates.game, 'battle': AppStates.battle}
             self.keybinds = TEXT_KEYBINDS
         elif self.state == AppStates.start:
+            self.next_states = {'battle': AppStates.game, 'text': AppStates.text}
             self.keybinds = MENU_KEYBINDS
 
         self.game = None
@@ -39,24 +40,30 @@ class Scene:
 
         self.boxes = []
 
+    def get_keybinds(self):
+        return self.keybinds
+
     def do_keybinds(self, type, event):
         key = event.key
         mod = event.mod
         if type == KEYDOWN:# and 'down' in self.keybinds.keys():
             if (key, mod) in self.keybinds['down']:
-                print('up')
                 exec(self.keybinds['down'][key, mod])
         elif type == KEYUP and 'up' in self.keybinds.keys():
             if (key, mod) in self.keybinds['up']:
-                print('down')
                 exec(self.keybinds['up'][key, mod])
 
     # flag = scene name or none
     def check_flag(self):
-        return self.flag
+        flag = self.flag
+        self.flag = None
+        return flag
 
-    def transtion(self, idx):
-        self.flag = self.next_states[idx]
+    def transtion(self, key):
+        
+        if key != None:
+
+            self.flag = self.next_states[key]
 
     def get_state(self):
         return self.state
@@ -67,6 +74,9 @@ class Scene:
 
     def add_box(self, box):
         self.boxes.append(box)
+
+    def get_boxes(self):
+        return self.boxes
     
     def set_resolution(self, rez):
         self.rez = rez
@@ -75,12 +85,16 @@ class Scene:
         self.bg_image = pygame.image.load(os.path.join(GAME_BGS_DIR, file_name))
         self.bg_image = pygame.transform.scale(self.bg_image, self.rez)
 
-    def update(self):
+    def game_update(self):
         self.game.update()
+
+        if self.game.check_flag() != None:
+            self.transtion(self.game.check_flag())
+
+    def non_game_update(self):
+        self.transtion(self.boxes[0].check_flag())
     
     def draw(self, screen):
-        
-        #print(self.flag)
 
         if self.bg_image != None:
             screen.blit(self.bg_image, self.bg_image.get_rect())

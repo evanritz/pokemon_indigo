@@ -7,6 +7,7 @@ import os
 from pygame.locals import *
 from consts import *
 from dirs import *
+from random import randrange
 
 class Text:
 
@@ -114,12 +115,15 @@ class Blinker:
 
         self.curr_image = self.images[0]
         self.curr_rect = self.curr_image.get_rect()
+        self.curr_rect.topleft = self.pos
         self.image_idx = 0
 
         self.prev_ms = pygame.time.get_ticks()
         #self.is_drawing = True
 
-    
+    def update_pos(self, pos):
+        self.pos = pos
+
     def update(self):
         self.curr_ms = pygame.time.get_ticks()
         if self.curr_ms-self.prev_ms >= self.delay:
@@ -132,12 +136,54 @@ class Blinker:
                 self.image_idx = 0
 
             self.curr_image = self.images[self.image_idx]
+            self.curr_rect = self.curr_image.get_rect()
             self.curr_rect.topleft = self.pos
 
     def draw(self, screen):
         #if self.is_drawing:
         screen.blit(self.curr_image, self.curr_rect)
-            
+
+class MoveAnimator:
+
+    def __init__(self, startpos, endpos, images, delay, move_delay):
+        self.startpos = startpos
+        self.endpos = endpos
+        self.images = images
+        self.delay = delay
+        self.move_delay = move_delay
+
+        self.dy = self.endpos[1] - self.startpos[1]
+        self.dx = self.endpos[0] - self.startpos[0]
+
+        self.pos = self.startpos
+
+        self.blinker = Blinker(self.images, self.pos, delay)
+
+        self.prev_ms = pygame.time.get_ticks()
+
+    def update(self):
+        #self.dx = self.startpos[0] - self.endpos[0]
+        #self.dy = self.endpos[1] - self.startpos[1]
+   
+        self.blinker.update()
+
+        print(self.pos)
+
+        self.curr_ms = pygame.time.get_ticks()
+        if self.curr_ms-self.prev_ms >= self.move_delay:
+            self.prev_ms = self.curr_ms
+
+            if self.pos < self.endpos:
+                self.pos = (self.pos[0] + self.dx/10, self.pos[1] + self.dy/10)
+                self.blinker.update_pos(self.pos)
+
+    def draw(self, screen):
+        if self.pos < self.endpos:
+            self.blinker.draw(screen)
+
+
+
+    
 
 # text is move
 # pos = topleft or topright or bottomleft or bottomright
@@ -149,7 +195,6 @@ class InfoBoxItem:
 
         self.default_color = color
         self.highlight_color = Color(*self.default_color[0:3], 0)
-        print(self.highlight_color)
         self.current_color = self.default_color
         self.border = False
 
@@ -173,7 +218,7 @@ class InfoBoxItem:
     def unhighlight(self):
         self.border = False
 
-    def get_move(self):
+    def  get_move(self):
         return self.move
 
     def draw(self, screen):
@@ -187,15 +232,18 @@ class InfoBoxItem:
 
 class InfoBox:
 
+    current_pokemon = None
+
     def __init__(self, mode, sentences):
 
         # set mode and sentences
         self.mode = mode
         self.sentences = sentences
+        self.sentences.reverse()
 
         # set last sentence 
         self.sentence = self.sentences[-1]
-
+        
         # stores the text boxes
         self.text_boxes = []
 
@@ -205,9 +253,17 @@ class InfoBox:
         # stores moves text
         self.moves = []
 
+        self.selected_move = None
+        self.selected_option = None 
+
+        self.move_animation = None
+
         # user idx on the button they are on
         self.user_idx = [0, 0]
 
+        self.flag = None
+
+        
         # create pos
         self.pos = INFOBOX_ITEMS_TOPLEFT
 
@@ -231,8 +287,25 @@ class InfoBox:
 
         self.blinker = Blinker(self.blinker_images, (self.rect.midright[0]-100, self.rect.midright[1]-32), 1000)
 
+        self.move_images = [
+            pygame.transform.scale(pygame.image.load(os.path.join(POKEMON_SPRITES_DIR, 'fire1.png')), (96, 96)),
+            pygame.transform.scale(pygame.image.load(os.path.join(POKEMON_SPRITES_DIR, 'fire2.png')), (96, 96)),
+            pygame.transform.scale(pygame.image.load(os.path.join(POKEMON_SPRITES_DIR, 'lightning1.png')), (96, 96)),
+            pygame.transform.scale(pygame.image.load(os.path.join(POKEMON_SPRITES_DIR, 'lightning2.png')), (96, 96)),
+            pygame.transform.scale(pygame.image.load(os.path.join(POKEMON_SPRITES_DIR, 'leaf1.png')), (96, 96)),
+            pygame.transform.scale(pygame.image.load(os.path.join(POKEMON_SPRITES_DIR, 'leaf2.png')), (96, 96)),
+            pygame.transform.scale(pygame.image.load(os.path.join(POKEMON_SPRITES_DIR, 'leaf3.png')), (96, 96)),
+            pygame.transform.scale(pygame.image.load(os.path.join(POKEMON_SPRITES_DIR, 'bubbles1.png')), (96, 96)),
+            pygame.transform.scale(pygame.image.load(os.path.join(POKEMON_SPRITES_DIR, 'bubbles2.png')), (96, 96))
+        ]
+
+        self.move_images[2] = pygame.transform.rotate(self.move_images[2], -225)
+        self.move_images[3] = pygame.transform.rotate(self.move_images[3], -225)
+
         self.word_wrap(self.sentence)
         self.text_render()
+
+       
 
     def word_wrap(self, sentence):
         self.lines = textwrap.wrap(text=sentence, width=50) # fontsize of char / width of infobox - like 5
@@ -272,35 +345,97 @@ class InfoBox:
         self.move_boxes[self.user_idx[0]][self.user_idx[1]].highlight()
 
     def select_move(self):
-        return self.move_boxes[self.user_idx[0]][self.user_idx[1]].get_move()
+        self.selected_move = self.move_boxes[self.user_idx[0]][self.user_idx[1]].get_move()
+        if InfoBox.current_pokemon == 'Squirtle':
+            self.add_moves(['Splash', 'BubbleBeam', 'Flood', 'Wet'])
+            self.move_animation = MoveAnimator(PlayerBox.sprite_rect.center, EnemyBox.sprite_rect.center, self.move_images[7:9], 100, 200)
+        elif InfoBox.current_pokemon == 'Pikachu':
+            self.add_moves(['Zap', 'Discharge', 'Spark', 'TailWhip'])
+            self.move_animation = MoveAnimator(PlayerBox.sprite_rect.center, EnemyBox.sprite_rect.center, self.move_images[2:4], 100, 200)
+        elif InfoBox.current_pokemon == 'Bulbasaur':
+            self.add_moves(['Seed Bomb', 'RazorLeaf', 'VineWhip', 'Tackle'])
+            self.move_animation = MoveAnimator(PlayerBox.sprite_rect.center, EnemyBox.sprite_rect.center, self.move_images[4:6], 100, 200)
+        elif InfoBox.current_pokemon == 'Charmander':
+            self.add_moves(['FireFang', 'Ember', 'FireSpin', 'SmokeScreen'])
+            self.move_animation = MoveAnimator(PlayerBox.sprite_rect.center, EnemyBox.sprite_rect.center, self.move_images[0:2], 100, 200)
+
+    def select_option(self):
+        self.selected_option = self.move_boxes[self.user_idx[0]][self.user_idx[1]].get_move()
+        InfoBox.current_pokemon = self.selected_option
+        self.add_sentences(['You have choosen {}. Take care of your Pokemon.'.format(self.selected_option), 'You ready to explore the WORLD OF POKEMON!', 'TRANS'])
+        self.set_mode('text')
+
+       
+        player_sprites_files = os.listdir(POKEMON_SPRITES_DIR)
+        #print(player_sprites_files)
+        player_sprite_file = None
+        for sprite_file in player_sprites_files:
+            #print(sprite_file, self.selected_option)
+            if self.selected_option.lower() in sprite_file: 
+                player_sprite_file = sprite_file
+
+        name = player_sprite_file.split('_')[0]
+
+        PlayerBox.details_box = DetailsBox(PlayerBox.details_rect, 'left',PLAYERBOX_INFO_CENTER, {'max_health': 100, 'health': 100, 'xp': 0, 'max_xp': 300, 'level': 5, 'name': name})
+        PlayerBox.sprite_box = Image(player_sprite_file, PlayerBox.sprite_rect, (384, 384), postype='center', pos=PlayerBox.sprite_rect.center)
+
+    def set_moves(self):
+        if InfoBox.current_pokemon != None:
+                if InfoBox.current_pokemon == 'Squirtle':
+                    self.add_moves(['Splash', 'BubbleBeam', 'Flood', 'Wet'])
+                elif InfoBox.current_pokemon == 'Pikachu':
+                    self.add_moves(['Zap', 'Discharge', 'Spark', 'TailWhip'])
+                elif InfoBox.current_pokemon == 'Bulbasaur':
+                    self.add_moves(['Seed Bomb', 'RazorLeaf', 'VineWhip', 'Tackle'])
+                elif InfoBox.current_pokemon == 'Charmander':
+                    self.add_moves(['FireFang', 'Ember', 'FireSpin', 'SmokeScreen'])
 
     def add_sentences(self, sentences):
         for sentence in sentences:
             self.sentences.insert(0, sentence)
+        self.sentence = self.sentences[-1]
+        self.word_wrap(self.sentence)
 
     def increment_sentence(self):
         self.text_boxes = []
-        self.word_wrap(self.sentence)
-        self.text_render()
 
         if len(self.sentences) > 0:
             self.sentence = self.sentences.pop()
+            if self.sentence == 'TRANS':
+                self.flag = 'game'
+            else:
+                self.word_wrap(self.sentence)
+                self.text_render()
+        elif len(self.sentences) == 0:
+            self.lines = []
+            self.set_mode('battle')
 
     def add_moves(self, moves):
+        self.moves = []
         self.moves = moves
+        self.moves_render()
 
     def set_mode(self, mode):
         self.mode = mode
         if self.mode == 'text':
             self.text_render()
         elif self.mode == 'battle':
-            print(self.moves)
-            self.moves_render()
             
+            print(self.moves)
+
+            self.moves_render()
+
+    def check_flag(self):
+        flag = self.flag
+        self.flag = None
+        return flag
+
     def draw(self, screen):
 
+        
         self.blinker.update()
 
+        
         #screen.blit(self.image, self.rect)
 
         pygame.draw.rect(screen, Color('black'), self.rect)
@@ -308,7 +443,7 @@ class InfoBox:
         pygame.draw.rect(screen, Color('black'), self.rect.inflate(-15, -15), border_radius=5)
         pygame.draw.rect(screen, Color('white'), self.rect.inflate(-20, -20), border_radius=5)
         pygame.draw.rect(screen, Color('black'), self.rect.inflate(-25, -25), border_radius=5)
-        pygame.draw.rect(screen, Color(75, 0, 130), self.rect.inflate(-35, -35), border_radius=5)
+        #pygame.draw.rect(screen, Color(75, 0, 130), self.rect.inflate(-35, -35), border_radius=5)
         pygame.draw.rect(screen, Color('white'), self.rect.inflate(-45, -45), border_radius=5)
         
 
@@ -319,6 +454,11 @@ class InfoBox:
             self.blinker.draw(screen)
             
         elif self.mode == 'battle':
+
+            if self.move_animation != None:
+                self.move_animation.update()
+                self.move_animation.draw(screen)
+
             for move_box_row in self.move_boxes:
                 for move_box in move_box_row:
                     move_box.draw(screen)
@@ -390,7 +530,6 @@ class StatusBar:
 
     def draw(self, screen):
 
-        #print(self.bg_rect, self.fg_rect)
         pygame.draw.rect(screen, Color('lightgray'), self.bg_rect, border_radius=10)
         pygame.draw.rect(screen, self.color, self.fg_rect, border_radius=10)
 
@@ -450,11 +589,15 @@ class DetailsBox:
 
     def update(self, key, val):
         self.pokemon_dict[key] = val
+        self.text_boxes = []
         self.render()
+
+    def get_val(self, key):
+        return self.pokemon_dict[key]
         
     def render(self):
     
-        name_text_box = Text(self.pokemon_dict['name'], fonttype='big', postype=self.postype, pos=self.bg_rect.topleft)
+        name_text_box = Text(self.pokemon_dict['name'].upper(), postype=self.postype, pos=self.bg_rect.topleft)
         self.text_boxes.append(name_text_box)
 
         level_text_box = Text('LV: {}'.format(self.pokemon_dict['level']), linktype='left', linker=name_text_box)
@@ -479,23 +622,42 @@ class DetailsBox:
         for text_box in self.text_boxes:
             text_box.draw(screen)
 
-class SpriteBox:
-
-    def __init__(self, rect):
-        self.rect = rect
-
-
 class EnemyBox:
+
+    sprite_rect = pygame.Rect(ENEMYBOX_SPRITE_TOPLEFT[0], ENEMYBOX_SPRITE_TOPLEFT[1], ENEMYBOX_SPRITE_W, ENEMYBOX_SPRITE_H)
 
     def __init__(self):
         
         self.rect = pygame.Rect(ENEMYBOX_TOPLEFT[0], ENEMYBOX_TOPLEFT[1], ENEMYBOX_W, ENEMYBOX_H)
         self.details_rect = pygame.Rect(ENEMYBOX_INFO_TOPLEFT[0], ENEMYBOX_INFO_TOPLEFT[1], ENEMYBOX_INFO_W, ENEMYBOX_INFO_H)
-        self.sprite_rect = pygame.Rect(ENEMYBOX_SPRITE_TOPLEFT[0], ENEMYBOX_SPRITE_TOPLEFT[1], ENEMYBOX_SPRITE_W, ENEMYBOX_SPRITE_H)
+        
 
         self.details_box = DetailsBox(self.details_rect,'left', ENEMYBOX_INFO_CENTER, {'max_health': 100, 'health': 75, 'xp': 300, 'max_xp': 456, 'level': 12, 'name': 'Evanmon'})
 
-        self.sprite_box = Image('alakazam_front_2.png', self.sprite_rect, (192, 192), postype='bottom', pos=self.sprite_rect.midbottom)
+        self.sprite_box = Image('alakazam_front_2.png', PlayerBox.sprite_rect, (192, 192), postype='bottom', pos=PlayerBox.sprite_rect.midbottom)
+
+        self.enemy_sprites_files = [f for f in os.listdir(POKEMON_SPRITES_DIR) if 'front' in f]
+        print(len(self.enemy_sprites_files))
+        
+
+    def generate(self):
+        #self.details_box = DetailsBox(self.details_rect,'left', ENEMYBOX_INFO_CENTER, {'max_health': 100, 'health': 75, 'xp': 300, 'max_xp': 456, 'level': 12, 'name': 'Evanmon'})
+        sprite_file = self.enemy_sprites_files[randrange(0, len(self.enemy_sprites_files)-1)]
+        self.sprite_box = Image(sprite_file, self.sprite_rect, (192, 192), postype='bottom', pos=self.sprite_rect.midbottom)
+
+        # pokemon dict keys = max_health, health, xp, max_xp, level, name
+        print(sprite_file)
+        name, _ = sprite_file.split('_')
+        self.details_box.update('name', name)
+        health = randrange(25, 100)
+        self.details_box.update('max_health', health)
+        self.details_box.update('health', health)
+        self.details_box.update('xp', randrange(0, 255))
+        self.details_box.update('max_xp', 255)
+        self.details_box.update('level', randrange(1, 25))
+
+    def get_center(self):
+        return self.sprite_rect.center
 
     def render(self):
         print()
@@ -508,19 +670,19 @@ class EnemyBox:
 
 class PlayerBox:
 
+    details_box = None
+    sprite_box = None
+
+    details_rect = pygame.Rect(PLAYERBOX_INFO_TOPLEFT[0], PLAYERBOX_INFO_TOPLEFT[1], PLAYERBOX_INFO_W, PLAYERBOX_INFO_H)
+    sprite_rect = pygame.Rect(PLAYERBOX_SPRITE_TOPLEFT[0], PLAYERBOX_SPRITE_TOPLEFT[1], PLAYERBOX_SPRITE_W, PLAYERBOX_SPRITE_H)
+
     def __init__(self):
         
         self.rect = pygame.Rect(PLAYERBOX_TOPLEFT[0], PLAYERBOX_TOPLEFT[1], PLAYERBOX_W, PLAYERBOX_H)
-        self.details_rect = pygame.Rect(PLAYERBOX_INFO_TOPLEFT[0], PLAYERBOX_INFO_TOPLEFT[1], PLAYERBOX_INFO_W, PLAYERBOX_INFO_H)
-        self.sprite_rect = pygame.Rect(PLAYERBOX_SPRITE_TOPLEFT[0], PLAYERBOX_SPRITE_TOPLEFT[1], PLAYERBOX_SPRITE_W, PLAYERBOX_SPRITE_H)
 
-        self.details_box = DetailsBox(self.details_rect, 'left',PLAYERBOX_INFO_CENTER, {'max_health': 100, 'health': 75, 'xp': 300, 'max_xp': 456, 'level': 12, 'name': 'Nhatmon'})
-
-        self.sprite_box = Image('alakazam_back_2.png', self.sprite_rect, (384, 384), postype='center', pos=self.sprite_rect.center)
 
     def draw(self, screen):
 
-        pygame.draw.circle(screen, Color('purple'), self.details_rect.center, 10)
-        #print(self.details_rect.center)
-        self.sprite_box.draw(screen)
-        self.details_box.draw(screen)
+        #pygame.draw.circle(screen, Color('purple'), PlayerBox.details_rect.center, 10)
+        PlayerBox.sprite_box.draw(screen)
+        PlayerBox.details_box.draw(screen)
