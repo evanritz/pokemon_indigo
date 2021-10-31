@@ -20,21 +20,27 @@ GAME_KEYBINDS = {'down': GAME_KEYBINDS_DOWN, 'up': GAME_KEYBINDS_UP}
 
 # menu keybinds
 MENU_KEYBINDS_DOWN = {
-    (K_SPACE, KMOD_NONE): 'self.transtion(0)',
+    (K_SPACE, KMOD_NONE): 'self.transtion("text")',
 }
 
 MENU_KEYBINDS = {'down': MENU_KEYBINDS_DOWN}
 
 # text keybinds
 TEXT_KEYBINDS_DOWN = {
-    (K_SPACE, KMOD_NONE): 'self.transtion(0)',
+    (K_SPACE, KMOD_NONE): 'self.transtion("game")',
+    (K_i, KMOD_NONE): 'self.boxes[0].increment_sentence()',
+    (K_w, KMOD_NONE): 'self.boxes[0].move_moves("up")',
+    (K_s, KMOD_NONE): 'self.boxes[0].move_moves("down")',
+    (K_a, KMOD_NONE): 'self.boxes[0].move_moves("left")',
+    (K_d, KMOD_NONE): 'self.boxes[0].move_moves("right")',
+    (K_l, KMOD_NONE): 'self.boxes[0].select_option()',
 }
 
 TEXT_KEYBINDS = {'down': TEXT_KEYBINDS_DOWN}
 
 # battle keybinds
 BATTLE_KEYBINDS_DOWN = {
-    (K_SPACE, KMOD_NONE): 'self.transtion(0)',
+    (K_SPACE, KMOD_NONE): 'self.transtion("game")',
     (K_i, KMOD_NONE): 'self.boxes[0].increment_sentence()',
     (K_b, KMOD_NONE): 'self.boxes[0].set_mode("battle")',
     (K_w, KMOD_NONE): 'self.boxes[0].move_moves("up")',

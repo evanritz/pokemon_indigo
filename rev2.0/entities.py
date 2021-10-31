@@ -9,10 +9,10 @@ class Player:
     def __init__(self, pos):
 
         self.pos = pos
-        self.velo = 1
-        self.curr_dir = [0, 0]
+        self.velo = 2
+        self.curr_dir = (0, 0)
 
-        self.sprite_size = (24, 24)
+        self.sprite_size = (32, 32)
 
         self.prev_dir = 'up'
 
@@ -22,6 +22,7 @@ class Player:
         self.delay = 100
 
         self.moving_toggle = False
+        self.crossing_bound = False
         
         self.curr_ms = pygame.time.get_ticks()
 
@@ -51,6 +52,8 @@ class Player:
             pygame.transform.scale(pygame.image.load(os.path.join(PLAYER_SPRITES_DIR, 'player_right_3.png')), self.sprite_size)
         ]
 
+        self.player_rect = self.image_up[0].get_rect()
+
         self.frame_buffer = {'inmotion': False, 'frames': self.image_up}
 
         self.frames = [] # (frame image, frame rect)
@@ -65,31 +68,42 @@ class Player:
 
     def move_toggle(self, dir):
         if dir == 'up':
-            self.curr_dir = [0, -1]
+            self.curr_dir = (0, -1)
         elif dir == 'down':
-            self.curr_dir = [0, 1]
+            self.curr_dir = (0, 1)
         elif dir == 'left':
-            self.curr_dir = [-1, 0]
+            self.curr_dir = (-1, 0)
         elif dir == 'right':
-            self.curr_dir = [1, 0]
+            self.curr_dir = (1, 0)
         else:
-            self.curr_dir = [0, 0]
+            self.curr_dir = (0, 0)
 
-        self.prev_dir = dir
+        self.prev_dir = self.curr_dir
 
         self.moving_toggle = not self.moving_toggle
 
-        
+    def set_crossing_bound(self, crossing_bound):
+        self.crossing_bound = crossing_bound
+
+    def glitch_fix_moving_toggle(self):
+        self.moving_toggle = False
+
+    def get_rect(self):
+        player_rect = pygame.Rect(0, 0, *self.sprite_size)
+        player_rect.center = self.pos
+        return player_rect
+
     def update(self):
 
-        self.x_displacement = self.curr_dir[0]#*self.velo*self.sprite_size[0]
-        self.y_displacement = self.curr_dir[1]#*self.velo*self.sprite_size[1]
 
-        if self.moving_toggle:
+        self.x_displacement = self.curr_dir[0]*self.velo#*self.sprite_size[0]
+        self.y_displacement = self.curr_dir[1]*self.velo#*self.sprite_size[1]
 
-            self.pos = (int(self.pos[0] + self.x_displacement), int(self.pos[1] + self.y_displacement))
+        if self.moving_toggle and not self.crossing_bound:
 
-            print('pos: {} dir: {} inmotion?: {} movingtoggle: {}'.format(self.pos, self.curr_dir, self.frame_buffer['inmotion'], self.moving_toggle))
+            self.pos = (self.pos[0] + self.x_displacement, self.pos[1] + self.y_displacement)
+
+            #print('pos: {} dir: {} inmotion?: {} movingtoggle: {}'.format(self.pos, self.curr_dir, self.frame_buffer['inmotion'], self.moving_toggle))
 
             if self.x_displacement != 0:
                 self.frame_buffer['inmotion'] = True
@@ -102,16 +116,29 @@ class Player:
                     self.frame_buffer['frames'] = self.image_left
             elif self.y_displacement != 0:
                 self.frame_buffer['inmotion'] = True
-                # postive y change
+                 # postive y change
                 if self.y_displacement != abs(self.y_displacement):
                     self.frame_buffer['frames'] = self.image_up
                 # negative y change
                 elif self.y_displacement == abs(self.y_displacement):
                     self.frame_buffer['frames'] = self.image_down
-
+        elif self.moving_toggle and self.crossing_bound:
+            #self.prev_dir = self.curr_dir
+            self.curr_dir = (self.curr_dir[0]*-1, self.curr_dir[1]*-1)
+            self.x_displacement = self.curr_dir[0]*self.velo#*self.sprite_size[0]
+            self.y_displacement = self.curr_dir[1]*self.velo#*self.sprite_size[1]
+            self.pos = (self.pos[0] + self.x_displacement, self.pos[1] + self.y_displacement)
+            self.crossing_bound = False
+            #self.curr_dir = self.prev_dir
+            #self.curr_dir = (self.curr_dir[0]*-1, self.curr_dir[1]*-1)
+            #self.move_toggle('no')
+            
         else:
             if self.x_displacement == 0 and self.y_displacement == 0:
                 self.frame_buffer['inmotion'] = False
+            
+                
+            
                 '''
                 if self.prev_dir == 'up':
                     self.frame_buffer['frames'] = self.image_up
@@ -135,11 +162,8 @@ class Player:
             frame = self.frame_buffer['frames'][i]
             frame_rect = frame.get_rect()
             self.frames.insert(i, (frame, frame_rect))
-        
-        print(len(self.frames))
 
         self.curr_ms = pygame.time.get_ticks()
-        print(self.frame_buffer['inmotion'])
         if self.frame_buffer['inmotion']:
             if self.curr_ms-self.prev_ms >= self.delay:
                 self.prev_ms = self.curr_ms

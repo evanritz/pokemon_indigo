@@ -49,15 +49,19 @@ class Tileset:
 
 class Layer:
 
-    def __init__(self, layer, tileset):
+    def __init__(self, layer, tileset, **kwargs):
         self.layer = layer
         self.tileset = tileset
+
+        self.tile_size = (16, 16)
+
+        if 'scaled_tile_size' in kwargs:
+            self.tile_size = kwargs['scaled_tile_size']
         
         self.src_image = self.tileset.get_image()
 
         text_map = self.layer['data']['#text']
         text_map_rows = text_map.split(',\n')
-        #print(text_map_rows)
 
         reader = csv.reader(text_map_rows, delimiter=',')
         self.int_map = [[ element for element in row] for row in reader]
@@ -69,34 +73,48 @@ class Layer:
     def crop(self):
 
         for int_map_row in self.int_map:
-            print(int_map_row)
             for int_map_id in int_map_row:
                 
                 coord = self.tileset.get_coord(int_map_id)
-                #print(coord)
                 if not int_map_id in self.tile_dict.keys() and coord != None:
                     cropped_image = self.src_image.subsurface((*coord, 16, 16))
+                    if self.tile_size != (16, 16):
+                        cropped_image = pygame.transform.scale(cropped_image, self.tile_size)
                     self.tile_dict.update({int_map_id: cropped_image})
                 
     def draw(self, screen):
 
-        w = 0
-        h = 0
+        w = h = 0
         for int_map_row in self.int_map:
             for int_map_id in int_map_row:       
                 tile = self.tile_dict[int_map_id]
                 if tile != None:
                     tile_rect = tile.get_rect()
                     tile_rect.topleft = (w, h)
-                    #print(w, h)
                     screen.blit(tile, tile_rect)
-                w += 16
+                w += self.tile_size[0] #16
             w = 0
-            h += 16
+            h += self.tile_size[1]#16
 
         
-        #print('Drawing?')
 
+class Bound:
+
+    def __init__(self, bounds):
+
+        bounds = bounds['object']
+
+        self.bound_rects = []
+
+
+        for object in bounds:
+
+            bound = (round(float(object['@x'])), round(float(object['@y'])), round(float(object['@width'])), round(float(object['@height'])))
+            bound_rect = pygame.Rect(bound[0]*2, bound[1]*2, bound[2]*2, bound[3]*2)
+            self.bound_rects.append(bound_rect)
+        
+    def get_bound_areas(self):
+        return self.bound_rects
 
 class Tilemap:
 
@@ -117,15 +135,38 @@ class Tilemap:
         self.h = int(map['@height'])
 
         self.map_layers = map['layer']
+        self.bound_layers = map['objectgroup']
+
+        # layers draw tiles to screen
+        # bounds define areas
+
+        # layer 1 lower level
+        # layer 2 decorations
+        # layer 3 na
+
+        # bound 1 map bounding
+        # bound 2 pokemon bounding
+
 
         self.layers = []
+        self.bounds = []
 
         for map_layer in self.map_layers:
             if map_layer['@id'] == '1':
-                self.layers.append(Layer(map_layer, self.tilesets))
+                self.layers.append(Layer(map_layer, self.tilesets, scaled_tile_size=(32, 32)))
             elif map_layer['@id'] == '2':
-                self.layers.append(Layer(map_layer, self.tilesets))
+                self.layers.append(Layer(map_layer, self.tilesets, scaled_tile_size=(32, 32)))
 
+        for bound_layer in self.bound_layers:
+            if bound_layer['@id'] == '3':
+                self.bounds.append(Bound(bound_layer))
+            elif bound_layer['@id'] == '5':
+                self.bounds.append(Bound(bound_layer))
+
+
+    def get_bounds(self):
+        return self.bounds
+        
     def draw(self, screen):
         for layer in self.layers:
             layer.draw(screen)

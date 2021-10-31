@@ -57,18 +57,17 @@ class App:
 
         self.game_init()
 
+        self.onetime = True
+        self.justchanged = False
+
     def game_init(self):
 
         game = Game()
 
-        game_scene = Scene(AppStates.game, [AppStates.battle, AppStates.text])
-        game_scene.add_game(game)
-        game_scene.set_bg('img5.jpg')
-        self.add_scene(game_scene)
-
-        battle_scene = Scene(AppStates.battle, [AppStates.game, AppStates.text])
+        battle_scene = Scene(AppStates.battle)
         infobox = InfoBox('text', ['lol', 'yur'])
         infobox.add_moves(['Now', 'This', 'is', 'Epic'])
+        infobox.set_mode('battle')
         battle_scene.add_box(infobox)
         battle_scene.add_box(EnemyBox())
         battle_scene.add_box(PlayerBox())
@@ -76,15 +75,26 @@ class App:
         battle_scene.set_bg('grass_battle.png')
         self.add_scene(battle_scene)
 
-        text_scene = Scene(AppStates.text, [AppStates.battle, AppStates.text])
-        text_scene.add_box(InfoBox('text', ['lol', 'm8', 'wahts up']))
-        text_scene.set_bg('img1.jpg')
+        text_scene = Scene(AppStates.text)
+        infobox = InfoBox('text', 
+        ['Welcome to world of Pokemon!', 'I am Professor Despang.', 'Pokemon are native animals that inhabit this world.', 'To be safe in the wilds, you need a Pokemon.', 'You don\'t have a Pokemon? Choose one of mine.']
+        )
+        infobox.add_moves(['Squirtle', 'Pikachu', 'Bulbasaur', 'Charmander'])
+        text_scene.add_box(infobox)
+        text_scene.set_bg('oak.png')
         self.add_scene(text_scene)
 
-        start_menu_scene = Scene(AppStates.start, [AppStates.text, AppStates.battle])
-        start_menu_scene.add_box(Text('Menu', fonttype='start_menu', postype='center', pos=self.screen_rect.center))
+        game_scene = Scene(AppStates.game)
+        game_scene.add_game(game)
+        game_scene.set_bg('img5.jpg')
+        self.add_scene(game_scene)
+
+        start_menu_scene = Scene(AppStates.start)
+        start_menu_scene.add_box(Text('POKEMON INDIGO', fonttype='start_menu', postype='center', pos=self.screen_rect.center))
         start_menu_scene.set_bg('start_menu_bg.png')
         self.add_scene(start_menu_scene)
+
+        #print(len(self.scenes))
 
     def run(self):
         # program/game loop
@@ -108,19 +118,44 @@ class App:
                         self.running = False
                 '''
 
-            if self.scene.get_state() == AppStates.game:
-                self.scene.update()
+            current_scene_state = self.scene.get_state()
 
-            scene_flag = self.scene.check_flag()
-            if  scene_flag != None:
-                self.change_scene(scene_flag)
+            if current_scene_state == AppStates.game:
+                if self.onetime:
+                    scene = self.get_scene(AppStates.battle)
+                    scene.get_boxes()[0].set_moves()
+                    self.onetime = False
+                self.scene.game_update()
+            elif current_scene_state == AppStates.battle and self.justchanged:
+                boxes = self.scene.get_boxes()
+                boxes[1].generate()
+            elif current_scene_state == AppStates.battle or current_scene_state == AppStates.text:
+                self.scene.non_game_update()
 
+
+            if self.justchanged:
+                self.justchanged = False
+    
             # draw scene to screen
             self.scene.draw(self.screen)
+
+            pygame.display.flip()
+
+            
             
 
             # update display every iter
-            pygame.display.flip()
+           
+
+            scene_flag = self.scene.check_flag()
+            if  scene_flag != None:
+                self.justchanged = True
+                self.change_scene(scene_flag)
+                self.fade()
+
+            #elif self.justchanged:
+            #    self.unfade()
+            #    self.justchanged = False
 
             self.clock.tick(self.fps)
 
@@ -133,8 +168,29 @@ class App:
         scene_dict = {state: self.scene}
         self.scenes.update(scene_dict)
 
+    def get_scene(self, state):
+        return self.scenes[state]
+
     def change_scene(self, state):
         self.scene = self.scenes[state]
+
+    def fade(self):
+        fade = pygame.Surface(SCREEN_REZ)
+        fade.fill((0, 0, 0))
+        for alpha in range(0, 300):
+            fade.set_alpha(alpha)
+            self.screen.blit(fade, (0, 0))
+            pygame.display.update()
+            pygame.time.delay(1)
+
+    def unfade(self):
+        fade = pygame.Surface(SCREEN_REZ)
+        fade.fill((0, 0, 0))
+        for alpha in range(300, 0, -1):
+            fade.set_alpha(alpha)
+            self.screen.blit(fade, (0, 0))
+            pygame.display.update()
+            pygame.time.delay(3)
 
     # selection text main function
 
