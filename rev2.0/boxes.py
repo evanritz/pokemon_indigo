@@ -634,7 +634,7 @@ class EnemyBox:
 
         self.details_box = DetailsBox(self.details_rect,'left', ENEMYBOX_INFO_CENTER, {'max_health': 100, 'health': 75, 'xp': 300, 'max_xp': 456, 'level': 12, 'name': 'Evanmon'})
 
-        self.sprite_box = Image('alakazam_front_2.png', PlayerBox.sprite_rect, (192, 192), postype='bottom', pos=PlayerBox.sprite_rect.midbottom)
+        self.sprite_box = Image('alakazam_front.png', PlayerBox.sprite_rect, (192, 192), postype='bottom', pos=PlayerBox.sprite_rect.midbottom)
 
         self.enemy_sprites_files = [f for f in os.listdir(POKEMON_SPRITES_DIR) if 'front' in f]
         print(len(self.enemy_sprites_files))
