@@ -40,6 +40,10 @@ class Game:
         self.shadow_tiles = pygame.sprite.LayeredUpdates()
         self.entity_sprites = pygame.sprite.LayeredUpdates()
 
+        # Game Music
+        pygame.mixer.music.load('sounds/pallet_town.wav')
+        pygame.mixer.music.play(1)  
+
         # init Map object
         self.map = Map(self, 'test2', ['test2.tmx', 'test_inner.tmx'])
         # int Player object
