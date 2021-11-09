@@ -9,12 +9,15 @@ if __name__ == '__main__':
     # (Battle or Game Loops) -> (Battle or Game Loops)
 
     g = Game()
+    g.menu_init()
     while g.RUNNING:
         # Start Loops here
         if g.STATE == 1:
             pass
         elif g.STATE == 2:
-            pass
+            g.menu_loop()
+            if g.STATE == 3:
+                g.fade()
 
         while g.PLAYING:
             # Loops here

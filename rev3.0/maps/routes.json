@@ -1,0 +1,29 @@
+{
+    "routes": [
+        {
+            "name": "overworld",
+            "check":{
+                "x": 5,
+                "y": 5
+            },
+            "place": {
+                "x": 5,
+                "y": 5
+            },
+            "goto": "house"
+        },
+        {
+            "name": "house",
+            "check": {
+                "x": 5,
+                "y": 5
+            },
+            "place": {
+                "x": 5,
+                "y": 5
+            },
+            "goto": "overworld"
+        }
+
+    ]
+}

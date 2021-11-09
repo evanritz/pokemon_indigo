@@ -8,7 +8,7 @@ import pygame
 import json
 import os
 
-def load_sprite_file(file_path, file_name):
+def load_json_file(file_path, file_name):
      with open(os.path.join(file_path, file_name)) as f:
         return json.loads(f.read())
 
