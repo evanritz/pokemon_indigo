@@ -24,6 +24,9 @@ class Keyboard:
         # game status bools
         self.PAUSE_GAME, self.EXIT_GAME = False, False
 
+    def get_motion_keys(self):
+        return [self.UP, self.LEFT, self.DOWN, self.RIGHT]
+
     # resets key bools
     def reset_keys(self):
         self.UP, self.DOWN, self.LEFT, self.RIGHT = False, False, False, False

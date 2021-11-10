@@ -14,17 +14,19 @@ from utils import *
 
 import xmltodict
 import pygame
+import json
 import csv
 import os
 
 class Map:
 
-    def __init__(self, game, name, file_names):
+    def __init__(self, game, file_names):
         
         self.game = game
-        self.name = name
-        self.should_transition = True
+        
+        self.route = ENTRY_ROUTES[0]
 
+        self.current_tilemap = None
         self.tilemaps = {}
         for file_name in file_names:
             with open(os.path.join(MAPS_DIR, file_name)) as f:
@@ -32,7 +34,7 @@ class Map:
             name = file_name.split('.')[0]
             self.tilemaps.update({name: Tilemap(self.game, self.XML_map_raw)})
 
-        self.transition(self.name)
+        self.transition(self.route)
 
     def transition(self, name):
         self.game.floor_tiles.empty()
@@ -40,13 +42,13 @@ class Map:
         self.game.decor_tiles.empty()
         self.game.shadow_tiles.empty()
         self.game.all_sprites.empty()
-        #self.game.all_sprites.add(self.game.player)
-        self.tilemaps[name].insert_tiles()
-        self.should_transition = False
+        self.current_tilemap = self.tilemaps[self.route['name']]
+        self.current_tilemap.insert_tiles()
+        self.route['goto'] = False
         
 
     def get_floor_layer_size(self):
-        return self.tilemap.get_floor_layer_size()
+        return self.current_tilemap.get_floor_layer_size()
 
 class Tilemap:
     def __init__(self, game, XML_map_raw):
@@ -55,18 +57,27 @@ class Tilemap:
 
         self.w, self.h = int(self.XLM_map['@width']), int(self.XLM_map['@height'])
         
-        self.XLM_tilesets = self.XLM_map['tileset']
-
         self.tilesets = []
-        for XLM_tileset in self.XLM_tilesets:
-            self.tilesets.append(Tileset(XLM_tileset))
+        self.XLM_tilesets = self.XLM_map['tileset']
+        if not isinstance(self.XLM_tilesets, list):
+            self.XLM_tilesets = list(self.XLM_tilesets)
+        else:
+            for XLM_tileset in self.XLM_tilesets:
+                self.tilesets.append(Tileset(XLM_tileset))
 
         self.layers = []
         self.XLM_layers = self.XLM_map['layer']
-        for layer_level, XLM_layer in enumerate(self.XLM_layers):
-            layer = Layer(XLM_layer, layer_level+1)
-            layer.create_tiles(self.tilesets)
-            self.layers.append(layer)
+        if not isinstance(self.XLM_layers, list):
+            self.XLM_layers = list(self.XLM_layers)
+        else:
+            for layer_level, XLM_layer in enumerate(self.XLM_layers):
+                layer = Layer(XLM_layer, layer_level+1)
+                layer.create_tiles(self.tilesets)
+                self.layers.append(layer)
+
+        self.objectgroups = []
+        #self.XLM_objectgroups = self.XLM_map['objectgroup']
+
     
     def insert_tiles(self):
         for layer in self.layers:
@@ -153,6 +164,7 @@ class Tile(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.id = id
         self.image = image
+        self.coord = coord
         #self.image.set_colorkey(pygame.Color('black'))
         self.rect = self.image.get_rect()
         self.rect.topleft = coord

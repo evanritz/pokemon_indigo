@@ -33,7 +33,7 @@ class Player(pygame.sprite.Sprite):
     def load_sprites(self):
         
         # Read json file and load image file
-        player_json = load_sprite_file(SPRITESHEETS_DIR, 'player.json')
+        player_json = load_json_file(SPRITESHEETS_DIR, 'player.json')
         player_image = load_image_file(SPRITESHEETS_DIR, 'player2.png')
 
         # Parse Json and load all animation frames
@@ -141,6 +141,9 @@ class Player(pygame.sprite.Sprite):
                     # camera glitch fix
                     for sprite in self.game.all_sprites:
                         sprite.rect.y += self.vel.y
+
+                    #self.set_route(collision)
+                    
                 if self.vel.y < 0:
                     # TODO 
                     if collision[0].id == BIG_WOODEN_HOUSE_DOOR_ID:
@@ -148,6 +151,8 @@ class Player(pygame.sprite.Sprite):
                     self.rect.y = collision[0].rect.bottom
                     for sprite in self.game.all_sprites:
                         sprite.rect.y += self.vel.y
+
+                    #self.set_route(collision)
         # moving in x direction
         if self.vel.y == 0 and self.vel.x != 0:
             collision = pygame.sprite.spritecollide(self, self.game.struct_tiles, False)
@@ -157,13 +162,39 @@ class Player(pygame.sprite.Sprite):
                     self.rect.x = collision[0].rect.left - self.rect.width
                     for sprite in self.game.all_sprites:
                         sprite.rect.x += self.vel.x
+
+                    #self.set_route(collision)
                 if self.vel.x < 0:
                     print('x<0 {}'.format(self.vel.x))
                     self.rect.x = collision[0].rect.right
                     for sprite in self.game.all_sprites:
                         sprite.rect.x += self.vel.x
-                    
 
+                    #self.set_route(collision)
+
+    def set_route(self, collision):
+        c_x = collision[0].rect.x#+TILE_SIZE
+        c_y = collision[0].rect.y#+TILE_SIZE
+        print(collision[0].id)
+        if collision[0].id == BIG_WOODEN_HOUSE_DOOR_ID:
+            for entry_route in ENTRY_ROUTES:
+                e_x = entry_route['check'][0]*TILE_SIZE
+                e_y = entry_route['check'][1]*TILE_SIZE
+                if collision[0].coord == (e_x, e_y):
+                    entry_route['goto'] = True
+                    self.game.map.route = entry_route
+        elif collision[0].id == CASTLE_DOOR_ID_1 or collision[0].id == CASTLE_DOOR_ID_2:
+            route = ENTRY_ROUTES[2]
+            route['goto'] = True
+            self.game.map.route = route
+        elif collision[0].id == HOUSE_EXIT_ID:
+            print('Detected?')
+            for entry_route in EXIT_ROUTES:
+                e_x = entry_route['check'][0]*TILE_SIZE
+                e_y = entry_route['check'][1]*TILE_SIZE
+                if collision[0].coord == (e_x, e_y):
+                    entry_route['goto'] = True
+                    self.game.map.route = entry_route
 
     def animate(self):
 
