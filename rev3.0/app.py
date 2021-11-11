@@ -16,8 +16,8 @@ if __name__ == '__main__':
             pass
         elif g.STATE == 2:
             g.menu_loop()
-            if g.STATE == 3:
-                g.fade()
+            #if g.STATE == 3:
+            #    g.fade()
 
         while g.PLAYING:
             # Loops here

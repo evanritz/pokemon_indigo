@@ -47,6 +47,10 @@ class Game:
         self.shadow_tiles = pygame.sprite.LayeredUpdates()
         self.entity_sprites = pygame.sprite.LayeredUpdates()
 
+        # Game Music
+        pygame.mixer.music.load('sounds/pallet_town.wav')
+        #pygame.mixer.music.play(1)  
+
         # init Map object
         self.map = Map(self, ['overworld.tmx', 'house2.tmx'])
         # int Player object
@@ -136,10 +140,19 @@ class Game:
             self.STATE = 4
 
     def battle_events(self):
+        self.keyboard.get_key_bouncing_events()
         self.keyboard.get_key_events()
+        
         # Check for pause or exit
         self.RUNNING = not self.keyboard.EXIT_GAME
         self.PLAYING = not self.keyboard.EXIT_GAME
+        #print(self.keyboard.t0, self.keyboard.t1)
+        print(self.keyboard.R_SPACE)
+        if self.keyboard.R_SPACE:
+            print(self.battlemenu.STATE)
+            
+            self.battlemenu.change_state()
+            self.keyboard.R_SPACE = False
 
 
     def game_update(self):

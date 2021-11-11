@@ -11,8 +11,17 @@ SCREEN_H = 896
 SCREEN_W = 1024
 SCREEN_REZ = (SCREEN_W, SCREEN_H)
 
+# Screen Rez 1024*896
+# DS Rez 256*192
+# 1024/256 = 4
+# 896/192 = 4.6666 ~= 4
+REZ_SCALE = 4
+
 # FPS
 FPS = 60
+
+# Keyboard Bouncing delay (ms)
+DT = 0
 
 # Layer levels
 FLOOR_LAYER = 1

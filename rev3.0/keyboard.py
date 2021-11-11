@@ -7,6 +7,7 @@
 
 import pygame
 from pygame.locals import *
+from consts import *
 
 class Keyboard:
 
@@ -24,6 +25,18 @@ class Keyboard:
         # game status bools
         self.PAUSE_GAME, self.EXIT_GAME = False, False
 
+        # Raw keys 
+        # direction key bools
+        self.R_UP, self.R_DOWN, self.R_LEFT, self.R_RIGHT = False, False, False, False
+
+        # special key bools
+        self.R_SHIFT, self.R_SPACE = False, False
+
+        # action key bools
+        self.R_SELECT, self.R_INCREMENT = False, False
+
+        self.t1, self.t0 = pygame.time.get_ticks(), pygame.time.get_ticks()
+
     def get_motion_keys(self):
         return [self.UP, self.LEFT, self.DOWN, self.RIGHT]
 
@@ -33,6 +46,23 @@ class Keyboard:
         self.SHIFT, self.SPACE = False, False
         self.SELECT, self.INCREMENT = False, False
         self.PAUSE_GAME, self.EXIT_GAME = False, False
+
+    def get_key_bouncing_events(self):
+
+            for event in pygame.event.get():
+                if event.type == KEYUP:
+                        print('Keydown?')
+                        #self.R_UP = event.key == K_w
+                        #self.R_LEFT = event.key == K_a
+                        #self.R_DOWN = event.key == K_s
+                        #self.R_RIGHT = event.key == K_d    
+                        #self.R_SHIFT = event.key == K_LSHIFT
+
+                        if event.key == K_SPACE:
+                            self.R_SPACE = True
+                        #self.R_SELECT = event.key == K_l
+                        #self.R_INCREMENT = event.key == K_i
+            
 
     # get key events, compare keybinds and set inst vars
     def get_key_events(self):
