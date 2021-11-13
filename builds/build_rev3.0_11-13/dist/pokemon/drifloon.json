@@ -1,0 +1,56 @@
+{
+    "name": "drifloon",
+    "type": "ghost",
+    "moves": [
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "gust",
+            "power": 40,
+            "pp": 35,
+            "type": "flying"
+        },
+        {
+            "name": "bind",
+            "power": 15,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "body-slam",
+            "power": 85,
+            "pp": 15,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 90
+        },
+        {
+            "name": "attack",
+            "base_stat": 50
+        },
+        {
+            "name": "defense",
+            "base_stat": 34
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 60
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 44
+        },
+        {
+            "name": "speed",
+            "base_stat": 70
+        }
+    ]
+}

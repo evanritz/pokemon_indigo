@@ -19,6 +19,10 @@ class Player(pygame.sprite.Sprite):
         self._layer = PLAYER_LEVEL
         pygame.sprite.Sprite.__init__(self, game.all_sprites, game.entity_sprites)
 
+        # player pokemon, DEBUG for battlemenu will be selected in game
+        # Index 20 choosen for Testing
+        self.pokemon = [self.game.pokedex.pokemon[20]]
+
         # Velocity vector
         self.vel = pygame.Vector2(0, 0)
         # Spawn pos

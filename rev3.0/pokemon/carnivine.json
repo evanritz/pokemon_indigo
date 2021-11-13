@@ -1,0 +1,56 @@
+{
+    "name": "carnivine",
+    "type": "grass",
+    "moves": [
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "bind",
+            "power": 15,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "slam",
+            "power": 80,
+            "pp": 20,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 74
+        },
+        {
+            "name": "attack",
+            "base_stat": 100
+        },
+        {
+            "name": "defense",
+            "base_stat": 72
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 90
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 72
+        },
+        {
+            "name": "speed",
+            "base_stat": 46
+        }
+    ]
+}

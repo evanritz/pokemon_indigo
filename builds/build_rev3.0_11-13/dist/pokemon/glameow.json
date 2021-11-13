@@ -1,0 +1,56 @@
+{
+    "name": "glameow",
+    "type": "normal",
+    "moves": [
+        {
+            "name": "scratch",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "sand-attack",
+            "power": null,
+            "pp": 15,
+            "type": "ground"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 49
+        },
+        {
+            "name": "attack",
+            "base_stat": 55
+        },
+        {
+            "name": "defense",
+            "base_stat": 42
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 42
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 37
+        },
+        {
+            "name": "speed",
+            "base_stat": 85
+        }
+    ]
+}

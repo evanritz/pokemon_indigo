@@ -1,0 +1,56 @@
+{
+    "name": "happiny",
+    "type": "normal",
+    "moves": [
+        {
+            "name": "pound",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "flamethrower",
+            "power": 90,
+            "pp": 15,
+            "type": "fire"
+        },
+        {
+            "name": "counter",
+            "power": null,
+            "pp": 20,
+            "type": "fighting"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 100
+        },
+        {
+            "name": "attack",
+            "base_stat": 5
+        },
+        {
+            "name": "defense",
+            "base_stat": 5
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 15
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 65
+        },
+        {
+            "name": "speed",
+            "base_stat": 30
+        }
+    ]
+}

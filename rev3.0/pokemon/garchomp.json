@@ -1,0 +1,56 @@
+{
+    "name": "garchomp",
+    "type": "dragon",
+    "moves": [
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "sand-attack",
+            "power": null,
+            "pp": 15,
+            "type": "ground"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 108
+        },
+        {
+            "name": "attack",
+            "base_stat": 130
+        },
+        {
+            "name": "defense",
+            "base_stat": 95
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 80
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 85
+        },
+        {
+            "name": "speed",
+            "base_stat": 102
+        }
+    ]
+}

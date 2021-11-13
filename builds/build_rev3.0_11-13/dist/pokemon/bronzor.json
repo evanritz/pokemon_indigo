@@ -1,0 +1,56 @@
+{
+    "name": "bronzor",
+    "type": "steel",
+    "moves": [
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "solar-beam",
+            "power": 120,
+            "pp": 10,
+            "type": "grass"
+        },
+        {
+            "name": "earthquake",
+            "power": 100,
+            "pp": 10,
+            "type": "ground"
+        },
+        {
+            "name": "toxic",
+            "power": null,
+            "pp": 10,
+            "type": "poison"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 57
+        },
+        {
+            "name": "attack",
+            "base_stat": 24
+        },
+        {
+            "name": "defense",
+            "base_stat": 86
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 24
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 86
+        },
+        {
+            "name": "speed",
+            "base_stat": 23
+        }
+    ]
+}

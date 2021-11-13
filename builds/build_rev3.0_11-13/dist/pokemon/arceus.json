@@ -1,0 +1,56 @@
+{
+    "name": "arceus",
+    "type": "normal",
+    "moves": [
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "fly",
+            "power": 90,
+            "pp": 15,
+            "type": "flying"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 120
+        },
+        {
+            "name": "attack",
+            "base_stat": 120
+        },
+        {
+            "name": "defense",
+            "base_stat": 120
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 120
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 120
+        },
+        {
+            "name": "speed",
+            "base_stat": 120
+        }
+    ]
+}

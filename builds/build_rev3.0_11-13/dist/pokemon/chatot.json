@@ -1,0 +1,56 @@
+{
+    "name": "chatot",
+    "type": "normal",
+    "moves": [
+        {
+            "name": "fly",
+            "power": 90,
+            "pp": 15,
+            "type": "flying"
+        },
+        {
+            "name": "fury-attack",
+            "power": 15,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "growl",
+            "power": null,
+            "pp": 40,
+            "type": "normal"
+        },
+        {
+            "name": "sing",
+            "power": null,
+            "pp": 15,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 76
+        },
+        {
+            "name": "attack",
+            "base_stat": 65
+        },
+        {
+            "name": "defense",
+            "base_stat": 45
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 92
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 42
+        },
+        {
+            "name": "speed",
+            "base_stat": 91
+        }
+    ]
+}

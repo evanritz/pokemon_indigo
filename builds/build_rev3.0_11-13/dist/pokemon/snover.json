@@ -1,0 +1,56 @@
+{
+    "name": "snover",
+    "type": "grass",
+    "moves": [
+        {
+            "name": "ice-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "ice"
+        },
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "stomp",
+            "power": 65,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 60
+        },
+        {
+            "name": "attack",
+            "base_stat": 62
+        },
+        {
+            "name": "defense",
+            "base_stat": 50
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 62
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 60
+        },
+        {
+            "name": "speed",
+            "base_stat": 40
+        }
+    ]
+}

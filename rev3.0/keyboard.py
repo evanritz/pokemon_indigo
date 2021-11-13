@@ -4,6 +4,9 @@
 # Get player key input
 # Clear inst vars
 # Set inst vars respectively
+#
+# Written by Evan
+
 
 import pygame
 from pygame.locals import *
@@ -46,23 +49,6 @@ class Keyboard:
         self.SHIFT, self.SPACE = False, False
         self.SELECT, self.INCREMENT = False, False
         self.PAUSE_GAME, self.EXIT_GAME = False, False
-
-    def get_key_bouncing_events(self):
-
-            for event in pygame.event.get():
-                if event.type == KEYUP:
-                        print('Keydown?')
-                        #self.R_UP = event.key == K_w
-                        #self.R_LEFT = event.key == K_a
-                        #self.R_DOWN = event.key == K_s
-                        #self.R_RIGHT = event.key == K_d    
-                        #self.R_SHIFT = event.key == K_LSHIFT
-
-                        if event.key == K_SPACE:
-                            self.R_SPACE = True
-                        #self.R_SELECT = event.key == K_l
-                        #self.R_INCREMENT = event.key == K_i
-            
 
     # get key events, compare keybinds and set inst vars
     def get_key_events(self):

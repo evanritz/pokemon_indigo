@@ -1,0 +1,56 @@
+{
+    "name": "rampardos",
+    "type": "rock",
+    "moves": [
+        {
+            "name": "fire-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "fire"
+        },
+        {
+            "name": "thunder-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "electric"
+        },
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 97
+        },
+        {
+            "name": "attack",
+            "base_stat": 165
+        },
+        {
+            "name": "defense",
+            "base_stat": 60
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 65
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 50
+        },
+        {
+            "name": "speed",
+            "base_stat": 58
+        }
+    ]
+}

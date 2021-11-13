@@ -1,0 +1,56 @@
+{
+    "name": "combee",
+    "type": "bug",
+    "moves": [
+        {
+            "name": "gust",
+            "power": 40,
+            "pp": 35,
+            "type": "flying"
+        },
+        {
+            "name": "string-shot",
+            "power": null,
+            "pp": 40,
+            "type": "bug"
+        },
+        {
+            "name": "swift",
+            "power": 60,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "snore",
+            "power": 50,
+            "pp": 15,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 30
+        },
+        {
+            "name": "attack",
+            "base_stat": 30
+        },
+        {
+            "name": "defense",
+            "base_stat": 42
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 30
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 42
+        },
+        {
+            "name": "speed",
+            "base_stat": 70
+        }
+    ]
+}

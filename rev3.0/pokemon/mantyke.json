@@ -1,0 +1,56 @@
+{
+    "name": "mantyke",
+    "type": "water",
+    "moves": [
+        {
+            "name": "wing-attack",
+            "power": 60,
+            "pp": 35,
+            "type": "flying"
+        },
+        {
+            "name": "slam",
+            "power": 80,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 45
+        },
+        {
+            "name": "attack",
+            "base_stat": 20
+        },
+        {
+            "name": "defense",
+            "base_stat": 50
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 60
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 120
+        },
+        {
+            "name": "speed",
+            "base_stat": 50
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "name": "manaphy",
+    "type": "water",
+    "moves": [
+        {
+            "name": "supersonic",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "surf",
+            "power": 90,
+            "pp": 15,
+            "type": "water"
+        },
+        {
+            "name": "ice-beam",
+            "power": 90,
+            "pp": 10,
+            "type": "ice"
+        },
+        {
+            "name": "blizzard",
+            "power": 110,
+            "pp": 5,
+            "type": "ice"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 100
+        },
+        {
+            "name": "attack",
+            "base_stat": 100
+        },
+        {
+            "name": "defense",
+            "base_stat": 100
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 100
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 100
+        },
+        {
+            "name": "speed",
+            "base_stat": 100
+        }
+    ]
+}

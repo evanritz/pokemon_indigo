@@ -1,0 +1,56 @@
+{
+    "name": "prinplup",
+    "type": "water",
+    "moves": [
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "fury-attack",
+            "power": 15,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 64
+        },
+        {
+            "name": "attack",
+            "base_stat": 66
+        },
+        {
+            "name": "defense",
+            "base_stat": 68
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 81
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 76
+        },
+        {
+            "name": "speed",
+            "base_stat": 50
+        }
+    ]
+}

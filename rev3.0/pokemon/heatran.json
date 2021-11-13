@@ -1,0 +1,56 @@
+{
+    "name": "heatran",
+    "type": "fire",
+    "moves": [
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "leer",
+            "power": null,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "roar",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "flamethrower",
+            "power": 90,
+            "pp": 15,
+            "type": "fire"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 91
+        },
+        {
+            "name": "attack",
+            "base_stat": 90
+        },
+        {
+            "name": "defense",
+            "base_stat": 106
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 130
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 106
+        },
+        {
+            "name": "speed",
+            "base_stat": 77
+        }
+    ]
+}

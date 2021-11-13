@@ -8,6 +8,8 @@ import os
 
 GAME_DIR = os.path.abspath('.')
 
+POKEMON_DIR = os.path.join(GAME_DIR, 'pokemon')
+
 SPRITESHEETS_DIR = os.path.join(GAME_DIR, 'spritesheets')
 
 TILESHEETS_DIR = os.path.join(GAME_DIR, 'tilesheets')

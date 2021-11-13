@@ -1,0 +1,56 @@
+{
+    "name": "luxio",
+    "type": "electric",
+    "moves": [
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "leer",
+            "power": null,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "bite",
+            "power": 60,
+            "pp": 25,
+            "type": "dark"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 60
+        },
+        {
+            "name": "attack",
+            "base_stat": 85
+        },
+        {
+            "name": "defense",
+            "base_stat": 49
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 60
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 49
+        },
+        {
+            "name": "speed",
+            "base_stat": 60
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "name": "roserade",
+    "type": "grass",
+    "moves": [
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "poison-sting",
+            "power": 15,
+            "pp": 35,
+            "type": "poison"
+        },
+        {
+            "name": "hyper-beam",
+            "power": 150,
+            "pp": 5,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 60
+        },
+        {
+            "name": "attack",
+            "base_stat": 70
+        },
+        {
+            "name": "defense",
+            "base_stat": 65
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 125
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 105
+        },
+        {
+            "name": "speed",
+            "base_stat": 90
+        }
+    ]
+}

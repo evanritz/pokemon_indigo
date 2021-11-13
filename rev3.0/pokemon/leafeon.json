@@ -1,0 +1,56 @@
+{
+    "name": "leafeon",
+    "type": "grass",
+    "moves": [
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "sand-attack",
+            "power": null,
+            "pp": 15,
+            "type": "ground"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 65
+        },
+        {
+            "name": "attack",
+            "base_stat": 110
+        },
+        {
+            "name": "defense",
+            "base_stat": 130
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 60
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 65
+        },
+        {
+            "name": "speed",
+            "base_stat": 95
+        }
+    ]
+}

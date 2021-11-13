@@ -1,0 +1,56 @@
+{
+    "name": "cresselia",
+    "type": "psychic",
+    "moves": [
+        {
+            "name": "mist",
+            "power": null,
+            "pp": 30,
+            "type": "ice"
+        },
+        {
+            "name": "ice-beam",
+            "power": 90,
+            "pp": 10,
+            "type": "ice"
+        },
+        {
+            "name": "aurora-beam",
+            "power": 65,
+            "pp": 20,
+            "type": "ice"
+        },
+        {
+            "name": "hyper-beam",
+            "power": 150,
+            "pp": 5,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 120
+        },
+        {
+            "name": "attack",
+            "base_stat": 70
+        },
+        {
+            "name": "defense",
+            "base_stat": 120
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 75
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 130
+        },
+        {
+            "name": "speed",
+            "base_stat": 85
+        }
+    ]
+}

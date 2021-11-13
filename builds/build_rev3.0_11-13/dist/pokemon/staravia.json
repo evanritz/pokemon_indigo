@@ -1,0 +1,56 @@
+{
+    "name": "staravia",
+    "type": "normal",
+    "moves": [
+        {
+            "name": "wing-attack",
+            "power": 60,
+            "pp": 35,
+            "type": "flying"
+        },
+        {
+            "name": "whirlwind",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "fly",
+            "power": 90,
+            "pp": 15,
+            "type": "flying"
+        },
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 55
+        },
+        {
+            "name": "attack",
+            "base_stat": 75
+        },
+        {
+            "name": "defense",
+            "base_stat": 50
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 40
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 40
+        },
+        {
+            "name": "speed",
+            "base_stat": 80
+        }
+    ]
+}

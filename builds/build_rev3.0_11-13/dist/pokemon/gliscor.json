@@ -1,0 +1,56 @@
+{
+    "name": "gliscor",
+    "type": "ground",
+    "moves": [
+        {
+            "name": "guillotine",
+            "power": null,
+            "pp": 5,
+            "type": "normal"
+        },
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "sand-attack",
+            "power": null,
+            "pp": 15,
+            "type": "ground"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 75
+        },
+        {
+            "name": "attack",
+            "base_stat": 95
+        },
+        {
+            "name": "defense",
+            "base_stat": 125
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 45
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 75
+        },
+        {
+            "name": "speed",
+            "base_stat": 95
+        }
+    ]
+}
