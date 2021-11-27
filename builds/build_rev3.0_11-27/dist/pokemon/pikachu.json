@@ -1,0 +1,60 @@
+{
+    "name": "pikachu",
+    "type": "electric",
+    "sprites": {
+        "front": "pikachu_front.png",
+        "back": "pikachu_back.png"
+    },
+    "moves": [
+        {
+            "name": "mega-punch",
+            "power": 80,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "pay-day",
+            "power": 40,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "thunder-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "electric"
+        },
+        {
+            "name": "slam",
+            "power": 80,
+            "pp": 20,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 35
+        },
+        {
+            "name": "attack",
+            "base_stat": 55
+        },
+        {
+            "name": "defense",
+            "base_stat": 40
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 50
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 50
+        },
+        {
+            "name": "speed",
+            "base_stat": 90
+        }
+    ]
+}

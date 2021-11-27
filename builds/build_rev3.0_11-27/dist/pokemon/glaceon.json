@@ -1,0 +1,60 @@
+{
+    "name": "glaceon",
+    "type": "ice",
+    "sprites": {
+        "front": "glaceon_front.png",
+        "back": "glaceon_back.png"
+    },
+    "moves": [
+        {
+            "name": "sand-attack",
+            "power": null,
+            "pp": 15,
+            "type": "ground"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "tail-whip",
+            "power": null,
+            "pp": 30,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 65
+        },
+        {
+            "name": "attack",
+            "base_stat": 60
+        },
+        {
+            "name": "defense",
+            "base_stat": 110
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 130
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 95
+        },
+        {
+            "name": "speed",
+            "base_stat": 65
+        }
+    ]
+}

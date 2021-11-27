@@ -1,0 +1,60 @@
+{
+    "name": "mothim",
+    "type": "bug",
+    "sprites": {
+        "front": "mothim_front.png",
+        "back": "mothim_back.png"
+    },
+    "moves": [
+        {
+            "name": "gust",
+            "power": 40,
+            "pp": 35,
+            "type": "flying"
+        },
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "psybeam",
+            "power": 65,
+            "pp": 20,
+            "type": "psychic"
+        },
+        {
+            "name": "hyper-beam",
+            "power": 150,
+            "pp": 5,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 70
+        },
+        {
+            "name": "attack",
+            "base_stat": 94
+        },
+        {
+            "name": "defense",
+            "base_stat": 50
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 94
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 50
+        },
+        {
+            "name": "speed",
+            "base_stat": 66
+        }
+    ]
+}

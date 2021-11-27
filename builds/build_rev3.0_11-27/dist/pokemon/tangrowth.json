@@ -1,0 +1,60 @@
+{
+    "name": "tangrowth",
+    "type": "grass",
+    "sprites": {
+        "front": "tangrowth_front.png",
+        "back": "tangrowth_back.png"
+    },
+    "moves": [
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "bind",
+            "power": 15,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "slam",
+            "power": 80,
+            "pp": 20,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 100
+        },
+        {
+            "name": "attack",
+            "base_stat": 100
+        },
+        {
+            "name": "defense",
+            "base_stat": 125
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 110
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 50
+        },
+        {
+            "name": "speed",
+            "base_stat": 50
+        }
+    ]
+}

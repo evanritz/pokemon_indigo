@@ -1,0 +1,60 @@
+{
+    "name": "mismagius",
+    "type": "ghost",
+    "sprites": {
+        "front": "mismagius_front.png",
+        "back": "mismagius_back.png"
+    },
+    "moves": [
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "growl",
+            "power": null,
+            "pp": 40,
+            "type": "normal"
+        },
+        {
+            "name": "hyper-beam",
+            "power": 150,
+            "pp": 5,
+            "type": "normal"
+        },
+        {
+            "name": "thunderbolt",
+            "power": 90,
+            "pp": 15,
+            "type": "electric"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 60
+        },
+        {
+            "name": "attack",
+            "base_stat": 60
+        },
+        {
+            "name": "defense",
+            "base_stat": 60
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 105
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 105
+        },
+        {
+            "name": "speed",
+            "base_stat": 105
+        }
+    ]
+}

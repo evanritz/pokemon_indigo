@@ -1,0 +1,60 @@
+{
+    "name": "regigigas",
+    "type": "normal",
+    "sprites": {
+        "front": "regigigas_front.png",
+        "back": "regigigas_back.png"
+    },
+    "moves": [
+        {
+            "name": "mega-punch",
+            "power": 80,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "fire-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "fire"
+        },
+        {
+            "name": "ice-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "ice"
+        },
+        {
+            "name": "thunder-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "electric"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 110
+        },
+        {
+            "name": "attack",
+            "base_stat": 160
+        },
+        {
+            "name": "defense",
+            "base_stat": 110
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 80
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 110
+        },
+        {
+            "name": "speed",
+            "base_stat": 100
+        }
+    ]
+}

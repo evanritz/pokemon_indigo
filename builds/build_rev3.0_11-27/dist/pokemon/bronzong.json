@@ -1,0 +1,60 @@
+{
+    "name": "bronzong",
+    "type": "steel",
+    "sprites": {
+        "front": "bronzong_front.png",
+        "back": "bronzong_back.png"
+    },
+    "moves": [
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "hyper-beam",
+            "power": 150,
+            "pp": 5,
+            "type": "normal"
+        },
+        {
+            "name": "strength",
+            "power": 80,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "solar-beam",
+            "power": 120,
+            "pp": 10,
+            "type": "grass"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 67
+        },
+        {
+            "name": "attack",
+            "base_stat": 89
+        },
+        {
+            "name": "defense",
+            "base_stat": 116
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 79
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 116
+        },
+        {
+            "name": "speed",
+            "base_stat": 33
+        }
+    ]
+}
