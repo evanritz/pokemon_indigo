@@ -1,6 +1,10 @@
 {
     "name": "rampardos",
     "type": "rock",
+    "sprites": {
+        "front": "rampardos_front.png",
+        "back": "rampardos_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

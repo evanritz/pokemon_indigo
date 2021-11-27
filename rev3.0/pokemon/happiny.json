@@ -1,6 +1,10 @@
 {
     "name": "happiny",
     "type": "normal",
+    "sprites": {
+        "front": "happiny_front.png",
+        "back": "happiny_back.png"
+    },
     "moves": [
         {
             "name": "pound",

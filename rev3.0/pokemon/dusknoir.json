@@ -1,6 +1,10 @@
 {
     "name": "dusknoir",
     "type": "ghost",
+    "sprites": {
+        "front": "dusknoir_front.png",
+        "back": "dusknoir_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

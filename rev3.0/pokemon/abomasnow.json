@@ -1,6 +1,10 @@
 {
     "name": "abomasnow",
     "type": "grass",
+    "sprites": {
+        "front": "abomasnow_front.png",
+        "back": "abomasnow_back.png"
+    },
     "moves": [
         {
             "name": "ice-punch",

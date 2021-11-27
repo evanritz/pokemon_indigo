@@ -1,6 +1,10 @@
 {
     "name": "grotle",
     "type": "grass",
+    "sprites": {
+        "front": "grotle_front.png",
+        "back": "grotle_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

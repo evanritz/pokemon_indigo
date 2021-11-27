@@ -1,6 +1,10 @@
 {
     "name": "floatzel",
     "type": "water",
+    "sprites": {
+        "front": "floatzel_front.png",
+        "back": "floatzel_back.png"
+    },
     "moves": [
         {
             "name": "ice-punch",

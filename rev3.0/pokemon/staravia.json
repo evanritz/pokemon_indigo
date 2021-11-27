@@ -1,6 +1,10 @@
 {
     "name": "staravia",
     "type": "normal",
+    "sprites": {
+        "front": "staravia_front.png",
+        "back": "staravia_back.png"
+    },
     "moves": [
         {
             "name": "wing-attack",

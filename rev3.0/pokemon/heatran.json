@@ -1,6 +1,10 @@
 {
     "name": "heatran",
     "type": "fire",
+    "sprites": {
+        "front": "heatran_front.png",
+        "back": "heatran_back.png"
+    },
     "moves": [
         {
             "name": "headbutt",

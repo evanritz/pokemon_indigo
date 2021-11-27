@@ -1,6 +1,10 @@
 {
     "name": "tangrowth",
     "type": "grass",
+    "sprites": {
+        "front": "tangrowth_front.png",
+        "back": "tangrowth_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

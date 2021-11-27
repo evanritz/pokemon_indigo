@@ -1,6 +1,10 @@
 {
     "name": "gastrodon",
     "type": "water",
+    "sprites": {
+        "front": "gastrodon_front.png",
+        "back": "gastrodon_back.png"
+    },
     "moves": [
         {
             "name": "headbutt",

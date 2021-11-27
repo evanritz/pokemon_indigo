@@ -1,6 +1,10 @@
 {
     "name": "stunky",
     "type": "poison",
+    "sprites": {
+        "front": "stunky_front.png",
+        "back": "stunky_back.png"
+    },
     "moves": [
         {
             "name": "scratch",

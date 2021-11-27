@@ -1,6 +1,10 @@
 {
     "name": "bibarel",
     "type": "normal",
+    "sprites": {
+        "front": "bibarel_front.png",
+        "back": "bibarel_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

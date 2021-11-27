@@ -1,6 +1,10 @@
 {
     "name": "kricketot",
     "type": "bug",
+    "sprites": {
+        "front": "kricketot_front.png",
+        "back": "kricketot_back.png"
+    },
     "moves": [
         {
             "name": "growl",

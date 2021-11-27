@@ -1,6 +1,10 @@
 {
     "name": "vespiquen",
     "type": "bug",
+    "sprites": {
+        "front": "vespiquen_front.png",
+        "back": "vespiquen_back.png"
+    },
     "moves": [
         {
             "name": "cut",

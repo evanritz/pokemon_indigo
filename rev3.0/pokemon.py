@@ -7,6 +7,7 @@
 from utils import *
 from dirs import *
 
+import copy 
 import os
 
 class Pokedex:
@@ -19,6 +20,8 @@ class Pokedex:
             JSON_pokemon = load_json_file(POKEMON_DIR, file_name)
             self.pokemon.append(Pokemon(JSON_pokemon))
 
+        self.size = len(self.pokemon)
+
 class Pokemon:
     def __init__(self, JSON_pokemon):
         
@@ -26,12 +29,13 @@ class Pokemon:
         self.type = JSON_pokemon['type']
         self.moves = JSON_pokemon['moves']
         self.stats = JSON_pokemon['stats']
+        self.sprites = JSON_pokemon['sprites']
 
         self.stats.append({'name': 'xp', 'base_stat': 0})
         self.stats.append({'name': 'level', 'base_stat': 5})
 
-        self.dynamic_moves = self.moves
-        self.dynamic_stats = self.stats
+        self.dynamic_moves = copy.deepcopy(self.moves)
+        self.dynamic_stats = copy.deepcopy(self.stats)
 
         print(self.name, self.type, self.moves, self.stats)
 

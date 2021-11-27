@@ -1,6 +1,10 @@
 {
     "name": "kricketune",
     "type": "bug",
+    "sprites": {
+        "front": "kricketune_front.png",
+        "back": "kricketune_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

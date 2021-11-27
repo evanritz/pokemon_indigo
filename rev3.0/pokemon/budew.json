@@ -1,6 +1,10 @@
 {
     "name": "budew",
     "type": "grass",
+    "sprites": {
+        "front": "budew_front.png",
+        "back": "budew_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

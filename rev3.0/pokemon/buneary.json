@@ -1,6 +1,10 @@
 {
     "name": "buneary",
     "type": "normal",
+    "sprites": {
+        "front": "buneary_front.png",
+        "back": "buneary_back.png"
+    },
     "moves": [
         {
             "name": "pound",

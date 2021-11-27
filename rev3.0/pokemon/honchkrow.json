@@ -1,6 +1,10 @@
 {
     "name": "honchkrow",
     "type": "dark",
+    "sprites": {
+        "front": "honchkrow_front.png",
+        "back": "honchkrow_back.png"
+    },
     "moves": [
         {
             "name": "wing-attack",

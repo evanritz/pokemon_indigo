@@ -1,6 +1,10 @@
 {
     "name": "bastiodon",
     "type": "rock",
+    "sprites": {
+        "front": "bastiodon_front.png",
+        "back": "bastiodon_back.png"
+    },
     "moves": [
         {
             "name": "headbutt",

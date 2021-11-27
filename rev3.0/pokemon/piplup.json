@@ -1,6 +1,10 @@
 {
     "name": "piplup",
     "type": "water",
+    "sprites": {
+        "front": "piplup_front.png",
+        "back": "piplup_back.png"
+    },
     "moves": [
         {
             "name": "pound",

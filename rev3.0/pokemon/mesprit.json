@@ -1,6 +1,10 @@
 {
     "name": "mesprit",
     "type": "psychic",
+    "sprites": {
+        "front": "mesprit_front.png",
+        "back": "mesprit_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

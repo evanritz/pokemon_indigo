@@ -1,6 +1,10 @@
 {
     "name": "mamoswine",
     "type": "ice",
+    "sprites": {
+        "front": "mamoswine_front.png",
+        "back": "mamoswine_back.png"
+    },
     "moves": [
         {
             "name": "headbutt",

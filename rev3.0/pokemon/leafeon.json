@@ -1,6 +1,10 @@
 {
     "name": "leafeon",
     "type": "grass",
+    "sprites": {
+        "front": "leafeon_front.png",
+        "back": "leafeon_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

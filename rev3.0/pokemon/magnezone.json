@@ -1,6 +1,10 @@
 {
     "name": "magnezone",
     "type": "electric",
+    "sprites": {
+        "front": "magnezone_front.png",
+        "back": "magnezone_back.png"
+    },
     "moves": [
         {
             "name": "tackle",

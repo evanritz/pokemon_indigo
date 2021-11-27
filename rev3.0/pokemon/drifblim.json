@@ -1,6 +1,10 @@
 {
     "name": "drifblim",
     "type": "ghost",
+    "sprites": {
+        "front": "drifblim_front.png",
+        "back": "drifblim_back.png"
+    },
     "moves": [
         {
             "name": "cut",

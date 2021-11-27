@@ -1,6 +1,10 @@
 {
     "name": "munchlax",
     "type": "normal",
+    "sprites": {
+        "front": "munchlax_front.png",
+        "back": "munchlax_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

@@ -1,6 +1,10 @@
 {
     "name": "monferno",
     "type": "fire",
+    "sprites": {
+        "front": "monferno_front.png",
+        "back": "monferno_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

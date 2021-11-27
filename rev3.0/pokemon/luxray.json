@@ -1,6 +1,10 @@
 {
     "name": "luxray",
     "type": "electric",
+    "sprites": {
+        "front": "luxray_front.png",
+        "back": "luxray_back.png"
+    },
     "moves": [
         {
             "name": "headbutt",

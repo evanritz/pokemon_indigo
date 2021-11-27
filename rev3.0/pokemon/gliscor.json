@@ -1,6 +1,10 @@
 {
     "name": "gliscor",
     "type": "ground",
+    "sprites": {
+        "front": "gliscor_front.png",
+        "back": "gliscor_back.png"
+    },
     "moves": [
         {
             "name": "guillotine",

@@ -1,6 +1,10 @@
 {
     "name": "snover",
     "type": "grass",
+    "sprites": {
+        "front": "snover_front.png",
+        "back": "snover_back.png"
+    },
     "moves": [
         {
             "name": "ice-punch",

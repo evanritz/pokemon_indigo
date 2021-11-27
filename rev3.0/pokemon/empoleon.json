@@ -1,6 +1,10 @@
 {
     "name": "empoleon",
     "type": "water",
+    "sprites": {
+        "front": "empoleon_front.png",
+        "back": "empoleon_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

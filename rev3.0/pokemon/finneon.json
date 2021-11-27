@@ -1,6 +1,10 @@
 {
     "name": "finneon",
     "type": "water",
+    "sprites": {
+        "front": "finneon_front.png",
+        "back": "finneon_back.png"
+    },
     "moves": [
         {
             "name": "pound",

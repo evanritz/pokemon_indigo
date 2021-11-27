@@ -1,6 +1,10 @@
 {
     "name": "darkrai",
     "type": "dark",
+    "sprites": {
+        "front": "darkrai_front.png",
+        "back": "darkrai_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

@@ -1,6 +1,10 @@
 {
     "name": "starly",
     "type": "normal",
+    "sprites": {
+        "front": "starly_front.png",
+        "back": "starly_back.png"
+    },
     "moves": [
         {
             "name": "wing-attack",

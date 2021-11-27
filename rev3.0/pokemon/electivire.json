@@ -1,6 +1,10 @@
 {
     "name": "electivire",
     "type": "electric",
+    "sprites": {
+        "front": "electivire_front.png",
+        "back": "electivire_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

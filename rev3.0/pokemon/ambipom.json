@@ -1,6 +1,10 @@
 {
     "name": "ambipom",
     "type": "normal",
+    "sprites": {
+        "front": "ambipom_front.png",
+        "back": "ambipom_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

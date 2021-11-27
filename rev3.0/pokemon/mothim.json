@@ -1,6 +1,10 @@
 {
     "name": "mothim",
     "type": "bug",
+    "sprites": {
+        "front": "mothim_front.png",
+        "back": "mothim_back.png"
+    },
     "moves": [
         {
             "name": "gust",

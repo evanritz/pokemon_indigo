@@ -1,6 +1,10 @@
 {
     "name": "spiritomb",
     "type": "ghost",
+    "sprites": {
+        "front": "spiritomb_front.png",
+        "back": "spiritomb_back.png"
+    },
     "moves": [
         {
             "name": "disable",

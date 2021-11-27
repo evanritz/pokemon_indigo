@@ -1,6 +1,10 @@
 {
     "name": "shinx",
     "type": "electric",
+    "sprites": {
+        "front": "shinx_front.png",
+        "back": "shinx_back.png"
+    },
     "moves": [
         {
             "name": "double-kick",

@@ -1,6 +1,10 @@
 {
     "name": "bronzor",
     "type": "steel",
+    "sprites": {
+        "front": "bronzor_front.png",
+        "back": "bronzor_back.png"
+    },
     "moves": [
         {
             "name": "tackle",

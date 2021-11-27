@@ -1,6 +1,10 @@
 {
     "name": "cresselia",
     "type": "psychic",
+    "sprites": {
+        "front": "cresselia_front.png",
+        "back": "cresselia_back.png"
+    },
     "moves": [
         {
             "name": "mist",

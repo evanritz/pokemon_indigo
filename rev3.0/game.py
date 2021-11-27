@@ -7,7 +7,9 @@
 
 from pygame import key
 from consts import *
-from keyboard import Keyboard
+from input import Input
+#from keyboard import Keyboard
+#from mouse import Mouse
 from entities import Player
 from map import Map
 
@@ -26,7 +28,10 @@ class Game:
         self.clock = pygame.time.Clock()
 
         # init keyboard for user input events
-        self.keyboard = Keyboard()
+        #self.keyboard = Keyboard()
+
+        #self.mouse = Mouse()
+        self.input = Input()
 
         # Game running (Start Screen, Start Intro), Game playing (Game, Battle)
         self.RUNNING, self.PLAYING = True, False
@@ -48,6 +53,7 @@ class Game:
         self.struct_tiles = pygame.sprite.LayeredUpdates()
         self.decor_tiles = pygame.sprite.LayeredUpdates()
         self.shadow_tiles = pygame.sprite.LayeredUpdates()
+        self.encouter_tiles = pygame.sprite.LayeredUpdates()
         self.entity_sprites = pygame.sprite.LayeredUpdates()
 
         # Game Music
@@ -55,21 +61,32 @@ class Game:
         #pygame.mixer.music.play(1)  
 
         # init Map object
-        self.map = Map(self, ['overworld.tmx', 'house2.tmx'])
+        self.map = Map(self, ['overworld.tmx'])
         # int Player object
         self.player = Player(self, SCREEN_W//2-PLAYER_SPRITE_SIZE[0]//2, SCREEN_H//2-PLAYER_SPRITE_SIZE[1]//2)
+        #self.player = Player(self, 0, 0)
+        for sprite in self.all_sprites:
+            sprite.rect.y -= 150*TILE_SIZE
+            sprite.rect.x -= 18*TILE_SIZE
+        self.player.rect.y += 150*TILE_SIZE
+        self.player.rect.x += 18*TILE_SIZE
+        
+
+        #for floor_tile in self.floor_tiles:
+        #    print(floor_tile.rect)
 
     def battle_init(self):
         self.battlemenu = BattleMenu(self)
+        self.battlemenu.infobox.add_sentences('lol')
 
     def menu_events(self):
-        self.keyboard.get_key_events()
+        self.input.get_events()
         # Check for pause or exit
-        self.RUNNING = not self.keyboard.EXIT_GAME
+        self.RUNNING = not self.input.EXIT_GAME
         #self.PLAYING = not self.keyboard.EXIT_GAME
 
         # Check for space and start game
-        if self.keyboard.SPACE:
+        if self.input.SPACE:
             #
             #self.screen.fill(pygame.Color('black'))
             #pygame.display.flip()
@@ -82,16 +99,16 @@ class Game:
 
     def game_events(self):
 
-        self.keyboard.get_key_events()
+        self.input.get_events()
         # Check for pause or exit
-        self.RUNNING = not self.keyboard.EXIT_GAME
-        self.PLAYING = not self.keyboard.EXIT_GAME
+        self.RUNNING = not self.input.EXIT_GAME
+        self.PLAYING = not self.input.EXIT_GAME
 
         # Running 
-        if self.keyboard.SHIFT:
-            #if sum(self.keyboard.get_motion_keys()) == 1:
+        if self.input.SHIFT:
+            #if sum(self.input.get_motion_keys()) == 1:
                 # Check key
-                if self.keyboard.UP:
+                if self.input.UP:
                     # Move all sprites (Tiles, Entities, etc)
                     for sprite in self.all_sprites:
                         sprite.rect.y += PLAYER_RUNNING_VEL
@@ -99,58 +116,65 @@ class Game:
                     self.player.vel.y += -PLAYER_RUNNING_VEL
                     # Set facing direction
                     self.player.facing = 'up'
-                elif self.keyboard.DOWN:
+                elif self.input.DOWN:
                     for sprite in self.all_sprites:
                         sprite.rect.y += -PLAYER_RUNNING_VEL
                     self.player.vel.y += PLAYER_RUNNING_VEL
                     self.player.facing = 'down'
-                elif self.keyboard.LEFT:
+                elif self.input.LEFT:
                     for sprite in self.all_sprites:
                         sprite.rect.x += PLAYER_RUNNING_VEL
                     self.player.vel.x += -PLAYER_RUNNING_VEL
                     self.player.facing = 'left'
-                elif self.keyboard.RIGHT:
+                elif self.input.RIGHT:
                     for sprite in self.all_sprites:
                         sprite.rect.x += -PLAYER_RUNNING_VEL
                     self.player.vel.x += PLAYER_RUNNING_VEL
                     self.player.facing = 'right'
         # Walking
         else:
-            if self.keyboard.UP: 
+            if self.input.UP: 
                 for sprite in self.all_sprites:
                     sprite.rect.y += PLAYER_WALKING_VEL
                 self.player.vel.y += -PLAYER_WALKING_VEL        
                 self.player.facing = 'up'
-            elif self.keyboard.DOWN:
+            elif self.input.DOWN:
                 for sprite in self.all_sprites:
                     sprite.rect.y += -PLAYER_WALKING_VEL
                 self.player.vel.y += PLAYER_WALKING_VEL
                 self.player.facing = 'down'
-            elif self.keyboard.LEFT:
+            elif self.input.LEFT:
                 for sprite in self.all_sprites:
                     sprite.rect.x += PLAYER_WALKING_VEL
                 self.player.vel.x += -PLAYER_WALKING_VEL
                 self.player.facing = 'left'
-            elif self.keyboard.RIGHT:
+            elif self.input.RIGHT:
                 for sprite in self.all_sprites:
                     sprite.rect.x += -PLAYER_WALKING_VEL
                 self.player.vel.x += PLAYER_WALKING_VEL
                 self.player.facing = 'right'
 
         # DEBUG: Will be removed later
-        if self.keyboard.SPACE:
-            self.battle_init()
-            self.STATE = 4
+        #if self.input.SPACE:
+        #    self.battle_init()
+        #    self.STATE = 4
 
     def battle_events(self):
         
-        self.keyboard.get_key_events()
-        #self.keyboard.get_key_bouncing_events()
+        self.input.get_events()
+        #self.input.get_key_bouncing_events()
         # Check for pause or exit
-        self.RUNNING = not self.keyboard.EXIT_GAME
-        self.PLAYING = not self.keyboard.EXIT_GAME
-        #print(self.keyboard.t0, self.keyboard.t1)
-        if self.keyboard.SPACE:
+        self.RUNNING = not self.input.EXIT_GAME
+        self.PLAYING = not self.input.EXIT_GAME
+
+        mx, my = self.input.get_pos()
+        #self.mouse.get_buttons()
+
+        #print(self.mouse.LEFT)
+
+        #print(self.input.t0, self.input.t1)
+        '''
+        if self.input.SPACE:
             #print(self.battlemenu.STATE)
             self.battlemenu.change_state()
 
@@ -158,14 +182,23 @@ class Game:
                 self.battlemenu.animate = True
             
             # Do not want continous key check, just presses
-            self.keyboard.reset_keys()
+            self.input.reset_bools()
+        '''
+        if self.input.SPACE:
+            self.battlemenu.infobox.increment_sentences()
+            self.battlemenu.infobox_lines = []
+            self.input.reset_bools()
+
+        self.battlemenu.check_mouse(mx, my, self.input.M_LEFT)
+        self.input.reset_bools()
+
 
         
     def game_update(self):
         #self.entity_sprites.update()
         self.all_sprites.update()
-        self.follow_route()
-        #self.keyboard.reset_keys()
+        #self.follow_route()
+        #self.input.reset_bools()
         #self.reload_sprites()
         #print(self.player.pos)
 
@@ -207,7 +240,10 @@ class Game:
         # Set screen to black
         self.screen.fill(pygame.Color('black'))
         # draw all sprites
-        self.all_sprites.draw(self.screen)
+        for sprite in self.all_sprites:
+            if abs(self.player.rect.x-sprite.rect.x) <= SCREEN_W:
+                if abs(self.player.rect.y-sprite.rect.y) <= SCREEN_H:
+                    sprite.draw(self.screen)
         # update display
         pygame.display.flip()
         # try to say at set FPS

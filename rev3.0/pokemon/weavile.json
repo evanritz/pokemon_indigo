@@ -1,6 +1,10 @@
 {
     "name": "weavile",
     "type": "dark",
+    "sprites": {
+        "front": "weavile_front.png",
+        "back": "weavile_back.png"
+    },
     "moves": [
         {
             "name": "ice-punch",

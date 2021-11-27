@@ -1,6 +1,10 @@
 {
     "name": "lickilicky",
     "type": "normal",
+    "sprites": {
+        "front": "lickilicky_front.png",
+        "back": "lickilicky_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

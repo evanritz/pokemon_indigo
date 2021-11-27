@@ -1,6 +1,10 @@
 {
     "name": "bronzong",
     "type": "steel",
+    "sprites": {
+        "front": "bronzong_front.png",
+        "back": "bronzong_back.png"
+    },
     "moves": [
         {
             "name": "tackle",

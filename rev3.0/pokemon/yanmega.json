@@ -1,6 +1,10 @@
 {
     "name": "yanmega",
     "type": "bug",
+    "sprites": {
+        "front": "yanmega_front.png",
+        "back": "yanmega_back.png"
+    },
     "moves": [
         {
             "name": "headbutt",

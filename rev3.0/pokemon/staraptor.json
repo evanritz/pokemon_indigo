@@ -1,6 +1,10 @@
 {
     "name": "staraptor",
     "type": "normal",
+    "sprites": {
+        "front": "staraptor_front.png",
+        "back": "staraptor_back.png"
+    },
     "moves": [
         {
             "name": "wing-attack",

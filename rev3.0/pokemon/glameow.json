@@ -1,6 +1,10 @@
 {
     "name": "glameow",
     "type": "normal",
+    "sprites": {
+        "front": "glameow_front.png",
+        "back": "glameow_back.png"
+    },
     "moves": [
         {
             "name": "scratch",

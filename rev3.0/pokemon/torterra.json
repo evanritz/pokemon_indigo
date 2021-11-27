@@ -1,6 +1,10 @@
 {
     "name": "torterra",
     "type": "grass",
+    "sprites": {
+        "front": "torterra_front.png",
+        "back": "torterra_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

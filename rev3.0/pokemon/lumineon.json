@@ -1,6 +1,10 @@
 {
     "name": "lumineon",
     "type": "water",
+    "sprites": {
+        "front": "lumineon_front.png",
+        "back": "lumineon_back.png"
+    },
     "moves": [
         {
             "name": "pound",

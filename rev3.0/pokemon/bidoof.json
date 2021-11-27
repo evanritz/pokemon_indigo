@@ -1,6 +1,10 @@
 {
     "name": "bidoof",
     "type": "normal",
+    "sprites": {
+        "front": "bidoof_front.png",
+        "back": "bidoof_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

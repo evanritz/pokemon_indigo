@@ -1,6 +1,10 @@
 {
     "name": "mantyke",
     "type": "water",
+    "sprites": {
+        "front": "mantyke_front.png",
+        "back": "mantyke_back.png"
+    },
     "moves": [
         {
             "name": "wing-attack",

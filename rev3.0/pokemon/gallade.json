@@ -1,6 +1,10 @@
 {
     "name": "gallade",
     "type": "psychic",
+    "sprites": {
+        "front": "gallade_front.png",
+        "back": "gallade_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

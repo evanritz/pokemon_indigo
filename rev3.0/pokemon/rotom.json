@@ -1,6 +1,10 @@
 {
     "name": "rotom",
     "type": "electric",
+    "sprites": {
+        "front": "rotom_front.png",
+        "back": "rotom_back.png"
+    },
     "moves": [
         {
             "name": "thunder-shock",

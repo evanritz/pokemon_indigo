@@ -1,6 +1,10 @@
 {
     "name": "palkia",
     "type": "water",
+    "sprites": {
+        "front": "palkia_front.png",
+        "back": "palkia_back.png"
+    },
     "moves": [
         {
             "name": "cut",

@@ -1,6 +1,10 @@
 {
     "name": "shieldon",
     "type": "rock",
+    "sprites": {
+        "front": "shieldon_front.png",
+        "back": "shieldon_back.png"
+    },
     "moves": [
         {
             "name": "headbutt",

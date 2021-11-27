@@ -1,6 +1,10 @@
 {
     "name": "cherubi",
     "type": "grass",
+    "sprites": {
+        "front": "cherubi_front.png",
+        "back": "cherubi_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

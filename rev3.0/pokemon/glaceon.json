@@ -1,6 +1,10 @@
 {
     "name": "glaceon",
     "type": "ice",
+    "sprites": {
+        "front": "glaceon_front.png",
+        "back": "glaceon_back.png"
+    },
     "moves": [
         {
             "name": "sand-attack",

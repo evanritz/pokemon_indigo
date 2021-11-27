@@ -1,6 +1,10 @@
 {
     "name": "croagunk",
     "type": "poison",
+    "sprites": {
+        "front": "croagunk_front.png",
+        "back": "croagunk_back.png"
+    },
     "moves": [
         {
             "name": "ice-punch",

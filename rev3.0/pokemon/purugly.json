@@ -1,6 +1,10 @@
 {
     "name": "purugly",
     "type": "normal",
+    "sprites": {
+        "front": "purugly_front.png",
+        "back": "purugly_back.png"
+    },
     "moves": [
         {
             "name": "scratch",

@@ -9,6 +9,7 @@ from dirs import *
 from utils import *
 
 import pygame
+import random
 import math
 
 # Player class as a pygame sprite
@@ -21,8 +22,8 @@ class Player(pygame.sprite.Sprite):
 
         # player pokemon, DEBUG for battlemenu will be selected in game
         # Index 20 choosen for Testing
-        self.pokemon = [self.game.pokedex.pokemon[20]]
-
+        self.pokemon = [self.game.pokedex.pokemon[random.randint(0, self.game.pokedex.size-1)]]
+        self.encouter_pokemon = None
         # Velocity vector
         self.vel = pygame.Vector2(0, 0)
         # Spawn pos
@@ -136,6 +137,7 @@ class Player(pygame.sprite.Sprite):
         if self.vel.x == 0 and self.vel.y != 0:
             # find sprites that are colliding
             collision = pygame.sprite.spritecollide(self, self.game.struct_tiles, False)
+            encouter_collision = pygame.sprite.spritecollide(self, self.game.encouter_tiles, False)
             # if there are collision, empty list if none
             if collision:
                 # check for right
@@ -155,31 +157,43 @@ class Player(pygame.sprite.Sprite):
                     self.rect.y = collision[0].rect.bottom
                     for sprite in self.game.all_sprites:
                         sprite.rect.y += self.vel.y
+            elif encouter_collision:
+                if random.random() < ENCOUTER_PROB:
+                    self.encouter_pokemon = self.game.pokedex.pokemon[random.randint(0, self.game.pokedex.size-1)]
+                    self.game.battle_init()
+                    self.game.STATE = 4
 
                     #self.set_route(collision)
         # moving in x direction
         if self.vel.y == 0 and self.vel.x != 0:
             collision = pygame.sprite.spritecollide(self, self.game.struct_tiles, False)
+            encouter_collision = pygame.sprite.spritecollide(self, self.game.encouter_tiles, False)
             if collision:
                 if self.vel.x > 0:
-                    print('x>0 {}'.format(self.vel.x))
+                    #print('x>0 {}'.format(self.vel.x))
                     self.rect.x = collision[0].rect.left - self.rect.width
                     for sprite in self.game.all_sprites:
                         sprite.rect.x += self.vel.x
 
                     #self.set_route(collision)
                 if self.vel.x < 0:
-                    print('x<0 {}'.format(self.vel.x))
+                    #print('x<0 {}'.format(self.vel.x))
                     self.rect.x = collision[0].rect.right
                     for sprite in self.game.all_sprites:
                         sprite.rect.x += self.vel.x
 
                     #self.set_route(collision)
+            elif encouter_collision:
+                if random.random() < ENCOUTER_PROB:
+                    self.encouter_pokemon = self.game.pokedex.pokemon[random.randint(0, self.game.pokedex.size-1)]
+                    self.game.battle_init()
+                    self.game.STATE = 4
+
 
     def set_route(self, collision):
         c_x = collision[0].rect.x#+TILE_SIZE
         c_y = collision[0].rect.y#+TILE_SIZE
-        print(collision[0].id)
+        #print(collision[0].id)
         if collision[0].id == BIG_WOODEN_HOUSE_DOOR_ID:
             for entry_route in ENTRY_ROUTES:
                 e_x = entry_route['check'][0]*TILE_SIZE

@@ -1,6 +1,10 @@
 {
     "name": "riolu",
     "type": "fighting",
+    "sprites": {
+        "front": "riolu_front.png",
+        "back": "riolu_back.png"
+    },
     "moves": [
         {
             "name": "ice-punch",

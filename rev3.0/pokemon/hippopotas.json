@@ -1,6 +1,10 @@
 {
     "name": "hippopotas",
     "type": "ground",
+    "sprites": {
+        "front": "hippopotas_front.png",
+        "back": "hippopotas_back.png"
+    },
     "moves": [
         {
             "name": "whirlwind",

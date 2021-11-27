@@ -1,6 +1,10 @@
 {
     "name": "froslass",
     "type": "ice",
+    "sprites": {
+        "front": "froslass_front.png",
+        "back": "froslass_back.png"
+    },
     "moves": [
         {
             "name": "ice-punch",

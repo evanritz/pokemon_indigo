@@ -1,6 +1,10 @@
 {
     "name": "mismagius",
     "type": "ghost",
+    "sprites": {
+        "front": "mismagius_front.png",
+        "back": "mismagius_back.png"
+    },
     "moves": [
         {
             "name": "headbutt",

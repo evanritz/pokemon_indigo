@@ -1,6 +1,10 @@
 {
     "name": "gible",
     "type": "dragon",
+    "sprites": {
+        "front": "gible_front.png",
+        "back": "gible_back.png"
+    },
     "moves": [
         {
             "name": "cut",

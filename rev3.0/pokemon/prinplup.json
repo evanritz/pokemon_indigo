@@ -1,6 +1,10 @@
 {
     "name": "prinplup",
     "type": "water",
+    "sprites": {
+        "front": "prinplup_front.png",
+        "back": "prinplup_back.png"
+    },
     "moves": [
         {
             "name": "cut",

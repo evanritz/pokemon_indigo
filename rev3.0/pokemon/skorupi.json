@@ -1,6 +1,10 @@
 {
     "name": "skorupi",
     "type": "poison",
+    "sprites": {
+        "front": "skorupi_front.png",
+        "back": "skorupi_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

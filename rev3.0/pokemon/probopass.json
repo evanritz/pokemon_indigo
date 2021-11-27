@@ -1,6 +1,10 @@
 {
     "name": "probopass",
     "type": "rock",
+    "sprites": {
+        "front": "probopass_front.png",
+        "back": "probopass_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

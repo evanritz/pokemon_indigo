@@ -1,6 +1,10 @@
 {
     "name": "phione",
     "type": "water",
+    "sprites": {
+        "front": "phione_front.png",
+        "back": "phione_back.png"
+    },
     "moves": [
         {
             "name": "supersonic",

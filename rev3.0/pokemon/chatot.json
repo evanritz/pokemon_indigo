@@ -1,6 +1,10 @@
 {
     "name": "chatot",
     "type": "normal",
+    "sprites": {
+        "front": "chatot_front.png",
+        "back": "chatot_back.png"
+    },
     "moves": [
         {
             "name": "fly",

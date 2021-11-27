@@ -1,6 +1,10 @@
 {
     "name": "skuntank",
     "type": "poison",
+    "sprites": {
+        "front": "skuntank_front.png",
+        "back": "skuntank_back.png"
+    },
     "moves": [
         {
             "name": "scratch",

@@ -1,6 +1,10 @@
 {
     "name": "uxie",
     "type": "psychic",
+    "sprites": {
+        "front": "uxie_front.png",
+        "back": "uxie_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

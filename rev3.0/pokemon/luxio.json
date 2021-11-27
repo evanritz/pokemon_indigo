@@ -1,6 +1,10 @@
 {
     "name": "luxio",
     "type": "electric",
+    "sprites": {
+        "front": "luxio_front.png",
+        "back": "luxio_back.png"
+    },
     "moves": [
         {
             "name": "headbutt",

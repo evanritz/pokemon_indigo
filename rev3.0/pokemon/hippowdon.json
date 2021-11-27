@@ -1,6 +1,10 @@
 {
     "name": "hippowdon",
     "type": "ground",
+    "sprites": {
+        "front": "hippowdon_front.png",
+        "back": "hippowdon_back.png"
+    },
     "moves": [
         {
             "name": "sand-attack",

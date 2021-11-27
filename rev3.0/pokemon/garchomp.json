@@ -1,6 +1,10 @@
 {
     "name": "garchomp",
     "type": "dragon",
+    "sprites": {
+        "front": "garchomp_front.png",
+        "back": "garchomp_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

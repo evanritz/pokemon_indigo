@@ -1,6 +1,10 @@
 {
     "name": "cranidos",
     "type": "rock",
+    "sprites": {
+        "front": "cranidos_front.png",
+        "back": "cranidos_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

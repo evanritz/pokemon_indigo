@@ -1,6 +1,10 @@
 {
     "name": "porygon-z",
     "type": "normal",
+    "sprites": {
+        "front": "porygon-z_front.png",
+        "back": "porygon-z_back.png"
+    },
     "moves": [
         {
             "name": "tackle",

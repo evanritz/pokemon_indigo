@@ -1,6 +1,10 @@
 {
     "name": "lopunny",
     "type": "normal",
+    "sprites": {
+        "front": "lopunny_front.png",
+        "back": "lopunny_back.png"
+    },
     "moves": [
         {
             "name": "pound",

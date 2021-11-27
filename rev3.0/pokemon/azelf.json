@@ -1,6 +1,10 @@
 {
     "name": "azelf",
     "type": "psychic",
+    "sprites": {
+        "front": "azelf_front.png",
+        "back": "azelf_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

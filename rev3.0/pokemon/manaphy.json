@@ -1,6 +1,10 @@
 {
     "name": "manaphy",
     "type": "water",
+    "sprites": {
+        "front": "manaphy_front.png",
+        "back": "manaphy_back.png"
+    },
     "moves": [
         {
             "name": "supersonic",

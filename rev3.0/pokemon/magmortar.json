@@ -1,6 +1,10 @@
 {
     "name": "magmortar",
     "type": "fire",
+    "sprites": {
+        "front": "magmortar_front.png",
+        "back": "magmortar_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

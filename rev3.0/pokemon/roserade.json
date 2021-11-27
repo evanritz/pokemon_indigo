@@ -1,6 +1,10 @@
 {
     "name": "roserade",
     "type": "grass",
+    "sprites": {
+        "front": "roserade_front.png",
+        "back": "roserade_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

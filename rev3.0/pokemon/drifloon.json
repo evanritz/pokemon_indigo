@@ -1,6 +1,10 @@
 {
     "name": "drifloon",
     "type": "ghost",
+    "sprites": {
+        "front": "drifloon_front.png",
+        "back": "drifloon_back.png"
+    },
     "moves": [
         {
             "name": "cut",

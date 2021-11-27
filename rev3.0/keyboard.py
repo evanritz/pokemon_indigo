@@ -38,6 +38,8 @@ class Keyboard:
         # action key bools
         self.R_SELECT, self.R_INCREMENT = False, False
 
+        self.MOUSELEFT = False
+
         self.t1, self.t0 = pygame.time.get_ticks(), pygame.time.get_ticks()
 
     def get_motion_keys(self):
@@ -49,6 +51,8 @@ class Keyboard:
         self.SHIFT, self.SPACE = False, False
         self.SELECT, self.INCREMENT = False, False
         self.PAUSE_GAME, self.EXIT_GAME = False, False
+
+        self.MOUSELEFT = False
 
     # get key events, compare keybinds and set inst vars
     def get_key_events(self):
@@ -94,5 +98,7 @@ class Keyboard:
                     self.SELECT = False
                 elif event.key == K_i:
                     self.INCREMENT = False
+            elif event.type == MOUSEBUTTONDOWN:
+                self.MOUSELEFT = True
 
 

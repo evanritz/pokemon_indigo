@@ -1,6 +1,10 @@
 {
     "name": "infernape",
     "type": "fire",
+    "sprites": {
+        "front": "infernape_front.png",
+        "back": "infernape_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

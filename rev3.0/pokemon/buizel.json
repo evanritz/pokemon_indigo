@@ -1,6 +1,10 @@
 {
     "name": "buizel",
     "type": "water",
+    "sprites": {
+        "front": "buizel_front.png",
+        "back": "buizel_back.png"
+    },
     "moves": [
         {
             "name": "double-slap",

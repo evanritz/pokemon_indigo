@@ -1,6 +1,10 @@
 {
     "name": "toxicroak",
     "type": "poison",
+    "sprites": {
+        "front": "toxicroak_front.png",
+        "back": "toxicroak_back.png"
+    },
     "moves": [
         {
             "name": "ice-punch",

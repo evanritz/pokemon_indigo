@@ -1,6 +1,10 @@
 {
     "name": "gabite",
     "type": "dragon",
+    "sprites": {
+        "front": "gabite_front.png",
+        "back": "gabite_back.png"
+    },
     "moves": [
         {
             "name": "cut",

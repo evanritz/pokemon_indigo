@@ -1,6 +1,10 @@
 {
     "name": "rhyperior",
     "type": "ground",
+    "sprites": {
+        "front": "rhyperior_front.png",
+        "back": "rhyperior_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

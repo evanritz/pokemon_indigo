@@ -1,6 +1,10 @@
 {
     "name": "arceus",
     "type": "normal",
+    "sprites": {
+        "front": "arceus_front.png",
+        "back": "arceus_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

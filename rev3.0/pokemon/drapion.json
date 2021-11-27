@@ -1,6 +1,10 @@
 {
     "name": "drapion",
     "type": "poison",
+    "sprites": {
+        "front": "drapion_front.png",
+        "back": "drapion_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

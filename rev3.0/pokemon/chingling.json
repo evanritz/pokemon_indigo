@@ -1,6 +1,10 @@
 {
     "name": "chingling",
     "type": "psychic",
+    "sprites": {
+        "front": "chingling_front.png",
+        "back": "chingling_back.png"
+    },
     "moves": [
         {
             "name": "bind",

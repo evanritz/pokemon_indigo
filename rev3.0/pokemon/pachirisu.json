@@ -1,6 +1,10 @@
 {
     "name": "pachirisu",
     "type": "electric",
+    "sprites": {
+        "front": "pachirisu_front.png",
+        "back": "pachirisu_back.png"
+    },
     "moves": [
         {
             "name": "thunder-punch",

@@ -1,6 +1,10 @@
 {
     "name": "chimchar",
     "type": "fire",
+    "sprites": {
+        "front": "chimchar_front.png",
+        "back": "chimchar_back.png"
+    },
     "moves": [
         {
             "name": "fire-punch",

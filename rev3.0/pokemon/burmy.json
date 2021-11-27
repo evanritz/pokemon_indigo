@@ -1,6 +1,10 @@
 {
     "name": "burmy",
     "type": "bug",
+    "sprites": {
+        "front": "burmy_front.png",
+        "back": "burmy_back.png"
+    },
     "moves": [
         {
             "name": "tackle",

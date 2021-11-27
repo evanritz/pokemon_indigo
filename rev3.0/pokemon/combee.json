@@ -1,6 +1,10 @@
 {
     "name": "combee",
     "type": "bug",
+    "sprites": {
+        "front": "combee_front.png",
+        "back": "combee_back.png"
+    },
     "moves": [
         {
             "name": "gust",

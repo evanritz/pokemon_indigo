@@ -1,6 +1,10 @@
 {
     "name": "regigigas",
     "type": "normal",
+    "sprites": {
+        "front": "regigigas_front.png",
+        "back": "regigigas_back.png"
+    },
     "moves": [
         {
             "name": "mega-punch",

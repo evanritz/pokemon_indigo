@@ -24,17 +24,21 @@ class Map:
         
         self.game = game
         
-        self.route = ENTRY_ROUTES[0]
+        #self.route = ENTRY_ROUTES[0]
 
-        self.current_tilemap = None
+        self.current_tilemap = 'overworld'
         self.tilemaps = {}
         for file_name in file_names:
+            #print('Working?')
             with open(os.path.join(MAPS_DIR, file_name)) as f:
                 self.XML_map_raw = xmltodict.parse(f.read())
             name = file_name.split('.')[0]
             self.tilemaps.update({name: Tilemap(self.game, self.XML_map_raw)})
-
-        self.transition(self.route)
+        
+        self.tilemaps[self.current_tilemap].insert_tiles()
+        
+        #print(name)
+        #self.transition(self.route)
 
     def transition(self, name):
         self.game.floor_tiles.empty()
@@ -60,10 +64,10 @@ class Tilemap:
         self.tilesets = []
         self.XLM_tilesets = self.XLM_map['tileset']
         if not isinstance(self.XLM_tilesets, list):
-            self.XLM_tilesets = list(self.XLM_tilesets)
-        else:
-            for XLM_tileset in self.XLM_tilesets:
-                self.tilesets.append(Tileset(XLM_tileset))
+            self.XLM_tilesets = [self.XLM_tilesets]
+        
+        for XLM_tileset in self.XLM_tilesets:
+            self.tilesets.append(Tileset(XLM_tileset))
 
         self.layers = []
         self.XLM_layers = self.XLM_map['layer']
@@ -76,22 +80,26 @@ class Tilemap:
                 self.layers.append(layer)
 
         self.objectgroups = []
+        
         #self.XLM_objectgroups = self.XLM_map['objectgroup']
 
     
     def insert_tiles(self):
+        #print('Working? i')
         for layer in self.layers:
             tiles = layer.get_tiles()
-            print(layer.id)
+            #print(layer.id)
             self.game.all_sprites.add(tiles)
             if layer.id == 1:
                 self.game.floor_tiles.add(tiles)
-            elif layer.id == 2:
+            elif layer.id == 2 or layer.id == 6:
                 self.game.struct_tiles.add(tiles)
             elif layer.id == 3:
                 self.game.decor_tiles.add(tiles)
             elif layer.id == 4:
                 self.game.shadow_tiles.add(tiles)
+            elif layer.id == 5:
+                self.game.encouter_tiles.add(tiles)
         
     def get_floor_layer_size(self):
         return (self.layers[0].w, self.layers[0].h)
@@ -101,6 +109,7 @@ class Tileset:
     def __init__(self, XLM_tileset):
         self.XLM_tileset = XLM_tileset
 
+        #print(self.XLM_tileset)
         self.start_id = int(self.XLM_tileset['@firstgid'])
         self.tile_count = int(self.XLM_tileset['@tilecount'])
         self.end_id = self.start_id+self.tile_count
@@ -124,7 +133,7 @@ class Tileset:
                 self.id_to_tile.update({id: tile})
                 id += 1
 
-        print(self.id_to_tile)
+        #print(self.id_to_tile)
 
     def contains_id(self, id):
         return id >= self.start_id and id < self.end_id

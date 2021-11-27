@@ -1,6 +1,10 @@
 {
     "name": "bonsly",
     "type": "rock",
+    "sprites": {
+        "front": "bonsly_front.png",
+        "back": "bonsly_back.png"
+    },
     "moves": [
         {
             "name": "slam",

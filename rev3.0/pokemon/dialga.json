@@ -1,6 +1,10 @@
 {
     "name": "dialga",
     "type": "steel",
+    "sprites": {
+        "front": "dialga_front.png",
+        "back": "dialga_back.png"
+    },
     "moves": [
         {
             "name": "cut",

@@ -35,14 +35,22 @@ PLAYER_WALKING_VEL = 5
 PLAYER_RUNNING_VEL = 10
 
 # Player Sprite Size
-PLAYER_SPRITE_SIZE = (128, 128)
+PLAYER_SPRITE_SIZE = (96, 96)
 
 # Animation per Frames (.1 => 1 animation / 10 frames)
-APF = .15
+APF = .25
 
 # Map Tiles
-TILE_SIZE = 64
+TILE_SIZE = 32
 SRC_TILE_SIZE = 16
+
+# Menus
+# InfoBox line offset
+IBL_X_OFFSET = 30
+IBL_Y_OFFSET = 20
+
+# Encouter (5%)
+ENCOUTER_PROB = .01
 
 # Map Doors
 

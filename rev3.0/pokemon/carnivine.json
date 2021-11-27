@@ -1,6 +1,10 @@
 {
     "name": "carnivine",
     "type": "grass",
+    "sprites": {
+        "front": "carnivine_front.png",
+        "back": "carnivine_back.png"
+    },
     "moves": [
         {
             "name": "swords-dance",

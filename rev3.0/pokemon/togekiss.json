@@ -1,6 +1,10 @@
 {
     "name": "togekiss",
     "type": "fairy",
+    "sprites": {
+        "front": "togekiss_front.png",
+        "back": "togekiss_back.png"
+    },
     "moves": [
         {
             "name": "fly",

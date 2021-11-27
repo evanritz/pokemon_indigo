@@ -1,6 +1,10 @@
 {
     "name": "shellos",
     "type": "water",
+    "sprites": {
+        "front": "shellos_front.png",
+        "back": "shellos_back.png"
+    },
     "moves": [
         {
             "name": "headbutt",
