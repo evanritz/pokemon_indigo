@@ -44,6 +44,8 @@ class Game:
         #self.game_init()
 
     def menu_init(self):
+        pygame.mixer.music.load('sounds/opening_screen.WAV')
+        pygame.mixer.music.play(-1)  
         self.menu = Menu(self)
 
     def game_init(self):
@@ -58,7 +60,7 @@ class Game:
 
         # Game Music
         pygame.mixer.music.load('sounds/pallet_town.WAV')
-        #pygame.mixer.music.play(1)  
+        pygame.mixer.music.play(1)  
 
         # init Map object
         self.map = Map(self, ['overworld.tmx'])
@@ -81,6 +83,8 @@ class Game:
         #self.battlemenu.infobox.add_sentences('lol')
 
     def battle_init(self):
+        pygame.mixer.music.load('sounds/opening_screen.WAV')
+        pygame.mixer.music.play(-1) 
         self.battlemenu.set_enemy(self.player.encouter_pokemon)
         self.battlemenu.render_enemy()
         self.battlemenu.infobox.increment_sentences()
@@ -97,6 +101,7 @@ class Game:
             #
             #self.screen.fill(pygame.Color('black'))
             #pygame.display.flip()
+            pygame.mixer.music.stop()
             self.game_init()
             self.battle_preinit()
             

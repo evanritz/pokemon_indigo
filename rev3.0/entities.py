@@ -169,6 +169,7 @@ class Player(pygame.sprite.Sprite):
                     if self.isPokemonAlive(0):
                         self.game.battlemenu.infobox.add_sentences('A wild {} has appeared!'.format(self.encouter_pokemon.name.capitalize()))
                         self.game.battlemenu.infobox.add_sentences('What do you want to do?')
+                        pygame.mixer.music.stop()
                         self.game.battle_init()
                         self.game.STATE = 4
 
@@ -198,6 +199,7 @@ class Player(pygame.sprite.Sprite):
                     if self.isPokemonAlive(0):
                         self.game.battlemenu.infobox.add_sentences('A wild {} has appeared!'.format(self.encouter_pokemon.name.capitalize()))
                         self.game.battlemenu.infobox.add_sentences('What do you want to do?')
+                        pygame.mixer.music.stop()
                         self.game.battle_init()
                         self.game.STATE = 4
 

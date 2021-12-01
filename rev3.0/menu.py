@@ -444,10 +444,16 @@ class BattleMenu:
             if not self.infobox.sentences and self.infobox.sentence == None:
                 
                 if self.player_pokemon.get_dynamic_stat_val('hp') <= 0:
+                    pygame.mixer.music.stop()
+                    pygame.mixer.music.load('sounds/pallet_town.WAV')
+                    pygame.mixer.music.play(-1)
                     self.game.STATE = 3
                     #self.infobox.add_sentences('test1')
                     self.reset()
                 elif self.enemy_pokemon.get_dynamic_stat_val('hp') <= 0:
+                    pygame.mixer.music.stop()
+                    pygame.mixer.music.load('sounds/pallet_town.WAV')
+                    pygame.mixer.music.play(-1)
                     self.game.STATE = 3
                     #self.infobox.add_sentences('test1')
                     self.reset()
@@ -467,6 +473,9 @@ class BattleMenu:
                 self.selector = []
                 #self.wait = True
             elif self.selected == 'RUN':
+                pygame.mixer.music.stop()
+                pygame.mixer.music.load('sounds/pallet_town.WAV')
+                pygame.mixer.music.play(-1)
                 self.game.STATE = 3
                 self.reset()
 
