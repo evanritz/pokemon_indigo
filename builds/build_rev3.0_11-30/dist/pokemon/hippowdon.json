@@ -1,0 +1,60 @@
+{
+    "name": "hippowdon",
+    "type": "ground",
+    "sprites": {
+        "front": "hippowdon_front.png",
+        "back": "hippowdon_back.png"
+    },
+    "moves": [
+        {
+            "name": "sand-attack",
+            "power": null,
+            "pp": 15,
+            "type": "ground"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "take-down",
+            "power": 90,
+            "pp": 20,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 108
+        },
+        {
+            "name": "attack",
+            "base_stat": 112
+        },
+        {
+            "name": "defense",
+            "base_stat": 118
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 68
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 72
+        },
+        {
+            "name": "speed",
+            "base_stat": 47
+        }
+    ]
+}

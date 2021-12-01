@@ -65,19 +65,26 @@ class Game:
         # int Player object
         self.player = Player(self, SCREEN_W//2-PLAYER_SPRITE_SIZE[0]//2, SCREEN_H//2-PLAYER_SPRITE_SIZE[1]//2)
         #self.player = Player(self, 0, 0)
-        for sprite in self.all_sprites:
-            sprite.rect.y -= 150*TILE_SIZE
-            sprite.rect.x -= 18*TILE_SIZE
-        self.player.rect.y += 150*TILE_SIZE
-        self.player.rect.x += 18*TILE_SIZE
-        
 
+        for sprite in self.all_sprites:
+            sprite.rect.x -= ORIGIN[0]*TILE_SIZE
+            sprite.rect.y -= ORIGIN[1]*TILE_SIZE
+
+        self.player.rect.x += ORIGIN[0]*TILE_SIZE
+        self.player.rect.y += ORIGIN[1]*TILE_SIZE
+        
         #for floor_tile in self.floor_tiles:
         #    print(floor_tile.rect)
 
-    def battle_init(self):
+    def battle_preinit(self):
         self.battlemenu = BattleMenu(self)
-        self.battlemenu.infobox.add_sentences('lol')
+        #self.battlemenu.infobox.add_sentences('lol')
+
+    def battle_init(self):
+        self.battlemenu.set_enemy(self.player.encouter_pokemon)
+        self.battlemenu.render_enemy()
+        self.battlemenu.infobox.increment_sentences()
+        #self.battlemenu.infobox.add_sentences('lol')
 
     def menu_events(self):
         self.input.get_events()
@@ -91,6 +98,7 @@ class Game:
             #self.screen.fill(pygame.Color('black'))
             #pygame.display.flip()
             self.game_init()
+            self.battle_preinit()
             
             #self.game_draw()
             #self.unfade()
@@ -168,23 +176,11 @@ class Game:
         self.PLAYING = not self.input.EXIT_GAME
 
         mx, my = self.input.get_pos()
-        #self.mouse.get_buttons()
+       
+        
 
-        #print(self.mouse.LEFT)
 
-        #print(self.input.t0, self.input.t1)
-        '''
-        if self.input.SPACE:
-            #print(self.battlemenu.STATE)
-            self.battlemenu.change_state()
-
-            if self.battlemenu.STATE == 1 or self.battlemenu.STATE == 2:
-                self.battlemenu.animate = True
-            
-            # Do not want continous key check, just presses
-            self.input.reset_bools()
-        '''
-        if self.input.SPACE:
+        if self.input.SPACE and not self.battlemenu.animate_init and not self.battlemenu.animate:
             self.battlemenu.infobox.increment_sentences()
             self.battlemenu.infobox_lines = []
             self.input.reset_bools()

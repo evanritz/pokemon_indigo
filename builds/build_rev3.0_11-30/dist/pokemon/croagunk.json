@@ -1,0 +1,60 @@
+{
+    "name": "croagunk",
+    "type": "poison",
+    "sprites": {
+        "front": "croagunk_front.png",
+        "back": "croagunk_back.png"
+    },
+    "moves": [
+        {
+            "name": "ice-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "ice"
+        },
+        {
+            "name": "thunder-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "electric"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "poison-sting",
+            "power": 15,
+            "pp": 35,
+            "type": "poison"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 48
+        },
+        {
+            "name": "attack",
+            "base_stat": 61
+        },
+        {
+            "name": "defense",
+            "base_stat": 40
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 61
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 40
+        },
+        {
+            "name": "speed",
+            "base_stat": 50
+        }
+    ]
+}

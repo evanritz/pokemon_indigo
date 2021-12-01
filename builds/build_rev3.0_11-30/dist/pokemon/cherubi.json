@@ -1,0 +1,60 @@
+{
+    "name": "cherubi",
+    "type": "grass",
+    "sprites": {
+        "front": "cherubi_front.png",
+        "back": "cherubi_back.png"
+    },
+    "moves": [
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "take-down",
+            "power": 90,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "leech-seed",
+            "power": null,
+            "pp": 10,
+            "type": "grass"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 45
+        },
+        {
+            "name": "attack",
+            "base_stat": 35
+        },
+        {
+            "name": "defense",
+            "base_stat": 45
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 62
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 53
+        },
+        {
+            "name": "speed",
+            "base_stat": 35
+        }
+    ]
+}

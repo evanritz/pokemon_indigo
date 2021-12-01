@@ -37,6 +37,9 @@ PLAYER_RUNNING_VEL = 10
 # Player Sprite Size
 PLAYER_SPRITE_SIZE = (96, 96)
 
+# Player Origin (In Tiles)
+ORIGIN = (18, 150)
+
 # Animation per Frames (.1 => 1 animation / 10 frames)
 APF = .25
 

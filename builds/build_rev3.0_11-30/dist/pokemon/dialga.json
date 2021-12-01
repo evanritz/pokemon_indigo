@@ -1,0 +1,60 @@
+{
+    "name": "dialga",
+    "type": "steel",
+    "sprites": {
+        "front": "dialga_front.png",
+        "back": "dialga_back.png"
+    },
+    "moves": [
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "roar",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "flamethrower",
+            "power": 90,
+            "pp": 15,
+            "type": "fire"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 100
+        },
+        {
+            "name": "attack",
+            "base_stat": 120
+        },
+        {
+            "name": "defense",
+            "base_stat": 120
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 150
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 100
+        },
+        {
+            "name": "speed",
+            "base_stat": 90
+        }
+    ]
+}

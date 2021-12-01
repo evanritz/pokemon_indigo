@@ -1,0 +1,60 @@
+{
+    "name": "chimchar",
+    "type": "fire",
+    "sprites": {
+        "front": "chimchar_front.png",
+        "back": "chimchar_back.png"
+    },
+    "moves": [
+        {
+            "name": "fire-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "fire"
+        },
+        {
+            "name": "thunder-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "electric"
+        },
+        {
+            "name": "scratch",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 44
+        },
+        {
+            "name": "attack",
+            "base_stat": 58
+        },
+        {
+            "name": "defense",
+            "base_stat": 44
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 58
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 44
+        },
+        {
+            "name": "speed",
+            "base_stat": 61
+        }
+    ]
+}

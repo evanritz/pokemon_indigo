@@ -1,0 +1,60 @@
+{
+    "name": "piplup",
+    "type": "water",
+    "sprites": {
+        "front": "piplup_front.png",
+        "back": "piplup_back.png"
+    },
+    "moves": [
+        {
+            "name": "pound",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "fury-attack",
+            "power": 15,
+            "pp": 20,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 53
+        },
+        {
+            "name": "attack",
+            "base_stat": 51
+        },
+        {
+            "name": "defense",
+            "base_stat": 53
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 61
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 56
+        },
+        {
+            "name": "speed",
+            "base_stat": 40
+        }
+    ]
+}

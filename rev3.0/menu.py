@@ -91,6 +91,7 @@ class BattleMenu:
         self.state_changed = True
         self.t0 = pygame.time.get_ticks()
         self.delay = 25
+        self.pokemon_delay = 50
 
         # For animating state transitions
         self.animate = False
@@ -98,22 +99,26 @@ class BattleMenu:
         self.animate_init = True
         self.animate_idx = 0
 
-
+        self.animate_pokemon_idx = 0#[-1, 0, 1]
+        self.player_sprite_dy = 1
+        self.enemy_sprite_dy = -1
+        self.player_sprite_bound = True
+        self.enemy_sprite_bound = True
 
         self.player_pokemon = self.game.player.pokemon[0]
         #self.player_pokemon.set_dynamic_stat_val('hp', 30)
-        self.enemy_pokemon = copy.deepcopy(self.game.player.encouter_pokemon)#self.game.pokedex.pokemon[45]
+        #self.enemy_pokemon = copy.deepcopy(self.game.player.encouter_pokemon)#self.game.pokedex.pokemon[45]
         #self.enemy_pokemon.set_dynamic_stat_val('hp', 1)
 
         self.player_pokemon_sprite = load_image_file(POKEMON_DIR, self.player_pokemon.sprites['back'])
         self.player_pokemon_sprite = pygame.transform.scale(self.player_pokemon_sprite, (96*(REZ_SCALE+1), 96*(REZ_SCALE+1)))
         self.player_pokemon_sprite_rect = self.player_pokemon_sprite.get_rect()
-        self.player_pokemon_sprite_rect.center = (256, 662-32)
+        self.player_pokemon_sprite_rect.center = (256, 615)
         
-        self.enemy_pokemon_sprite = load_image_file(POKEMON_DIR, self.enemy_pokemon.sprites['front'])
-        self.enemy_pokemon_sprite = pygame.transform.scale(self.enemy_pokemon_sprite, (96*REZ_SCALE, 96*REZ_SCALE))
-        self.enemy_pokemon_sprite_rect = self.enemy_pokemon_sprite.get_rect()
-        self.enemy_pokemon_sprite_rect.midbottom = (768, 470+96+32)
+        #self.enemy_pokemon_sprite = load_image_file(POKEMON_DIR, self.enemy_pokemon.sprites['front'])
+        #self.enemy_pokemon_sprite = pygame.transform.scale(self.enemy_pokemon_sprite, (96*REZ_SCALE, 96*REZ_SCALE))
+        #self.enemy_pokemon_sprite_rect = self.enemy_pokemon_sprite.get_rect()
+        #self.enemy_pokemon_sprite_rect.midbottom = (768, 470+96+32)
 
         self.player_battle_image = load_image_file(SPRITESHEETS_DIR, 'player_battle.png')
         self.player_battle_frames = []
@@ -286,7 +291,7 @@ class BattleMenu:
         # create arr of all types and grab from JSON using for loop
         self.types = [
             'ground', 'water', 'ghost', 'bug',
-            'fight', 'psychic', 'grass', 'dark',
+            'fighting', 'psychic', 'grass', 'dark',
             'normal', 'poison', 'electric', 'unknown',
             'steel', 'rock', 'dragon', 'flying',
             'fire', 'ice', 'blank'
@@ -339,11 +344,11 @@ class BattleMenu:
 
         #self.surf.blit(self.battleinterface, self.battleinterface_rect)
 
-        self.render_selection()
-        self.render_player()
-        self.render_enemy()
-        self.render_textbox()
-        self.render_state()
+        #self.render_selection()
+        #self.render_player()
+        #self.render_enemy()
+        #self.render_textbox()
+        #self.render_state()
         
     def check_mouse(self, mx, my, left):
         if self.STATE == 2 and not self.animate:
@@ -401,6 +406,24 @@ class BattleMenu:
 
         print(mx, my, left, self.selected)
 
+    def reset(self):
+        self.STATE = 1
+        self.animate_init = True
+        self.selector = []
+        self.animate_idx = 0
+        self.player_battle_frame_rect.midbottom = (256, 704)
+        self.infobox_lines = []
+        self.infobox.lines = []
+        self.player_sprite_dy = 1
+        self.enemy_sprite_dy = -1
+        self.player_sprite_bound = True
+        self.enemy_sprite_bound = True
+
+        #self.infobox.sentences = []
+        
+        #self.enemy_pokemon = None
+        
+
     def update_state(self):
         
         #print(self.selected, self.game.mouse.LEFT)
@@ -410,26 +433,30 @@ class BattleMenu:
             # if something 
             self.battlebox_rect.midbottom = (SCREEN_W//2, SCREEN_H*2)
             #print(self.infobox.sentences, (not self.infobox.sentences))
-
-            if self.animate_init:
-                if self.player_pokemon.get_dynamic_stat_val('hp') <= 0:
-                    self.game.STATE = 3
-
-            if not self.infobox.sentences:
-
-                if self.player_pokemon.get_dynamic_stat_val('hp') <= 0:
-                    self.game.STATE = 3
-            
-                if self.enemy_pokemon.get_dynamic_stat_val('hp') <= 0:
-                    self.game.STATE = 3
-
-                self.STATE = 2 
-                self.selector = []
-                self.animate = True
-
             self.render_player()
             self.render_enemy()
             self.render_textbox()
+            #if self.animate_init:
+            #    if self.player_pokemon.get_dynamic_stat_val('hp') <= 0:
+            #        self.game.STATE = 3
+            #        self.reset()
+
+            if not self.infobox.sentences and self.infobox.sentence == None:
+                
+                if self.player_pokemon.get_dynamic_stat_val('hp') <= 0:
+                    self.game.STATE = 3
+                    #self.infobox.add_sentences('test1')
+                    self.reset()
+                elif self.enemy_pokemon.get_dynamic_stat_val('hp') <= 0:
+                    self.game.STATE = 3
+                    #self.infobox.add_sentences('test1')
+                    self.reset()
+                else:
+                    self.STATE = 2 
+                    self.selector = []
+                    self.animate = True
+
+           
 
         elif self.STATE == 2:
 
@@ -438,9 +465,10 @@ class BattleMenu:
             if self.selected == 'ATTACK':
                 self.STATE = 3
                 self.selector = []
-                self.wait = True
+                #self.wait = True
             elif self.selected == 'RUN':
                 self.game.STATE = 3
+                self.reset()
 
             self.selected = 'NONE'
             #self.game.mouse.reset_buttons()
@@ -460,17 +488,52 @@ class BattleMenu:
                 self.STATE = 1
                 self.animate = True
                 self.selector = []
+                #self.infobox.lines = []
+                self.infobox_lines = []
                 self.calc_selected_move()
-                self.infobox.add_sentences('memes')
+                self.infobox.increment_sentences()
+                #self.infobox.add_sentences('memes')
 
             self.selected = 'NONE'
             #self.game.mouse.reset_buttons()
 
         #print(self.STATE, self.PREV_STATE)
-        self.PREV_STATE = self.STATE
+        #self.PREV_STATE = self.STATE
 
     def update(self):
         
+        if self.STATE == 1:
+            
+            self.t1 = pygame.time.get_ticks()
+            if self.t1-self.t0 >= self.pokemon_delay:
+                self.t1 = self.t0
+                p_x, p_y = self.player_pokemon_sprite_rect.center
+                self.player_pokemon_sprite_rect.center = (p_x, p_y+self.player_sprite_dy)
+        
+                if self.player_sprite_bound:
+                    if self.player_pokemon_sprite_rect.center >= (256, 630):
+                        self.player_sprite_dy = -self.player_sprite_dy
+                    elif self.player_pokemon_sprite_rect.center <= (256, 600):
+                        self.player_sprite_dy = -self.player_sprite_dy
+
+                e_x, e_y = self.enemy_pokemon_sprite_rect.midbottom
+                self.enemy_pokemon_sprite_rect.midbottom = (e_x, e_y+self.enemy_sprite_dy)
+
+                if self.enemy_sprite_bound:
+                    if self.enemy_pokemon_sprite_rect.midbottom >= (768, 600):
+                        self.enemy_sprite_dy = -self.enemy_sprite_dy
+                    elif self.enemy_pokemon_sprite_rect.midbottom <= (768, 570):
+                        self.enemy_sprite_dy = -self.enemy_sprite_dy
+
+                if self.enemy_pokemon_sprite_rect.topleft[1] > SCREEN_H:
+                    self.enemy_sprite_dy = 0
+
+                if self.player_pokemon_sprite_rect.topleft[1] > SCREEN_H:
+                    self.player_sprite_dy = 0
+
+
+                print(p_x, p_y)
+                print(e_x, e_y)
 
         if self.animate_init:
             if self.STATE == 1:
@@ -485,6 +548,7 @@ class BattleMenu:
 
                 if self.animate_idx >= len(self.player_battle_frames):
                     self.animate_init = False
+                    self.animate_idx = 0
 
         elif self.animate:   
             if self.STATE == 2:
@@ -521,6 +585,10 @@ class BattleMenu:
 
         # top frac
         pokemon_hp = self.player_pokemon.get_dynamic_stat_val('hp')
+        
+        if pokemon_hp < 0:
+            pokemon_hp = 0
+
         self.top_frac = self.num_font.render(str(pokemon_hp), True, pygame.Color((46, 46, 46)))
         self.top_frac_rect = self.top_frac.get_rect()
         self.top_frac_rect.topright = (888, 616)
@@ -553,9 +621,10 @@ class BattleMenu:
     def render_enemy(self):
 
         # level
+        print(self.enemy_pokemon.dynamic_stats)
         pokemon_level = self.enemy_pokemon.get_dynamic_stat_val('level')
         self.enemy_level = self.num_font.render('Lv{}'.format(pokemon_level), True, pygame.Color((46, 46, 46)))
-        self.enemy_level_rect = self.level.get_rect()
+        self.enemy_level_rect = self.enemy_level.get_rect()
         self.enemy_level_rect.topleft = (292, 136)
         
         # name
@@ -571,9 +640,18 @@ class BattleMenu:
         scaled_w = int(ratio*self.greenbar_rect.width)
         self.enemybar = self.greenbar.subsurface((0, 0), (scaled_w, self.greenbar_rect.height))
 
+        #self.enemy_pokemon = copy.deepcopy(pokemon)#self.game.pokedex.pokemon[45]
+
+    def set_enemy(self, pokemon):
+        self.enemy_pokemon = copy.deepcopy(pokemon)#self.game.pokedex.pokemon[45]
+        self.enemy_pokemon_sprite = load_image_file(POKEMON_DIR, self.enemy_pokemon.sprites['front'])
+        self.enemy_pokemon_sprite = pygame.transform.scale(self.enemy_pokemon_sprite, (96*REZ_SCALE, 96*REZ_SCALE))
+        self.enemy_pokemon_sprite_rect = self.enemy_pokemon_sprite.get_rect()
+        self.enemy_pokemon_sprite_rect.midbottom = (768, 585)
+
     def render_textbox(self):
 
-        lines = self.infobox.get_lines()
+        lines = self.infobox.lines
         
         y_inc = self.name_font.render('A', True, pygame.Color((46, 46, 46))).get_rect().height
         for y_mult, line in enumerate(lines):
@@ -669,34 +747,6 @@ class BattleMenu:
                 self.battleinterface_SURF3.blit(rendered_max_pp, rendered_max_pp_rect)
                 
 
-    def change_state(self):
-        
-        self.state_changed = True
-        
-        if self.STATE == 3:
-            self.STATE = 1
-        else:
-            self.STATE += 1
-    
-        if self.STATE == 1:
-            self.surf.fill(pygame.Color('black'))
-            self.render_player()
-            self.render_enemy()
-            self.render_textbox()
-        
-        elif self.STATE == 2:
-            self.selector = []
-            #print(self.battlebox_rect.midbottom)
-            self.surf.fill(pygame.Color('black'))
-            self.battlebox_rect.midbottom = (SCREEN_W//2, SCREEN_H*2)
-        
-        elif self.STATE == 3:
-            self.selector = []
-            self.surf.fill(pygame.Color('black'))
-            self.battleinterface_rect.midbottom = (SCREEN_W//2, SCREEN_H)
-
-        self.render_state()
-
     def calc_selected_move(self):
         
         # get all vars
@@ -734,20 +784,37 @@ class BattleMenu:
         e_speed = self.enemy_pokemon.get_dynamic_stat_val('speed')
 
         type_int = 1
-        crit_int = 1
         
+        
+        
+        
+        self.infobox.add_sentences('{} used {}'.format(self.player_pokemon.name.capitalize(), p_move['name'].upper()))
         if e_power != None:
-            p_damge_hp = int(((((2*e_level)/5 + 2)*e_power*e_attack/p_defense)/50 + 2)*type_int*crit_int)
+            p_damge_hp = int(((((2*e_level)/5 + 2)*e_power*e_attack/p_defense)/50 + 2)*type_int)
             p_hp -= p_damge_hp
             self.player_pokemon.set_dynamic_stat_val('hp', p_hp)
+            self.infobox.add_sentences('{} did {} damage to {}!'.format(self.enemy_pokemon.name.capitalize(), p_damge_hp, self.player_pokemon.name.capitalize()))
+            
+        if e_hp > 0:
+            self.infobox.add_sentences('{} used {}'.format(self.enemy_pokemon.name.capitalize(), e_move['name'].upper()))
+            if p_power != None:
+                e_damge_hp = int(((((2*p_level)/5 + 2)*p_power*p_attack/e_defense)/50 + 2)*type_int)
+                e_hp -= e_damge_hp
+                self.enemy_pokemon.set_dynamic_stat_val('hp', e_hp)
+                self.infobox.add_sentences('{} did {} damage to {}!'.format(self.player_pokemon.name.capitalize(), e_damge_hp, self.enemy_pokemon.name.capitalize()))
 
-        if p_power != None:
-            e_damge_hp = int(((((2*p_level)/5 + 2)*p_power*p_attack/e_defense)/50 + 2)*type_int*crit_int)
-            e_hp -= e_damge_hp
-            self.enemy_pokemon.set_dynamic_stat_val('hp', e_hp)
-
+        if p_hp <= 0:
+                self.infobox.add_sentences('{} fainted!'.format(self.player_pokemon.name.capitalize()))
+                self.player_sprite_bound = False
+                self.player_sprite_dy = 15
+        if e_hp <= 0:
+                self.infobox.add_sentences('{} fainted!'.format(self.enemy_pokemon.name.capitalize()))
+                self.enemy_sprite_bound = False
+                self.enemy_sprite_dy = 15
     def render_state(self):
         #self.surf.fill(pygame.Color('black'))
+        print(self.STATE)
+        print(self.infobox.sentences)
         if self.STATE == 1:
             self.surf.fill(pygame.Color('black'))
             self.surf.blit(self.bg, self.bg_rect)        
@@ -766,12 +833,13 @@ class BattleMenu:
                 self.surf.blit(line[0], line[1])
 
             self.surf.blit(self.enemy_pokemon_sprite, self.enemy_pokemon_sprite_rect)
-
+            print('Drawing?')
             self.surf.blit(self.playerbox, self.playerbox_rect)
             self.surf.blit(self.enemybox, self.enemybox_rect)
             self.surf.blit(self.playerbar, self.playerbar_rect)
             self.surf.blit(self.enemybar, self.enemybar_rect)
             self.surf.blit(self.slash, self.slash_rect)
+            print('Drawing?')
             self.surf.blit(self.top_frac, self.top_frac_rect)
             self.surf.blit(self.bot_frac, self.bot_frac_rect)
             self.surf.blit(self.level, self.level_rect)
@@ -788,7 +856,15 @@ class BattleMenu:
             self.surf.fill(pygame.Color('black'))
             self.surf.blit(self.bg, self.bg_rect)
             self.surf.blit(self.fg, self.fg_rect)
+
+            self.surf.blit(self.player_pokemon_sprite, self.player_pokemon_sprite_rect)
+
+            self.surf.blit(self.black_bg, self.black_bg_rect)
             self.surf.blit(self.textbox, self.textbox_rect)
+
+            self.surf.blit(self.enemy_pokemon_sprite, self.enemy_pokemon_sprite_rect)
+            #for line in self.infobox_lines:
+            #    self.surf.blit(line[0], line[1])
             self.surf.blit(self.playerbox, self.playerbox_rect)
             self.surf.blit(self.enemybox, self.enemybox_rect)
             self.surf.blit(self.playerbar, self.playerbar_rect)
@@ -812,6 +888,7 @@ class BattleMenu:
             self.surf.blit(self.textbox, self.textbox_rect)
             self.surf.blit(self.playerbox, self.playerbox_rect)
             self.surf.blit(self.enemybox, self.enemybox_rect)
+            
             self.surf.blit(self.battleinterface, self.battleinterface_rect)
             self.surf.blit(self.battleinterface_SURF0, self.battleinterface_TYPE0_rect)
             self.surf.blit(self.battleinterface_SURF1, self.battleinterface_TYPE1_rect)
@@ -839,18 +916,24 @@ class InfoBox:
     def __init__(self):
         
         self.sentences = []
-        self.sentence = 'testdasdffwsDFFCASCASCfdsfsDFSDFFEWFfsadfxcvsvsvsevsefv'
+        self.sentence = None
 
         self.lines = []
 
     def add_sentences(self, sentences):
-        self.sentences.append(sentences)
+        self.sentences.insert(-1, sentences)
+         
+        print(self.sentence, self.sentences)
 
     def increment_sentences(self):
         if self.sentences:
             self.sentence = self.sentences.pop()
+            self.lines = self.get_lines()
+        else:
+            self.sentence = None
         
     def get_lines(self):
+        #if self.sentence != None:
         return textwrap.wrap(text=self.sentence, width=45)
 
     

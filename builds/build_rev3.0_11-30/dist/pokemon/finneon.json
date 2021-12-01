@@ -1,0 +1,60 @@
+{
+    "name": "finneon",
+    "type": "water",
+    "sprites": {
+        "front": "finneon_front.png",
+        "back": "finneon_back.png"
+    },
+    "moves": [
+        {
+            "name": "pound",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "gust",
+            "power": 40,
+            "pp": 35,
+            "type": "flying"
+        },
+        {
+            "name": "water-gun",
+            "power": 40,
+            "pp": 25,
+            "type": "water"
+        },
+        {
+            "name": "surf",
+            "power": 90,
+            "pp": 15,
+            "type": "water"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 49
+        },
+        {
+            "name": "attack",
+            "base_stat": 49
+        },
+        {
+            "name": "defense",
+            "base_stat": 56
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 49
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 61
+        },
+        {
+            "name": "speed",
+            "base_stat": 66
+        }
+    ]
+}

@@ -6,6 +6,7 @@
 
 from consts import *
 from dirs import *
+from pokemon import Pokemon
 from utils import *
 
 import pygame
@@ -116,6 +117,9 @@ class Player(pygame.sprite.Sprite):
         self.rect.x = self.pos[0]
         self.rect.y = self.pos[0]
 
+    def isPokemonAlive(self, idx):
+        pokemon = self.pokemon[idx]
+        return pokemon.get_dynamic_stat_val('hp') > 0
 
     # update player sprite 
     def update(self):
@@ -160,8 +164,13 @@ class Player(pygame.sprite.Sprite):
             elif encouter_collision:
                 if random.random() < ENCOUTER_PROB:
                     self.encouter_pokemon = self.game.pokedex.pokemon[random.randint(0, self.game.pokedex.size-1)]
-                    self.game.battle_init()
-                    self.game.STATE = 4
+                    # for rn there is only one user pokemon (idx 0)
+                    # could be added too
+                    if self.isPokemonAlive(0):
+                        self.game.battlemenu.infobox.add_sentences('A wild {} has appeared!'.format(self.encouter_pokemon.name.capitalize()))
+                        self.game.battlemenu.infobox.add_sentences('What do you want to do?')
+                        self.game.battle_init()
+                        self.game.STATE = 4
 
                     #self.set_route(collision)
         # moving in x direction
@@ -186,8 +195,11 @@ class Player(pygame.sprite.Sprite):
             elif encouter_collision:
                 if random.random() < ENCOUTER_PROB:
                     self.encouter_pokemon = self.game.pokedex.pokemon[random.randint(0, self.game.pokedex.size-1)]
-                    self.game.battle_init()
-                    self.game.STATE = 4
+                    if self.isPokemonAlive(0):
+                        self.game.battlemenu.infobox.add_sentences('A wild {} has appeared!'.format(self.encouter_pokemon.name.capitalize()))
+                        self.game.battlemenu.infobox.add_sentences('What do you want to do?')
+                        self.game.battle_init()
+                        self.game.STATE = 4
 
 
     def set_route(self, collision):
@@ -213,6 +225,7 @@ class Player(pygame.sprite.Sprite):
                 if collision[0].coord == (e_x, e_y):
                     entry_route['goto'] = True
                     self.game.map.route = entry_route
+
 
     def animate(self):
 

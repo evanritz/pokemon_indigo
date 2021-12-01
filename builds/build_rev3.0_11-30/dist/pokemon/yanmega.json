@@ -1,0 +1,60 @@
+{
+    "name": "yanmega",
+    "type": "bug",
+    "sprites": {
+        "front": "yanmega_front.png",
+        "back": "yanmega_back.png"
+    },
+    "moves": [
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "supersonic",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "sonic-boom",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 86
+        },
+        {
+            "name": "attack",
+            "base_stat": 76
+        },
+        {
+            "name": "defense",
+            "base_stat": 86
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 116
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 56
+        },
+        {
+            "name": "speed",
+            "base_stat": 95
+        }
+    ]
+}

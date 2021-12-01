@@ -1,0 +1,60 @@
+{
+    "name": "riolu",
+    "type": "fighting",
+    "sprites": {
+        "front": "riolu_front.png",
+        "back": "riolu_back.png"
+    },
+    "moves": [
+        {
+            "name": "ice-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "ice"
+        },
+        {
+            "name": "thunder-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "electric"
+        },
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 40
+        },
+        {
+            "name": "attack",
+            "base_stat": 70
+        },
+        {
+            "name": "defense",
+            "base_stat": 40
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 35
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 40
+        },
+        {
+            "name": "speed",
+            "base_stat": 60
+        }
+    ]
+}
