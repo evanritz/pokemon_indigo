@@ -44,7 +44,8 @@ class Game:
         #self.game_init()
 
     def menu_init(self):
-        pygame.mixer.music.load('sounds/opening_screen.WAV')
+        pygame.mixer.music.set_volume(0.1)
+        pygame.mixer.music.load('sounds/title.wav')
         pygame.mixer.music.play(-1)  
         self.menu = Menu(self)
 
@@ -83,7 +84,7 @@ class Game:
         #self.battlemenu.infobox.add_sentences('lol')
 
     def battle_init(self):
-        pygame.mixer.music.load('sounds/opening_screen.WAV')
+        pygame.mixer.music.load('sounds/Battle.wav')
         pygame.mixer.music.play(-1) 
         self.battlemenu.set_enemy(self.player.encouter_pokemon)
         self.battlemenu.render_enemy()
