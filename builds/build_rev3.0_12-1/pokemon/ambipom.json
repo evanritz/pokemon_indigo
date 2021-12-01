@@ -1,0 +1,60 @@
+{
+    "name": "ambipom",
+    "type": "normal",
+    "sprites": {
+        "front": "ambipom_front.png",
+        "back": "ambipom_back.png"
+    },
+    "moves": [
+        {
+            "name": "fire-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "fire"
+        },
+        {
+            "name": "ice-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "ice"
+        },
+        {
+            "name": "thunder-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "electric"
+        },
+        {
+            "name": "scratch",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 75
+        },
+        {
+            "name": "attack",
+            "base_stat": 100
+        },
+        {
+            "name": "defense",
+            "base_stat": 66
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 60
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 66
+        },
+        {
+            "name": "speed",
+            "base_stat": 115
+        }
+    ]
+}

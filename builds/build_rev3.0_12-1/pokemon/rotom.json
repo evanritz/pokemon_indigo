@@ -1,0 +1,60 @@
+{
+    "name": "rotom",
+    "type": "electric",
+    "sprites": {
+        "front": "rotom_front.png",
+        "back": "rotom_back.png"
+    },
+    "moves": [
+        {
+            "name": "thunder-shock",
+            "power": 40,
+            "pp": 30,
+            "type": "electric"
+        },
+        {
+            "name": "thunderbolt",
+            "power": 90,
+            "pp": 15,
+            "type": "electric"
+        },
+        {
+            "name": "thunder-wave",
+            "power": null,
+            "pp": 20,
+            "type": "electric"
+        },
+        {
+            "name": "thunder",
+            "power": 110,
+            "pp": 10,
+            "type": "electric"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 50
+        },
+        {
+            "name": "attack",
+            "base_stat": 50
+        },
+        {
+            "name": "defense",
+            "base_stat": 77
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 95
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 77
+        },
+        {
+            "name": "speed",
+            "base_stat": 91
+        }
+    ]
+}

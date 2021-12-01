@@ -1,0 +1,60 @@
+{
+    "name": "budew",
+    "type": "grass",
+    "sprites": {
+        "front": "budew_front.png",
+        "back": "budew_back.png"
+    },
+    "moves": [
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "pin-missile",
+            "power": 25,
+            "pp": 20,
+            "type": "bug"
+        },
+        {
+            "name": "absorb",
+            "power": 20,
+            "pp": 25,
+            "type": "grass"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 40
+        },
+        {
+            "name": "attack",
+            "base_stat": 30
+        },
+        {
+            "name": "defense",
+            "base_stat": 35
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 50
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 70
+        },
+        {
+            "name": "speed",
+            "base_stat": 55
+        }
+    ]
+}

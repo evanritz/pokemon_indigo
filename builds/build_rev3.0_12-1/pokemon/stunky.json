@@ -1,0 +1,60 @@
+{
+    "name": "stunky",
+    "type": "poison",
+    "sprites": {
+        "front": "stunky_front.png",
+        "back": "stunky_back.png"
+    },
+    "moves": [
+        {
+            "name": "scratch",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "double-edge",
+            "power": 120,
+            "pp": 15,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 63
+        },
+        {
+            "name": "attack",
+            "base_stat": 63
+        },
+        {
+            "name": "defense",
+            "base_stat": 47
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 41
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 41
+        },
+        {
+            "name": "speed",
+            "base_stat": 74
+        }
+    ]
+}

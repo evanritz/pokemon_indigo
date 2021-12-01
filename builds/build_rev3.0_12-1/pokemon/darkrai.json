@@ -1,0 +1,60 @@
+{
+    "name": "darkrai",
+    "type": "dark",
+    "sprites": {
+        "front": "darkrai_front.png",
+        "back": "darkrai_back.png"
+    },
+    "moves": [
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "disable",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 70
+        },
+        {
+            "name": "attack",
+            "base_stat": 90
+        },
+        {
+            "name": "defense",
+            "base_stat": 90
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 135
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 90
+        },
+        {
+            "name": "speed",
+            "base_stat": 125
+        }
+    ]
+}

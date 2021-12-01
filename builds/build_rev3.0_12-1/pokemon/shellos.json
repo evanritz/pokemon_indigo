@@ -1,0 +1,60 @@
+{
+    "name": "shellos",
+    "type": "water",
+    "sprites": {
+        "front": "shellos_front.png",
+        "back": "shellos_back.png"
+    },
+    "moves": [
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "body-slam",
+            "power": 85,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "mist",
+            "power": null,
+            "pp": 30,
+            "type": "ice"
+        },
+        {
+            "name": "surf",
+            "power": 90,
+            "pp": 15,
+            "type": "water"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 76
+        },
+        {
+            "name": "attack",
+            "base_stat": 48
+        },
+        {
+            "name": "defense",
+            "base_stat": 48
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 57
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 62
+        },
+        {
+            "name": "speed",
+            "base_stat": 34
+        }
+    ]
+}

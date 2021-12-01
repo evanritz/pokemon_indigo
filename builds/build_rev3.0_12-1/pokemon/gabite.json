@@ -1,0 +1,60 @@
+{
+    "name": "gabite",
+    "type": "dragon",
+    "sprites": {
+        "front": "gabite_front.png",
+        "back": "gabite_back.png"
+    },
+    "moves": [
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "sand-attack",
+            "power": null,
+            "pp": 15,
+            "type": "ground"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 68
+        },
+        {
+            "name": "attack",
+            "base_stat": 90
+        },
+        {
+            "name": "defense",
+            "base_stat": 65
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 50
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 55
+        },
+        {
+            "name": "speed",
+            "base_stat": 82
+        }
+    ]
+}

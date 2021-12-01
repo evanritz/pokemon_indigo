@@ -1,0 +1,60 @@
+{
+    "name": "buizel",
+    "type": "water",
+    "sprites": {
+        "front": "buizel_front.png",
+        "back": "buizel_back.png"
+    },
+    "moves": [
+        {
+            "name": "double-slap",
+            "power": 15,
+            "pp": 10,
+            "type": "normal"
+        },
+        {
+            "name": "ice-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "ice"
+        },
+        {
+            "name": "razor-wind",
+            "power": 80,
+            "pp": 10,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 55
+        },
+        {
+            "name": "attack",
+            "base_stat": 65
+        },
+        {
+            "name": "defense",
+            "base_stat": 35
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 60
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 30
+        },
+        {
+            "name": "speed",
+            "base_stat": 85
+        }
+    ]
+}

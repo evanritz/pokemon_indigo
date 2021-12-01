@@ -1,0 +1,60 @@
+{
+    "name": "lumineon",
+    "type": "water",
+    "sprites": {
+        "front": "lumineon_front.png",
+        "back": "lumineon_back.png"
+    },
+    "moves": [
+        {
+            "name": "pound",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "gust",
+            "power": 40,
+            "pp": 35,
+            "type": "flying"
+        },
+        {
+            "name": "water-gun",
+            "power": 40,
+            "pp": 25,
+            "type": "water"
+        },
+        {
+            "name": "surf",
+            "power": 90,
+            "pp": 15,
+            "type": "water"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 69
+        },
+        {
+            "name": "attack",
+            "base_stat": 69
+        },
+        {
+            "name": "defense",
+            "base_stat": 76
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 69
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 86
+        },
+        {
+            "name": "speed",
+            "base_stat": 91
+        }
+    ]
+}
