@@ -23,7 +23,7 @@ class Input:
         self.SHIFT, self.SPACE = False, False
 
         # action key bools
-        self.SELECT, self.INCREMENT = False, False
+        self.SELECT, self.INCREMENT, self.HEAL = False, False, False
 
         # game status bools
         self.PAUSE_GAME, self.EXIT_GAME = False, False
@@ -37,7 +37,7 @@ class Input:
     def reset_bools(self):
         self.UP, self.DOWN, self.LEFT, self.RIGHT = False, False, False, False
         self.SHIFT, self.SPACE = False, False
-        self.SELECT, self.INCREMENT = False, False
+        self.SELECT, self.INCREMENT, self.HEAL = False, False, False
         self.PAUSE_GAME, self.EXIT_GAME = False, False
         self.M_LEFT, self.M_MIDDLE, self.M_RIGHT = False, False, False
 
@@ -66,6 +66,8 @@ class Input:
                     self.SELECT = True
                 elif event.key == K_i:
                     self.INCREMENT = True
+                elif event.key == K_h:
+                    self.HEAL = True
             elif event.type == KEYUP:
                 if event.key == K_ESCAPE:
                     self.PAUSE_GAME = False
@@ -85,6 +87,8 @@ class Input:
                     self.SELECT = False
                 elif event.key == K_i:
                     self.INCREMENT = False
+                elif event.key == K_h:
+                    self.HEAL = False
             elif event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     self.M_LEFT = True

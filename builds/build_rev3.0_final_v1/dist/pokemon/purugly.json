@@ -1,0 +1,60 @@
+{
+    "name": "purugly",
+    "type": "normal",
+    "sprites": {
+        "front": "purugly_front.png",
+        "back": "purugly_back.png"
+    },
+    "moves": [
+        {
+            "name": "scratch",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "body-slam",
+            "power": 85,
+            "pp": 15,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 71
+        },
+        {
+            "name": "attack",
+            "base_stat": 82
+        },
+        {
+            "name": "defense",
+            "base_stat": 64
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 64
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 59
+        },
+        {
+            "name": "speed",
+            "base_stat": 112
+        }
+    ]
+}

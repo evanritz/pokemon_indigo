@@ -1,0 +1,60 @@
+{
+    "name": "burmy",
+    "type": "bug",
+    "sprites": {
+        "front": "burmy_front.png",
+        "back": "burmy_back.png"
+    },
+    "moves": [
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "string-shot",
+            "power": null,
+            "pp": 40,
+            "type": "bug"
+        },
+        {
+            "name": "snore",
+            "power": 50,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "protect",
+            "power": null,
+            "pp": 10,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 40
+        },
+        {
+            "name": "attack",
+            "base_stat": 29
+        },
+        {
+            "name": "defense",
+            "base_stat": 45
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 29
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 45
+        },
+        {
+            "name": "speed",
+            "base_stat": 36
+        }
+    ]
+}

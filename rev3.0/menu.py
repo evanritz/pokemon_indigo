@@ -404,7 +404,7 @@ class BattleMenu:
                 self.selector = []
                 self.selected = 'NONE'
 
-        print(mx, my, left, self.selected)
+        #print(mx, my, left, self.selected)
 
     def reset(self):
         self.STATE = 1
@@ -418,6 +418,8 @@ class BattleMenu:
         self.enemy_sprite_dy = -1
         self.player_sprite_bound = True
         self.enemy_sprite_bound = True
+        self.player_pokemon_sprite_rect.center = (256, 615)
+        self.battleinterface_rect.midbottom = (SCREEN_W//2, SCREEN_H*2)
 
         #self.infobox.sentences = []
         
@@ -431,6 +433,7 @@ class BattleMenu:
         if self.STATE == 1:
             
             # if something 
+            
             self.battlebox_rect.midbottom = (SCREEN_W//2, SCREEN_H*2)
             #print(self.infobox.sentences, (not self.infobox.sentences))
             self.render_player()
@@ -511,6 +514,8 @@ class BattleMenu:
 
     def update(self):
         
+        print(self.player_pokemon.dynamic_moves[0]['pp'])
+
         if self.STATE == 1:
             
             self.t1 = pygame.time.get_ticks()
@@ -541,8 +546,8 @@ class BattleMenu:
                     self.player_sprite_dy = 0
 
 
-                print(p_x, p_y)
-                print(e_x, e_y)
+                #print(p_x, p_y)
+                #print(e_x, e_y)
 
         if self.animate_init:
             if self.STATE == 1:
@@ -630,7 +635,7 @@ class BattleMenu:
     def render_enemy(self):
 
         # level
-        print(self.enemy_pokemon.dynamic_stats)
+        #print(self.enemy_pokemon.dynamic_stats)
         pokemon_level = self.enemy_pokemon.get_dynamic_stat_val('level')
         self.enemy_level = self.num_font.render('Lv{}'.format(pokemon_level), True, pygame.Color((46, 46, 46)))
         self.enemy_level_rect = self.enemy_level.get_rect()
@@ -701,10 +706,10 @@ class BattleMenu:
     def render_selection(self):
        move_names = self.player_pokemon.get_static_moves()
        for idx, move_name in enumerate(move_names):
-            print(idx, move_name)
+            #print(idx, move_name)
             move = self.player_pokemon.get_dynamic_move_details(move_name)
             static_move = self.player_pokemon.get_static_move_details(move_name)
-            print(move, static_move)
+            #print(move, static_move)
 
             type = move['type']
 
@@ -792,10 +797,11 @@ class BattleMenu:
 
         e_speed = self.enemy_pokemon.get_dynamic_stat_val('speed')
 
+        p_pp -= 1
+        self.player_pokemon.set_dynamic_move_val(p_move['name'], 'pp', p_pp)
+        
+
         type_int = 1
-        
-        
-        
         
         self.infobox.add_sentences('{} used {}'.format(self.player_pokemon.name.capitalize(), p_move['name'].upper()))
         if e_power != None:
@@ -815,15 +821,16 @@ class BattleMenu:
         if p_hp <= 0:
                 self.infobox.add_sentences('{} fainted!'.format(self.player_pokemon.name.capitalize()))
                 self.player_sprite_bound = False
-                self.player_sprite_dy = 15
+                self.player_sprite_dy = 5
         if e_hp <= 0:
                 self.infobox.add_sentences('{} fainted!'.format(self.enemy_pokemon.name.capitalize()))
                 self.enemy_sprite_bound = False
-                self.enemy_sprite_dy = 15
+                self.enemy_sprite_dy = 5
+
     def render_state(self):
         #self.surf.fill(pygame.Color('black'))
-        print(self.STATE)
-        print(self.infobox.sentences)
+        #print(self.STATE)
+        #print(self.infobox.sentences)
         if self.STATE == 1:
             self.surf.fill(pygame.Color('black'))
             self.surf.blit(self.bg, self.bg_rect)        
@@ -842,13 +849,13 @@ class BattleMenu:
                 self.surf.blit(line[0], line[1])
 
             self.surf.blit(self.enemy_pokemon_sprite, self.enemy_pokemon_sprite_rect)
-            print('Drawing?')
+            #print('Drawing?')
             self.surf.blit(self.playerbox, self.playerbox_rect)
             self.surf.blit(self.enemybox, self.enemybox_rect)
             self.surf.blit(self.playerbar, self.playerbar_rect)
             self.surf.blit(self.enemybar, self.enemybar_rect)
             self.surf.blit(self.slash, self.slash_rect)
-            print('Drawing?')
+            #print('Drawing?')
             self.surf.blit(self.top_frac, self.top_frac_rect)
             self.surf.blit(self.bot_frac, self.bot_frac_rect)
             self.surf.blit(self.level, self.level_rect)
@@ -932,7 +939,7 @@ class InfoBox:
     def add_sentences(self, sentences):
         self.sentences.insert(-1, sentences)
          
-        print(self.sentence, self.sentences)
+        #print(self.sentence, self.sentences)
 
     def increment_sentences(self):
         if self.sentences:

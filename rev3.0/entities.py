@@ -9,6 +9,7 @@ from dirs import *
 from pokemon import Pokemon
 from utils import *
 
+import copy
 import pygame
 import random
 import math
@@ -23,7 +24,7 @@ class Player(pygame.sprite.Sprite):
 
         # player pokemon, DEBUG for battlemenu will be selected in game
         # Index 20 choosen for Testing
-        self.pokemon = [self.game.pokedex.pokemon[random.randint(0, self.game.pokedex.size-1)]]
+        self.pokemon = [copy.deepcopy(self.game.pokedex.pokemon[random.randint(0, self.game.pokedex.size-1)])]
         self.encouter_pokemon = None
         # Velocity vector
         self.vel = pygame.Vector2(0, 0)
@@ -33,6 +34,11 @@ class Player(pygame.sprite.Sprite):
         self.facing = 'down'
 
         self.animation_idx = 1
+
+        self.delay = 20000
+        self.t0 = pygame.time.get_ticks()
+        self.t1 = self.t0
+        self.encouterCanHappend = True
 
         self.load_sprites()
 
@@ -135,6 +141,10 @@ class Player(pygame.sprite.Sprite):
         self.animate()
         # reset velocity value
         self.vel *= 0
+
+        self.t1 = pygame.time.get_ticks()
+        if self.t1-self.t0 >= self.delay:
+            self.encouterCanHappend = True
         
     def collide(self):
         # moving in y direction
@@ -162,7 +172,7 @@ class Player(pygame.sprite.Sprite):
                     for sprite in self.game.all_sprites:
                         sprite.rect.y += self.vel.y
             elif encouter_collision:
-                if random.random() < ENCOUTER_PROB:
+                if random.random() < ENCOUTER_PROB and self.encouterCanHappend:
                     self.encouter_pokemon = self.game.pokedex.pokemon[random.randint(0, self.game.pokedex.size-1)]
                     # for rn there is only one user pokemon (idx 0)
                     # could be added too
@@ -172,6 +182,9 @@ class Player(pygame.sprite.Sprite):
                         pygame.mixer.music.stop()
                         self.game.battle_init()
                         self.game.STATE = 4
+                        self.encouterCanHappend = False
+                        self.t0 = pygame.time.get_ticks()
+                        #self.t1 = self.t0
 
                     #self.set_route(collision)
         # moving in x direction
@@ -194,7 +207,7 @@ class Player(pygame.sprite.Sprite):
 
                     #self.set_route(collision)
             elif encouter_collision:
-                if random.random() < ENCOUTER_PROB:
+                if random.random() < ENCOUTER_PROB and self.encouterCanHappend:
                     self.encouter_pokemon = self.game.pokedex.pokemon[random.randint(0, self.game.pokedex.size-1)]
                     if self.isPokemonAlive(0):
                         self.game.battlemenu.infobox.add_sentences('A wild {} has appeared!'.format(self.encouter_pokemon.name.capitalize()))
@@ -202,6 +215,10 @@ class Player(pygame.sprite.Sprite):
                         pygame.mixer.music.stop()
                         self.game.battle_init()
                         self.game.STATE = 4
+                        self.encouterCanHappend = False
+                        self.t0 = pygame.time.get_ticks()
+                        #self.t1 = self.t0
+
 
 
     def set_route(self, collision):

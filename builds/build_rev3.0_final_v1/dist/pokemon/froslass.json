@@ -1,0 +1,60 @@
+{
+    "name": "froslass",
+    "type": "ice",
+    "sprites": {
+        "front": "froslass_front.png",
+        "back": "froslass_back.png"
+    },
+    "moves": [
+        {
+            "name": "ice-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "ice"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "leer",
+            "power": null,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "ice-beam",
+            "power": 90,
+            "pp": 10,
+            "type": "ice"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 70
+        },
+        {
+            "name": "attack",
+            "base_stat": 80
+        },
+        {
+            "name": "defense",
+            "base_stat": 70
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 80
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 70
+        },
+        {
+            "name": "speed",
+            "base_stat": 110
+        }
+    ]
+}

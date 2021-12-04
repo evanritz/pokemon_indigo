@@ -1,0 +1,60 @@
+{
+    "name": "cranidos",
+    "type": "rock",
+    "sprites": {
+        "front": "cranidos_front.png",
+        "back": "cranidos_back.png"
+    },
+    "moves": [
+        {
+            "name": "fire-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "fire"
+        },
+        {
+            "name": "thunder-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "electric"
+        },
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "whirlwind",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 67
+        },
+        {
+            "name": "attack",
+            "base_stat": 125
+        },
+        {
+            "name": "defense",
+            "base_stat": 40
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 30
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 30
+        },
+        {
+            "name": "speed",
+            "base_stat": 58
+        }
+    ]
+}

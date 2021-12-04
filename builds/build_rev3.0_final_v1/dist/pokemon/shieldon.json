@@ -1,0 +1,60 @@
+{
+    "name": "shieldon",
+    "type": "rock",
+    "sprites": {
+        "front": "shieldon_front.png",
+        "back": "shieldon_back.png"
+    },
+    "moves": [
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "body-slam",
+            "power": 85,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "take-down",
+            "power": 90,
+            "pp": 20,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 30
+        },
+        {
+            "name": "attack",
+            "base_stat": 42
+        },
+        {
+            "name": "defense",
+            "base_stat": 118
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 42
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 88
+        },
+        {
+            "name": "speed",
+            "base_stat": 30
+        }
+    ]
+}

@@ -80,9 +80,12 @@ class Pokemon:
 
     # for changing pp value from use
     def set_dynamic_move_val(self, move_name, move_val_key, move_val):
-        for move in self.dynamic_moves:
+        for idx, move in enumerate(self.dynamic_moves):
             if move_name == move['name']:
+                print(move)
                 move[move_val_key] = move_val
+                self.dynamic_moves[idx] = move
+                print(move)
 
     def get_dynamic_stat_val(self, stat_name):
         for stat in self.dynamic_stats:

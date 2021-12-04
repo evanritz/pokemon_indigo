@@ -168,6 +168,12 @@ class Game:
                 self.player.vel.x += PLAYER_WALKING_VEL
                 self.player.facing = 'right'
 
+        if self.input.HEAL:
+            pokemon = self.player.pokemon[0]
+            pokemon_max_hp = pokemon.get_static_stat_val('hp')
+            pokemon.set_dynamic_stat_val('hp', pokemon_max_hp)
+            self.input.reset_bools()
+
         # DEBUG: Will be removed later
         #if self.input.SPACE:
         #    self.battle_init()

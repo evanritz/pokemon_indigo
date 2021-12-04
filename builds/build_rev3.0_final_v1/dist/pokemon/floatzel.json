@@ -1,0 +1,60 @@
+{
+    "name": "floatzel",
+    "type": "water",
+    "sprites": {
+        "front": "floatzel_front.png",
+        "back": "floatzel_back.png"
+    },
+    "moves": [
+        {
+            "name": "ice-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "ice"
+        },
+        {
+            "name": "razor-wind",
+            "power": 80,
+            "pp": 10,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "growl",
+            "power": null,
+            "pp": 40,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 85
+        },
+        {
+            "name": "attack",
+            "base_stat": 105
+        },
+        {
+            "name": "defense",
+            "base_stat": 55
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 85
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 50
+        },
+        {
+            "name": "speed",
+            "base_stat": 115
+        }
+    ]
+}
