@@ -1,0 +1,60 @@
+{
+    "name": "bonsly",
+    "type": "rock",
+    "sprites": {
+        "front": "bonsly_front.png",
+        "back": "bonsly_back.png"
+    },
+    "moves": [
+        {
+            "name": "slam",
+            "power": 80,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "double-edge",
+            "power": 120,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "low-kick",
+            "power": null,
+            "pp": 20,
+            "type": "fighting"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 50
+        },
+        {
+            "name": "attack",
+            "base_stat": 80
+        },
+        {
+            "name": "defense",
+            "base_stat": 95
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 10
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 45
+        },
+        {
+            "name": "speed",
+            "base_stat": 10
+        }
+    ]
+}

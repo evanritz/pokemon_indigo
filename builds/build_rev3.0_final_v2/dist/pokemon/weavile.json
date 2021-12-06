@@ -1,0 +1,60 @@
+{
+    "name": "weavile",
+    "type": "dark",
+    "sprites": {
+        "front": "weavile_front.png",
+        "back": "weavile_back.png"
+    },
+    "moves": [
+        {
+            "name": "ice-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "ice"
+        },
+        {
+            "name": "scratch",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        },
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 70
+        },
+        {
+            "name": "attack",
+            "base_stat": 120
+        },
+        {
+            "name": "defense",
+            "base_stat": 65
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 45
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 85
+        },
+        {
+            "name": "speed",
+            "base_stat": 125
+        }
+    ]
+}

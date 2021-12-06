@@ -821,11 +821,11 @@ class BattleMenu:
         if p_hp <= 0:
                 self.infobox.add_sentences('{} fainted!'.format(self.player_pokemon.name.capitalize()))
                 self.player_sprite_bound = False
-                self.player_sprite_dy = 5
+                self.player_sprite_dy = 15
         if e_hp <= 0:
                 self.infobox.add_sentences('{} fainted!'.format(self.enemy_pokemon.name.capitalize()))
                 self.enemy_sprite_bound = False
-                self.enemy_sprite_dy = 5
+                self.enemy_sprite_dy = 15
 
     def render_state(self):
         #self.surf.fill(pygame.Color('black'))

@@ -1,0 +1,60 @@
+{
+    "name": "spiritomb",
+    "type": "ghost",
+    "sprites": {
+        "front": "spiritomb_front.png",
+        "back": "spiritomb_back.png"
+    },
+    "moves": [
+        {
+            "name": "disable",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "hyper-beam",
+            "power": 150,
+            "pp": 5,
+            "type": "normal"
+        },
+        {
+            "name": "toxic",
+            "power": null,
+            "pp": 10,
+            "type": "poison"
+        },
+        {
+            "name": "psychic",
+            "power": 90,
+            "pp": 10,
+            "type": "psychic"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 50
+        },
+        {
+            "name": "attack",
+            "base_stat": 92
+        },
+        {
+            "name": "defense",
+            "base_stat": 108
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 92
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 108
+        },
+        {
+            "name": "speed",
+            "base_stat": 35
+        }
+    ]
+}

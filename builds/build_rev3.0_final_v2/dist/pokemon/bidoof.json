@@ -1,0 +1,60 @@
+{
+    "name": "bidoof",
+    "type": "normal",
+    "sprites": {
+        "front": "bidoof_front.png",
+        "back": "bidoof_back.png"
+    },
+    "moves": [
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        },
+        {
+            "name": "cut",
+            "power": 50,
+            "pp": 30,
+            "type": "normal"
+        },
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "tackle",
+            "power": 40,
+            "pp": 35,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 59
+        },
+        {
+            "name": "attack",
+            "base_stat": 45
+        },
+        {
+            "name": "defense",
+            "base_stat": 40
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 35
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 40
+        },
+        {
+            "name": "speed",
+            "base_stat": 31
+        }
+    ]
+}

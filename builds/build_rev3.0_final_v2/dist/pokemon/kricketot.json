@@ -1,0 +1,60 @@
+{
+    "name": "kricketot",
+    "type": "bug",
+    "sprites": {
+        "front": "kricketot_front.png",
+        "back": "kricketot_back.png"
+    },
+    "moves": [
+        {
+            "name": "growl",
+            "power": null,
+            "pp": 40,
+            "type": "normal"
+        },
+        {
+            "name": "string-shot",
+            "power": null,
+            "pp": 40,
+            "type": "bug"
+        },
+        {
+            "name": "bide",
+            "power": null,
+            "pp": 10,
+            "type": "normal"
+        },
+        {
+            "name": "snore",
+            "power": 50,
+            "pp": 15,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 37
+        },
+        {
+            "name": "attack",
+            "base_stat": 25
+        },
+        {
+            "name": "defense",
+            "base_stat": 41
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 25
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 41
+        },
+        {
+            "name": "speed",
+            "base_stat": 25
+        }
+    ]
+}

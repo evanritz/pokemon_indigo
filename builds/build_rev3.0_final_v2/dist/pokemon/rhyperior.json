@@ -1,0 +1,60 @@
+{
+    "name": "rhyperior",
+    "type": "ground",
+    "sprites": {
+        "front": "rhyperior_front.png",
+        "back": "rhyperior_back.png"
+    },
+    "moves": [
+        {
+            "name": "fire-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "fire"
+        },
+        {
+            "name": "ice-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "ice"
+        },
+        {
+            "name": "thunder-punch",
+            "power": 75,
+            "pp": 15,
+            "type": "electric"
+        },
+        {
+            "name": "swords-dance",
+            "power": null,
+            "pp": 20,
+            "type": "normal"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 115
+        },
+        {
+            "name": "attack",
+            "base_stat": 140
+        },
+        {
+            "name": "defense",
+            "base_stat": 130
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 55
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 55
+        },
+        {
+            "name": "speed",
+            "base_stat": 40
+        }
+    ]
+}

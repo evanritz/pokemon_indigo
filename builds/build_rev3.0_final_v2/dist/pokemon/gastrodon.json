@@ -1,0 +1,60 @@
+{
+    "name": "gastrodon",
+    "type": "water",
+    "sprites": {
+        "front": "gastrodon_front.png",
+        "back": "gastrodon_back.png"
+    },
+    "moves": [
+        {
+            "name": "headbutt",
+            "power": 70,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "body-slam",
+            "power": 85,
+            "pp": 15,
+            "type": "normal"
+        },
+        {
+            "name": "surf",
+            "power": 90,
+            "pp": 15,
+            "type": "water"
+        },
+        {
+            "name": "ice-beam",
+            "power": 90,
+            "pp": 10,
+            "type": "ice"
+        }
+    ],
+    "stats": [
+        {
+            "name": "hp",
+            "base_stat": 111
+        },
+        {
+            "name": "attack",
+            "base_stat": 83
+        },
+        {
+            "name": "defense",
+            "base_stat": 68
+        },
+        {
+            "name": "special-attack",
+            "base_stat": 92
+        },
+        {
+            "name": "special-defense",
+            "base_stat": 82
+        },
+        {
+            "name": "speed",
+            "base_stat": 39
+        }
+    ]
+}
